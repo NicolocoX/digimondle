@@ -9,11 +9,15 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "standard": "^17.1.2",
     "vite": "^8.2.0"
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.0.5",
     "react": "19.2.8",
     "react-dom": "19.2.8"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/esLintrc.json"
   }
 }
