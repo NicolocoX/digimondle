@@ -1,6 +1,14 @@
+import busquedaResultado from "./mocks/busquedaResultados.json"
+import busquedaNoResultado from "./mocks/busquedaNoResultados.json"
+import Cascada from "./Cascada"
+
+
 const API_URL = "https://digi-api.com/api/v1/digimon/"
 
 export default function App() {
+  const resultados = busquedaResultado.content
+
+
   const handleOnSubmit = (event) => {
     event.preventDefault()
 
@@ -16,6 +24,7 @@ export default function App() {
         <label>Buscar: </label>
         <input></input>
       </form>
+      <Cascada resultados={resultados} />
     </main>
   )
 }
