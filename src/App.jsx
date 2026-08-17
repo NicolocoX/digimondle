@@ -1,6 +1,6 @@
 import busquedaResultado from "./mocks/busquedaResultados.json"
 import busquedaNoResultado from "./mocks/busquedaNoResultados.json"
-import Cascada from "./Cascada"
+import Cascada from "./components/Cascada"
 
 
 const API_URL = "https://digi-api.com/api/v1/digimon/"
