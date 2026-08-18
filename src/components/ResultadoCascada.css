@@ -1,5 +1,11 @@
 .resultado-cascada {
-  border-style: solid;
-  border-color: black;
-  border-width: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  background-color: white;
+}
+
+.resultado-cascada img {
+  width: 50px;
 }

@@ -1,0 +1,10 @@
+.cascada {
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  gap: 5px;
+  margin: 0px;
+
+  background-color: rgb(73, 118, 155);
+}
