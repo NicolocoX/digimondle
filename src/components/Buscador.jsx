@@ -8,9 +8,11 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 export default function Buscador() {
   const [consulta, setConsulta] = useState("")
   const [respuesta, setRespuesta] = useState(null)
+  const [resultados, setResultados] = useState(null)
   const parametros = new URLSearchParams({
     name: consulta,
-    pageSize: 10
+    pageSize: 10,
+    page: 0
   })
 
 
@@ -19,6 +21,7 @@ export default function Buscador() {
     const data = await response.json()
 
     setRespuesta(data)
+    return data
   }
 
 
@@ -28,12 +31,24 @@ export default function Buscador() {
       return
     }
 
-    getRespuesta(API_URL + parametros)
+    const obtenerRespuesta = async () => {
+      const data = await getRespuesta(API_URL + parametros)
+      setResultados(data.content)
+    }
+
+    obtenerRespuesta()
   }, [consulta])
 
 
-  //resultados.pageable.nextPage
+  const expandirResultados = async () => {
+    const nextPage = respuesta.pageable.nextPage
+    if (nextPage === "") return
 
+    const datos = await getRespuesta(nextPage)
+    const sigResultados = datos.content
+    const newResultados = [...resultados, ...sigResultados]
+    setResultados(newResultados)
+  }
 
 
   const setConsultaDebounce = useCallback(
@@ -49,7 +64,10 @@ export default function Buscador() {
         <input onChange={(event) => setConsultaDebounce(event.target.value)} />
       </div>
 
-      {respuesta?.content && <Cascada resultados={respuesta.content} />}
+      {respuesta?.content &&
+        <Cascada
+          resultados={resultados}
+          expandirResultados={expandirResultados} />}
     </form>
   )
 }

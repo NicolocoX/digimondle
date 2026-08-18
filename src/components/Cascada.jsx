@@ -1,12 +1,12 @@
 import ResultadoCascada from "./ResultadoCascada";
 import "./Cascada.css"
 
-export default function Cascada({ resultados }) {
+export default function Cascada({ resultados, expandirResultados }) {
   const handleScroll = (event) => {
     const elemento = event.currentTarget
     const enElFinal = elemento.clientHeight + elemento.scrollTop >= elemento.scrollHeight
 
-    if (enElFinal) console.log("LLegaste")
+    if (enElFinal) expandirResultados()
   }
 
 
