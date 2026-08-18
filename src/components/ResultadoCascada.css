@@ -4,8 +4,14 @@
   gap: 5px;
 
   background-color: white;
+
+  border-radius: 8px;
 }
 
 .resultado-cascada img {
-  width: 50px;
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+
+  border-radius: 8px 0 0 8px;
 }

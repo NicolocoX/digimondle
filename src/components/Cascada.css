@@ -10,5 +10,7 @@
 
   background-color: rgb(73, 118, 155);
 
+  border-radius: 0px 0px 10px 10px;
+
   scrollbar-width: none;
 }
