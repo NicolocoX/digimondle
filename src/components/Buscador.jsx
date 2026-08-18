@@ -2,34 +2,35 @@ import Cascada from "./Cascada"
 import "./Buscador.css"
 import { useState, useEffect } from "react"
 
-const API_URL = "https://digi-api.com/api/v1/digimon?name="
+const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 export default function Buscador() {
   const [resultados, setResultados] = useState(null)
-  const [mostrar, setMostrar] = useState(false)
-  const [consulta, setConstulta] = useState("")
+  const [consulta, setConsulta] = useState("")
+  const parametros = new URLSearchParams({
+    name: consulta,
+    pageSize: 10
+  })
 
   useEffect(() => {
-    fetch(API_URL + consulta)
+    if (consulta === "") {
+      setResultados(null)
+      return
+    }
+
+    fetch(API_URL + parametros)
       .then(response => response.json())
       .then(data => setResultados(data.content))
   }, [consulta])
-
-  const inputChange = (event) => {
-    const valor = event.target.value
-    setConstulta(valor)
-
-    valor === "" ? setMostrar(false) : setMostrar(true)
-  }
 
   return (
     <form className="buscador" onSubmit={(event) => event.preventDefault()}>
       <div className="entrada">
         <label>Buscar: </label>
-        <input onChange={inputChange} />
+        <input onChange={(event) => setConsulta(event.target.value)} />
       </div>
 
-      {(mostrar && resultados) && <Cascada resultados={resultados} />}
+      {resultados && <Cascada resultados={resultados} />}
     </form>
   )
 }
