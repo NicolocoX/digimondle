@@ -4,9 +4,14 @@
   max-height: 200px;
   overflow-y: auto;
 
+  position: absolute;
+  top: 100%;
+  width: 100%;
+
   padding: 10px;
   gap: 5px;
   margin: 0px;
+  box-sizing: border-box;
 
   background-color: rgb(73, 118, 155);
 
