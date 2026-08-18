@@ -1,30 +1,17 @@
 import busquedaResultado from "./mocks/busquedaResultados.json"
 import busquedaNoResultado from "./mocks/busquedaNoResultados.json"
-import Cascada from "./components/Cascada"
-
+import Buscador from "./components/Buscador"
 
 const API_URL = "https://digi-api.com/api/v1/digimon/"
 
 export default function App() {
   const resultados = busquedaResultado.content
 
-
-  const handleOnSubmit = (event) => {
-    event.preventDefault()
-
-    console.log("hola")
-
-
-  }
-
   return (
     <main>
       <h1>Digimondle</h1>
-      <form onSubmit={handleOnSubmit}>
-        <label>Buscar: </label>
-        <input></input>
-      </form>
-      <Cascada resultados={resultados} />
+
+      <Buscador resultados={resultados} />
     </main>
   )
 }
