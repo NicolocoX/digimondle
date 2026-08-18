@@ -6,24 +6,34 @@ import debounce from "debounce"
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 export default function Buscador() {
-  const [resultados, setResultados] = useState(null)
   const [consulta, setConsulta] = useState("")
+  const [respuesta, setRespuesta] = useState(null)
   const parametros = new URLSearchParams({
     name: consulta,
     pageSize: 10
   })
 
 
+  const getRespuesta = async (url) => {
+    const response = await fetch(url)
+    const data = await response.json()
+
+    setRespuesta(data)
+  }
+
+
   useEffect(() => {
     if (consulta === "") {
-      setResultados(null)
+      setRespuesta(null)
       return
     }
 
-    fetch(API_URL + parametros)
-      .then(response => response.json())
-      .then(data => setResultados(data.content))
+    getRespuesta(API_URL + parametros)
   }, [consulta])
+
+
+  //resultados.pageable.nextPage
+
 
 
   const setConsultaDebounce = useCallback(
@@ -39,7 +49,7 @@ export default function Buscador() {
         <input onChange={(event) => setConsultaDebounce(event.target.value)} />
       </div>
 
-      {resultados && <Cascada resultados={resultados} />}
+      {respuesta?.content && <Cascada resultados={respuesta.content} />}
     </form>
   )
 }
