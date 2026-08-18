@@ -1,0 +1,14 @@
+.buscador {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.buscador .entrada {
+  display: flex;
+  gap: 10px;
+}
+
+.buscador input {
+  width: 100%;
+}
