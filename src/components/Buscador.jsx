@@ -12,6 +12,7 @@ export default function Buscador({ agregarJugada }) {
   const [resultados, setResultados] = useState(null)
   const buscadorRef = useRef(null)
   const [mostrarCascada, setMostrarCascada] = useState(true)
+  const [nextPage, setNextPage] = useState("")
   const parametros = new URLSearchParams({
     name: consulta,
     pageSize: 10,
@@ -27,6 +28,9 @@ export default function Buscador({ agregarJugada }) {
 
     const obtenerRespuesta = async () => {
       const data = await getDatosAPI(API_URL + parametros)
+      if (data?.content) {
+        setNextPage(data.pageable.nextPage)
+      }
       setRespuesta(data)
       setResultados(data.content)
     }
@@ -53,11 +57,12 @@ export default function Buscador({ agregarJugada }) {
 
 
   const expandirResultados = async () => {
-    const nextPage = respuesta.pageable.nextPage
+    //const nextPage = respuesta.pageable.nextPage
     if (nextPage === "") return
 
     const datos = await getDatosAPI(nextPage)
     setRespuesta(datos)
+    setNextPage(datos.pageable.nextPage)
 
     const sigResultados = datos.content
     const newResultados = [...resultados, ...sigResultados]
