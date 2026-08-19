@@ -57,9 +57,8 @@ export default function Buscador({ agregarJugada, jugadas }) {
       if (buscadorRef.current &&
         !buscadorRef.current.contains(event.target)) {
         setMostrarCascada(false)
-      } else {
-        if (resultados) setMostrarCascada(true)
-      }
+
+      } else if (resultados) setMostrarCascada(true)
     }
 
     document.addEventListener("mousedown", clickAfuera)
@@ -89,9 +88,18 @@ export default function Buscador({ agregarJugada, jugadas }) {
     []
   )
 
+
   const handleInputChange = (event) => {
     setTexto(event.target.value)
     setConsultaDebounce(event.target.value)
+  }
+
+
+  const limpiarBuscador = () => {
+    setMostrarCascada(false)
+    setTexto("")
+    setConsulta("")
+    setResultados(null)
   }
 
 
@@ -109,8 +117,7 @@ export default function Buscador({ agregarJugada, jugadas }) {
           resultados={resultados}
           expandirResultados={expandirResultados}
           agregarJugada={agregarJugada}
-          setMostrarCascada={setMostrarCascada}
-          setTexto={setTexto} />}
+          limpiarBuscador={limpiarBuscador} />}
     </form>
   )
 }
