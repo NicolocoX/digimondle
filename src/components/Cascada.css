@@ -1,7 +1,7 @@
 .cascada {
   display: flex;
   flex-direction: column;
-  max-height: 200px;
+  max-height: 400px;
   overflow-y: auto;
 
   position: absolute;
