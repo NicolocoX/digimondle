@@ -6,6 +6,7 @@ import getDatosAPI from "./services/getDatosAPI"
 export default function App() {
   const [jugadas, setJugadas] = useState([])
 
+
   const agregarJugada = async (jugada) => {
     const digimon = await getDatosAPI(jugada)
 
@@ -13,7 +14,6 @@ export default function App() {
     setJugadas(newJugadas)
     console.log(newJugadas)
   }
-
 
 
   return (

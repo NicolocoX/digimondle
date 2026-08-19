@@ -1,5 +1,13 @@
+import Digimon from "./Digimon";
+
 export default function Jugadas({ jugadas }) {
   return (
-    <span>jugada</span>
+    <div>
+      {jugadas.map((digimon, index) => {
+        return (
+          <Digimon key={index} digimon={digimon} />
+        )
+      })}
+    </div>
   )
 }
