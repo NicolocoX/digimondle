@@ -85,7 +85,7 @@ export default function Buscador({ agregarJugada, jugadas }) {
       ref={buscadorRef}>
       <div className="entrada">
         <label>Buscar: </label>
-        <input onChange={(event) => setConsultaDebounce(event.target.value)} />
+        <input onChange={(event) => setConsultaDebounce(event.target.value)} value={consulta} />
       </div>
 
       {mostrarCascada &&
@@ -93,7 +93,8 @@ export default function Buscador({ agregarJugada, jugadas }) {
           resultados={resultados}
           expandirResultados={expandirResultados}
           agregarJugada={agregarJugada}
-          setMostrarCascada={setMostrarCascada} />}
+          setMostrarCascada={setMostrarCascada}
+          setConsulta={setConsulta} />}
     </form>
   )
 }
