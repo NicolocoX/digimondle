@@ -21,6 +21,14 @@ export default function Buscador({ agregarJugada, jugadas }) {
   })
 
 
+  const filtrarResultadosUsados = (lista) => {
+    return lista.filter(
+      elemento => !jugadas.some(
+        jugada => jugada.id === elemento.id
+      ))
+  }
+
+
   useEffect(() => { // descarga los datos
     if (consulta === "") {
       setMostrarCascada(false)
@@ -30,8 +38,10 @@ export default function Buscador({ agregarJugada, jugadas }) {
     const obtenerRespuesta = async () => {
       const data = await getDatosAPI(API_URL + parametros)
       if (data?.content) {
+        const newResultado = filtrarResultadosUsados(data.content)
+        setResultados(newResultado)
+
         setNextPage(data.pageable.nextPage)
-        setResultados(data.content)
         setMostrarCascada(true)
       }
     }

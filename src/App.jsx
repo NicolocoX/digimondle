@@ -10,9 +10,7 @@ export default function App() {
   const agregarJugada = async (jugada) => {
     const digimon = await getDatosAPI(jugada)
 
-    const newJugadas = [...jugadas, digimon]
-    setJugadas(newJugadas)
-    //console.log(newJugadas)
+    setJugadas(estadoAnt => [...estadoAnt, digimon])
   }
 
 
