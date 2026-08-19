@@ -2,6 +2,7 @@ import Cascada from "./Cascada"
 import "./Buscador.css"
 import { useState, useEffect, useCallback } from "react"
 import debounce from "debounce"
+import getDatosAPI from "../services/getDatosAPI"
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
@@ -15,16 +16,6 @@ export default function Buscador({ agregarJugada }) {
     page: 0
   })
 
-
-  const getRespuesta = async (url) => {
-    const response = await fetch(url)
-    const data = await response.json()
-
-    setRespuesta(data)
-    return data
-  }
-
-
   useEffect(() => {
     if (consulta === "") {
       setRespuesta(null)
@@ -32,7 +23,8 @@ export default function Buscador({ agregarJugada }) {
     }
 
     const obtenerRespuesta = async () => {
-      const data = await getRespuesta(API_URL + parametros)
+      const data = await getDatosAPI(API_URL + parametros)
+      setRespuesta(data)
       setResultados(data.content)
     }
 
@@ -44,7 +36,9 @@ export default function Buscador({ agregarJugada }) {
     const nextPage = respuesta.pageable.nextPage
     if (nextPage === "") return
 
-    const datos = await getRespuesta(nextPage)
+    const datos = await getDatosAPI(nextPage)
+    setRespuesta(datos)
+
     const sigResultados = datos.content
     const newResultados = [...resultados, ...sigResultados]
     setResultados(newResultados)
