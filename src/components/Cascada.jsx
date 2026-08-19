@@ -5,7 +5,7 @@ export default function Cascada({ resultados,
   expandirResultados,
   agregarJugada,
   setMostrarCascada,
-  setConsulta }) {
+  setTexto }) {
   const handleScroll = (event) => {
     const elemento = event.currentTarget
     const enElFinal = elemento.clientHeight + elemento.scrollTop >= elemento.scrollHeight
@@ -23,7 +23,7 @@ export default function Cascada({ resultados,
             resultado={resultado}
             agregarJugada={agregarJugada}
             setMostrarCascada={setMostrarCascada}
-            setConsulta={setConsulta} />
+            setTexto={setTexto} />
         )
       })}
     </ul>

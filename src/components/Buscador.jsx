@@ -9,6 +9,7 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 export default function Buscador({ agregarJugada, jugadas }) {
   const [consulta, setConsulta] = useState("")
+  const [texto, setTexto] = useState("")
   const [resultados, setResultados] = useState(null)
   const buscadorRef = useRef(null)
   const [mostrarCascada, setMostrarCascada] = useState(false)
@@ -78,6 +79,11 @@ export default function Buscador({ agregarJugada, jugadas }) {
     []
   )
 
+  const handleInputChange = (event) => {
+    setTexto(event.target.value)
+    setConsultaDebounce(event.target.value)
+  }
+
 
   return (
     <form className="buscador"
@@ -85,7 +91,7 @@ export default function Buscador({ agregarJugada, jugadas }) {
       ref={buscadorRef}>
       <div className="entrada">
         <label>Buscar: </label>
-        <input onChange={(event) => setConsultaDebounce(event.target.value)} value={consulta} />
+        <input onChange={handleInputChange} value={texto} />
       </div>
 
       {mostrarCascada &&
@@ -94,7 +100,7 @@ export default function Buscador({ agregarJugada, jugadas }) {
           expandirResultados={expandirResultados}
           agregarJugada={agregarJugada}
           setMostrarCascada={setMostrarCascada}
-          setConsulta={setConsulta} />}
+          setTexto={setTexto} />}
     </form>
   )
 }
