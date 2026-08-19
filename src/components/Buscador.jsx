@@ -7,7 +7,7 @@ import getDatosAPI from "../services/getDatosAPI"
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
-export default function Buscador({ agregarJugada }) {
+export default function Buscador({ agregarJugada, jugadas }) {
   const [consulta, setConsulta] = useState("")
   const [resultados, setResultados] = useState(null)
   const buscadorRef = useRef(null)
@@ -40,12 +40,14 @@ export default function Buscador({ agregarJugada }) {
 
 
   useEffect(() => { // desactiva cascada al clickear afuera
-    const clickAfuera = () => {
+    if (consulta == "") return
+
+    const clickAfuera = (event) => {
       if (buscadorRef.current &&
         !buscadorRef.current.contains(event.target)) {
         setMostrarCascada(false)
       } else {
-        setMostrarCascada(true)
+        if (resultados) setMostrarCascada(true)
       }
     }
 
@@ -55,7 +57,7 @@ export default function Buscador({ agregarJugada }) {
       document.removeEventListener("mousedown", clickAfuera)
     }
   }
-    , []
+    , [resultados, consulta]
   )
 
 

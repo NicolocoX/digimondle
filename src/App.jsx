@@ -12,14 +12,14 @@ export default function App() {
 
     const newJugadas = [...jugadas, digimon]
     setJugadas(newJugadas)
-    console.log(newJugadas)
+    //console.log(newJugadas)
   }
 
 
   return (
     <main>
       <h1>Digimondle</h1>
-      <Buscador agregarJugada={agregarJugada} />
+      <Buscador agregarJugada={agregarJugada} jugadas={jugadas} />
       <Jugadas jugadas={jugadas} />
     </main>
   )
