@@ -5,7 +5,7 @@ import debounce from "debounce"
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
-export default function Buscador() {
+export default function Buscador({ agregarJugada }) {
   const [consulta, setConsulta] = useState("")
   const [respuesta, setRespuesta] = useState(null)
   const [resultados, setResultados] = useState(null)
@@ -67,7 +67,8 @@ export default function Buscador() {
       {respuesta?.content &&
         <Cascada
           resultados={resultados}
-          expandirResultados={expandirResultados} />}
+          expandirResultados={expandirResultados}
+          agregarJugada={agregarJugada} />}
     </form>
   )
 }

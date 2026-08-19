@@ -1,4 +1,4 @@
-export default function Jugadas({ digimons }) {
+export default function Jugadas({ jugadas }) {
   return (
     <span>jugada</span>
   )
