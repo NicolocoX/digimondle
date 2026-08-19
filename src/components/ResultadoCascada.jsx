@@ -1,7 +1,8 @@
 import "./ResultadoCascada.css"
 
-export default function ResultadoCascada({ resultado, agregarJugada }) {
+export default function ResultadoCascada({ resultado, agregarJugada, setMostrarCascada }) {
   const handleClick = (digimon) => {
+    setMostrarCascada(false)
     agregarJugada(digimon)
   }
 

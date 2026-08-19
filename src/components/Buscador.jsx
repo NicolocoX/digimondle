@@ -86,7 +86,8 @@ export default function Buscador({ agregarJugada }) {
         <Cascada
           resultados={resultados}
           expandirResultados={expandirResultados}
-          agregarJugada={agregarJugada} />}
+          agregarJugada={agregarJugada}
+          setMostrarCascada={setMostrarCascada} />}
     </form>
   )
 }
