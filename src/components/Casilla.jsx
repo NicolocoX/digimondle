@@ -1,5 +1,7 @@
+import "./Casilla.css"
+
 export default function Casilla({ children }) {
   return (
-    <div>{children}</div>
+    <div className="casilla">{children}</div>
   )
 }
