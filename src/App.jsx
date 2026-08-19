@@ -19,7 +19,6 @@ export default function App() {
   return (
     <main>
       <h1>Digimondle</h1>
-
       <Buscador agregarJugada={agregarJugada} />
       <Jugadas jugadas={jugadas} />
     </main>

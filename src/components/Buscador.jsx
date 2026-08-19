@@ -42,7 +42,11 @@ export default function Buscador({ agregarJugada }) {
   useEffect(() => { // desactiva cascada al clickear afuera
     const clickAfuera = () => {
       if (buscadorRef.current &&
-        !buscadorRef.current.contains(event.target)) setMostrarCascada(false)
+        !buscadorRef.current.contains(event.target)) {
+        setMostrarCascada(false)
+      } else {
+        setMostrarCascada(true)
+      }
     }
 
     document.addEventListener("mousedown", clickAfuera)
