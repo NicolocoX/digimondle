@@ -1,11 +1,11 @@
-import Digimon from "./Digimon";
+import Fila from "./Fila";
 
 export default function Jugadas({ jugadas }) {
   return (
     <div>
       {jugadas.map((digimon, index) => {
         return (
-          <Digimon key={index} digimon={digimon} />
+          <Fila key={index} digimon={digimon} />
         )
       })}
     </div>

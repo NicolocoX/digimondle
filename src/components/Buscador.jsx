@@ -6,6 +6,7 @@ import getDatosAPI from "../services/getDatosAPI"
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
+
 export default function Buscador({ agregarJugada }) {
   const [consulta, setConsulta] = useState("")
   const [resultados, setResultados] = useState(null)
@@ -44,15 +45,14 @@ export default function Buscador({ agregarJugada }) {
         !buscadorRef.current.contains(event.target)) setMostrarCascada(false)
     }
 
-    console.log("effect", mostrarCascada)
     document.addEventListener("mousedown", clickAfuera)
 
     return () => {
       document.removeEventListener("mousedown", clickAfuera)
     }
   }
-    , [])
-  console.log("render", mostrarCascada)
+    , []
+  )
 
 
   const expandirResultados = async () => {
