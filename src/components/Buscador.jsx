@@ -1,6 +1,6 @@
 import Cascada from "./Cascada"
 import "./Buscador.css"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import debounce from "debounce"
 import getDatosAPI from "../services/getDatosAPI"
 
@@ -10,13 +10,16 @@ export default function Buscador({ agregarJugada }) {
   const [consulta, setConsulta] = useState("")
   const [respuesta, setRespuesta] = useState(null)
   const [resultados, setResultados] = useState(null)
+  const buscadorRef = useRef(null)
+  const [mostrarCascada, setMostrarCascada] = useState(true)
   const parametros = new URLSearchParams({
     name: consulta,
     pageSize: 10,
     page: 0
   })
 
-  useEffect(() => {
+
+  useEffect(() => { // descarga los datos
     if (consulta === "") {
       setRespuesta(null)
       return
@@ -30,6 +33,23 @@ export default function Buscador({ agregarJugada }) {
 
     obtenerRespuesta()
   }, [consulta])
+
+
+  useEffect(() => { // desactiva cascada al clickear afuera
+    const clickAfuera = () => {
+      if (buscadorRef.current &&
+        !buscadorRef.current.contains(event.target)) setMostrarCascada(false)
+    }
+
+    console.log("effect", mostrarCascada)
+    document.addEventListener("mousedown", clickAfuera)
+
+    return () => {
+      document.removeEventListener("mousedown", clickAfuera)
+    }
+  }
+    , [])
+  console.log("render", mostrarCascada)
 
 
   const expandirResultados = async () => {
@@ -52,7 +72,9 @@ export default function Buscador({ agregarJugada }) {
 
 
   return (
-    <form className="buscador" onSubmit={(event) => event.preventDefault()}>
+    <form className="buscador"
+      onSubmit={(event) => event.preventDefault()}
+      ref={buscadorRef}>
       <div className="entrada">
         <label>Buscar: </label>
         <input onChange={(event) => setConsultaDebounce(event.target.value)} />
