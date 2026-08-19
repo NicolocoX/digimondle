@@ -8,10 +8,9 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 export default function Buscador({ agregarJugada }) {
   const [consulta, setConsulta] = useState("")
-  const [respuesta, setRespuesta] = useState(null)
   const [resultados, setResultados] = useState(null)
   const buscadorRef = useRef(null)
-  const [mostrarCascada, setMostrarCascada] = useState(true)
+  const [mostrarCascada, setMostrarCascada] = useState(false)
   const [nextPage, setNextPage] = useState("")
   const parametros = new URLSearchParams({
     name: consulta,
@@ -22,7 +21,7 @@ export default function Buscador({ agregarJugada }) {
 
   useEffect(() => { // descarga los datos
     if (consulta === "") {
-      setRespuesta(null)
+      setMostrarCascada(false)
       return
     }
 
@@ -30,9 +29,9 @@ export default function Buscador({ agregarJugada }) {
       const data = await getDatosAPI(API_URL + parametros)
       if (data?.content) {
         setNextPage(data.pageable.nextPage)
+        setResultados(data.content)
+        setMostrarCascada(true)
       }
-      setRespuesta(data)
-      setResultados(data.content)
     }
 
     obtenerRespuesta()
@@ -57,11 +56,9 @@ export default function Buscador({ agregarJugada }) {
 
 
   const expandirResultados = async () => {
-    //const nextPage = respuesta.pageable.nextPage
     if (nextPage === "") return
 
     const datos = await getDatosAPI(nextPage)
-    setRespuesta(datos)
     setNextPage(datos.pageable.nextPage)
 
     const sigResultados = datos.content
@@ -85,7 +82,7 @@ export default function Buscador({ agregarJugada }) {
         <input onChange={(event) => setConsultaDebounce(event.target.value)} />
       </div>
 
-      {respuesta?.content &&
+      {mostrarCascada &&
         <Cascada
           resultados={resultados}
           expandirResultados={expandirResultados}
