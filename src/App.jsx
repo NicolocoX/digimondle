@@ -5,13 +5,17 @@ import getDatosAPI from "./services/getDatosAPI"
 
 export default function App() {
   const [jugadas, setJugadas] = useState([])
-  const [totalDigimons, setTotalDigimons] = useState(0)
+  const [digimonObjetivo, setDigimonObjetivo] = useState(null)
 
 
   useEffect(() => {
     const getDataGeneral = async () => {
       const data = await getDatosAPI("https://digi-api.com/api/v1/digimon?pageSize=1")
-      setTotalDigimons(data.pageable.totalElements)
+      const total = data.pageable.totalElements
+
+      const idRandom = Math.floor(Math.random() * total) + 1
+      const digimon = await getDatosAPI(`https://digi-api.com/api/v1/digimon/${idRandom}`)
+      setDigimonObjetivo(digimon)
     }
 
     getDataGeneral()
