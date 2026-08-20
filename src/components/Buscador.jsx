@@ -16,7 +16,7 @@ export default function Buscador({ agregarJugada, jugadas }) {
   const [nextPage, setNextPage] = useState("")
   const parametros = new URLSearchParams({
     name: consulta,
-    pageSize: 10,
+    pageSize: 7,
     page: 0
   })
 
@@ -35,19 +35,40 @@ export default function Buscador({ agregarJugada, jugadas }) {
       return
     }
 
-    const obtenerRespuesta = async () => {
-      const data = await getDatosAPI(API_URL + parametros)
+    const obtenerRespuesta = async (url, lista) => {
+      const data = await getDatosAPI(url)
       if (data?.content) {
-        const newResultado = filtrarResultadosUsados(data.content)
-        setResultados(newResultado)
+        const resultadosFiltrados = filtrarResultadosUsados(data.content)
+        let newResultado = [...lista, ...resultadosFiltrados]
+        let newNextPage = data.pageable.nextPage
 
-        setNextPage(data.pageable.nextPage)
+        if (newResultado.length < 7 && newNextPage) {
+          [newResultado, newNextPage] = await obtenerRespuesta(newNextPage, newResultado)
+        }
+
+        setResultados(newResultado)
+        setNextPage(newNextPage)
         setMostrarCascada(true)
+        return [newResultado, newNextPage]
       }
+
+      return ["", []]
     }
 
-    obtenerRespuesta()
+    obtenerRespuesta(API_URL + parametros, [])
   }, [consulta])
+
+
+  const expandirResultados = async () => {
+    if (nextPage === "") return
+
+    const datos = await getDatosAPI(nextPage)
+    setNextPage(datos.pageable.nextPage)
+
+    const sigResultados = datos.content
+    const newResultados = [...resultados, ...sigResultados]
+    setResultados(newResultados)
+  }
 
 
   useEffect(() => { // desactiva cascada al clickear afuera
@@ -69,18 +90,6 @@ export default function Buscador({ agregarJugada, jugadas }) {
   }
     , [resultados, consulta]
   )
-
-
-  const expandirResultados = async () => {
-    if (nextPage === "") return
-
-    const datos = await getDatosAPI(nextPage)
-    setNextPage(datos.pageable.nextPage)
-
-    const sigResultados = datos.content
-    const newResultados = [...resultados, ...sigResultados]
-    setResultados(newResultados)
-  }
 
 
   const setConsultaDebounce = useCallback(
