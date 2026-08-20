@@ -2,20 +2,19 @@ import Casilla from "./Casilla"
 import "./Fila.css"
 
 export default function Fila({ digimon, objetivo }) {
-  const imagen = digimon.images[0].href
-  const nivel = digimon.levels.length ? digimon.levels[0].level : "Sin información"
-  const atributo = digimon.attributes.length ? digimon.attributes[0].attribute : "Sin información"
-  const campo = digimon.fields.length ? digimon.fields[0].field : "Sin información"
-  const tipo = digimon.types.length ? digimon.types[0].type : "Sin información"
+  const tipoNivel = digimon.nivel === objetivo.nivel ? " correcta" : " incorrecta"
+  const tipoAtributo = digimon.atributo === objetivo.atributo ? " correcta" : " incorrecta"
+  const tipoCampo = digimon.campo === objetivo.campo ? " correcta" : " incorrecta"
+  const tipoTipo = digimon.tipo === objetivo.tipo ? " correcta" : " incorrecta"
 
 
   return (
     <div className="fila">
-      <Casilla><img src={imagen} alt={digimon.name} /></Casilla>
-      <Casilla tipo={" correcta"}>{nivel}</Casilla>
-      <Casilla tipo={" incorrecta"}>{atributo}</Casilla>
-      <Casilla tipo={" semi-correcta"}>{campo}</Casilla>
-      <Casilla>{tipo}</Casilla>
+      <Casilla><img src={digimon.imagen} alt={digimon.name} /></Casilla>
+      <Casilla tipo={tipoNivel}>{digimon.nivel}</Casilla>
+      <Casilla tipo={tipoAtributo}>{digimon.atributo}</Casilla>
+      <Casilla tipo={tipoCampo}>{digimon.campo}</Casilla>
+      <Casilla tipo={tipoTipo}>{digimon.tipo}</Casilla>
     </div>
   )
 }
