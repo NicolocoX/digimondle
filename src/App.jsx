@@ -1,16 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
 import getDatosAPI from "./services/getDatosAPI"
 
 export default function App() {
   const [jugadas, setJugadas] = useState([])
+  const [totalDigimons, setTotalDigimons] = useState(0)
+
+
+  useEffect(() => {
+    const getDataGeneral = async () => {
+      const data = await getDatosAPI("https://digi-api.com/api/v1/digimon?pageSize=1")
+      setTotalDigimons(data.pageable.totalElements)
+    }
+
+    getDataGeneral()
+  }, [])
 
 
   const agregarJugada = async (jugada) => {
     const digimon = await getDatosAPI(jugada)
 
-    setJugadas(estadoAnt => [...estadoAnt, digimon])
+    setJugadas(estadoAnt => [digimon, ...estadoAnt])
   }
 
 
