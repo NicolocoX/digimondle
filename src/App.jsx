@@ -5,7 +5,7 @@ import getDatosAPI from "./services/getDatosAPI"
 
 export default function App() {
   const [jugadas, setJugadas] = useState([])
-  const [digimonObjetivo, setDigimonObjetivo] = useState(null)
+  const [objetivo, setObjetivo] = useState(null)
 
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function App() {
 
       const idRandom = Math.floor(Math.random() * total) + 1
       const digimon = await getDatosAPI(`https://digi-api.com/api/v1/digimon/${idRandom}`)
-      setDigimonObjetivo(digimon)
+      setObjetivo(digimon)
     }
 
     getDataGeneral()
@@ -33,7 +33,7 @@ export default function App() {
     <main>
       <h1>Digimondle</h1>
       <Buscador agregarJugada={agregarJugada} jugadas={jugadas} />
-      <Jugadas jugadas={jugadas} />
+      <Jugadas jugadas={jugadas} objetivo={objetivo} />
     </main>
   )
 }
