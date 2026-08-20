@@ -39,6 +39,7 @@ export default function App() {
     const atributo = digimon.attributes.length ? digimon.attributes[0].attribute : "Sin información"
     const campo = digimon.fields.length ? digimon.fields[0].field : "Sin información"
     const tipo = digimon.types.length ? digimon.types[0].type : "Sin información"
+    const año = digimon.releaseDate
 
     return {
       nombre: nombre,
@@ -46,7 +47,8 @@ export default function App() {
       nivel: nivel,
       atributo: atributo,
       campo: campo,
-      tipo: tipo
+      tipo: tipo,
+      año: año
     }
   }
 
