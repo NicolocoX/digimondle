@@ -33,6 +33,7 @@ export default function App() {
   const infoRelevante = (digimon) => {
     if (!digimon) return null
 
+    const id = digimon.id
     const nombre = digimon.name
     const imagen = digimon.images[0].href
     const nivel = digimon.levels.length ? getListaDatos(digimon.levels, "level") : "Sin información"
@@ -42,6 +43,7 @@ export default function App() {
     const año = digimon.releaseDate
 
     return {
+      id: id,
       nombre: nombre,
       imagen: imagen,
       nivel: nivel,
