@@ -2,13 +2,18 @@ import Casilla from "./Casilla"
 import "./Fila.css"
 
 export default function Fila({ digimon, objetivo }) {
-  console.log(digimon.atributo, objetivo.atributo)
-  const tipoNivel = digimon.nivel === objetivo.nivel ? " correcta" : " incorrecta"
-  const tipoAtributo = digimon.atributo === objetivo.atributo ? " correcta" : " incorrecta"
-  const tipoCampo = digimon.campo === objetivo.campo ? " correcta" : " incorrecta"
-  const tipoTipo = digimon.tipo === objetivo.tipo ? " correcta" : " incorrecta"
-  const tipoAño = digimon.año === objetivo.año ? " correcta" : " incorrecta"
+  const compararListas = (lista1, lista2) => {
+    if (lista1.length === lista2.length &&
+      lista1.every((elemento) => lista2.includes(elemento))
+    ) return " correcta"
+    else return " incorrecta"
+  }
 
+  const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
+  const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
+  const tipoCampo = compararListas(digimon.campo, objetivo.campo)
+  const tipoTipo = compararListas(digimon.tipo, objetivo.tipo)
+  const tipoAño = digimon.año === objetivo.año ? " correcta" : " incorrecta"
 
   return (
     <div className="fila">
