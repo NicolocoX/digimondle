@@ -1,17 +1,19 @@
 import "./Casilla.css"
 
 export default function Casilla({ children, tipo = "" }) {
-  const esLista = Array.isArray(children)
-  let texto = esLista ? children.join("\n") : children
+  const texto = Array.isArray(children)
+    ? children.join("\n")
+    : children
 
-
-  if (esLista && children.length > 5) {
-    texto = "\n" + texto
-  }
+  const contenidoLargo = (Array.isArray(children) && children.length > 5)
+    ? "contenido-largo"
+    : ""
 
   return (
     <div className={`casilla${tipo}`}>
-      {texto}
-    </div>
+      <div className={contenidoLargo}>
+        {texto}
+      </div>
+    </div >
   )
 }

@@ -6,15 +6,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
 
   overflow-y: auto;
   scrollbar-width: none;
 
+  text-align: center;
   white-space: pre-line;
 
   border: solid 1px black;
   border-radius: 10px;
+}
+
+.contenido-largo {
+  margin-top: 25px;
 }
 
 .casilla.correcta {
