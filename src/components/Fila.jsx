@@ -2,6 +2,7 @@ import Casilla from "./Casilla"
 import "./Fila.css"
 
 export default function Fila({ digimon, objetivo }) {
+  console.log(digimon.atributo, objetivo.atributo)
   const tipoNivel = digimon.nivel === objetivo.nivel ? " correcta" : " incorrecta"
   const tipoAtributo = digimon.atributo === objetivo.atributo ? " correcta" : " incorrecta"
   const tipoCampo = digimon.campo === objetivo.campo ? " correcta" : " incorrecta"
