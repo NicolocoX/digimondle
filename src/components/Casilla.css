@@ -2,9 +2,16 @@
   height: 100px;
   width: 100px;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  white-space: pre-line;
 
   border: solid 1px black;
   border-radius: 10px;
@@ -27,4 +34,8 @@
   width: 100px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.casilla::-webkit-scrollbar {
+  display: none;
 }
