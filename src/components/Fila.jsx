@@ -31,10 +31,13 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
 
   const getIconos = async () => {
     let newIconosCampo = []
-    for (const elemento of digimon.campo) {
-      const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
-      newIconosCampo.push(data.href)
+    if (digimon.campo[0] !== 0) {
+      for (const elemento of digimon.campo) {
+        const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
+        newIconosCampo.push(data.href)
+      }
     }
+
 
     setIconosCampo(newIconosCampo)
   }
@@ -52,7 +55,9 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
       <Casilla tipo={tipoNivel}>{digimon.nivel}</Casilla>
       <Casilla tipo={tipoAtributo}>{digimon.atributo}</Casilla>
       <Casilla tipo={tipoCampo}>
-        <IconosCampo listaIconos={iconosCampo} />
+        {iconosCampo.length !== 0
+          ? <IconosCampo listaIconos={iconosCampo} />
+          : "Sin informacion"}
       </Casilla>
       <Casilla tipo={tipoTipo}>{digimon.tipo}</Casilla>
       <Casilla tipo={tipoAño}>{digimon.año}</Casilla>
