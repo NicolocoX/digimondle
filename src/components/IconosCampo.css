@@ -1,0 +1,10 @@
+.iconos-campo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.iconos-campo img {
+  width: 30px;
+  height: 30px;
+}

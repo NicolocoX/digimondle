@@ -31,7 +31,7 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
 
   const getIconos = async () => {
     let newIconosCampo = []
-    for (const elemento of digimon.campo) {
+    for (const elemento of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
       const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
       newIconosCampo.push(data.href)
     }
