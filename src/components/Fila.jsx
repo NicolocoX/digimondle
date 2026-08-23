@@ -3,6 +3,7 @@ import "./Fila.css"
 import getDatosAPI from "../services/getDatosAPI"
 import { useEffect, useState } from "react"
 import IconosCampo from "./IconosCampo.jsx"
+import Fecha from "./Fecha.jsx"
 
 export default function Fila({ digimon, objetivo }) { // cada fila se renderiza por cada selección
   const nombre = digimon.nombre
@@ -28,6 +29,11 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
   const tipoCampo = compararListas(digimon.campo, objetivo.campo)
   const tipoTipo = compararListas(digimon.tipo, objetivo.tipo)
   const tipoAño = digimon.año === objetivo.año ? " correcta" : " incorrecta"
+  const orientacionAño = digimon.año === objetivo.año
+    ? ""
+    : digimon.año < objetivo.año
+      ? "arriba"
+      : "abajo"
 
 
   const getIconos = async () => {
@@ -61,7 +67,10 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
           : "Sin informacion"}
       </Casilla>
       <Casilla tipo={tipoTipo}>{digimon.tipo}</Casilla>
-      <Casilla tipo={tipoAño}>{digimon.año}</Casilla>
+
+      <Casilla tipo={tipoAño}>
+        <Fecha año={digimon.año} dirección={orientacionAño} />
+      </Casilla>
     </div>
   )
 }
