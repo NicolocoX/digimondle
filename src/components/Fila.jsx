@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import IconosCampo from "./IconosCampo.jsx"
 
 export default function Fila({ digimon, objetivo }) { // cada fila se renderiza por cada selección
+  const nombre = digimon.nombre
   const [iconosCampo, setIconosCampo] = useState([])
 
   const compararListas = (lista1, lista2) => {
@@ -34,7 +35,7 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
     if (digimon.campo[0] !== 0) {
       for (const elemento of digimon.campo) {
         const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
-        newIconosCampo.push(data.href)
+        newIconosCampo.push({ nombre: data.name, url: data.href })
       }
     }
 
@@ -50,7 +51,7 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
   return (
     <div className="fila">
       <Casilla>
-        <img className={"imagen-digimon"} src={digimon.imagen} alt={digimon.nombre} />
+        <img className={"imagen-digimon"} src={digimon.imagen} alt={nombre} title={nombre} />
       </Casilla>
       <Casilla tipo={tipoNivel}>{digimon.nivel}</Casilla>
       <Casilla tipo={tipoAtributo}>{digimon.atributo}</Casilla>
