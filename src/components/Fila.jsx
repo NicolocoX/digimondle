@@ -2,6 +2,7 @@ import Casilla from "./Casilla"
 import "./Fila.css"
 import getDatosAPI from "../services/getDatosAPI"
 import { useEffect, useState } from "react"
+import IconosCampo from "./IconosCampo.jsx"
 
 export default function Fila({ digimon, objetivo }) { // cada fila se renderiza por cada selección
   const [iconosCampo, setIconosCampo] = useState([])
@@ -34,6 +35,7 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
       const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
       newIconosCampo.push(data.href)
     }
+
     setIconosCampo(newIconosCampo)
   }
 
@@ -44,19 +46,16 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
 
   return (
     <div className="fila">
-      <Casilla><img src={digimon.imagen} alt={digimon.nombre} /></Casilla>
+      <Casilla>
+        <img className={"imagen-digimon"} src={digimon.imagen} alt={digimon.nombre} />
+      </Casilla>
       <Casilla tipo={tipoNivel}>{digimon.nivel}</Casilla>
       <Casilla tipo={tipoAtributo}>{digimon.atributo}</Casilla>
       <Casilla tipo={tipoCampo}>
-        {iconosCampo.map((icono, index) => {
-          return (
-            <img key={index} src={icono} />
-          )
-        })}
+        <IconosCampo listaIconos={iconosCampo} />
       </Casilla>
       <Casilla tipo={tipoTipo}>{digimon.tipo}</Casilla>
       <Casilla tipo={tipoAño}>{digimon.año}</Casilla>
-
     </div>
   )
 }

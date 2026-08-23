@@ -8,15 +8,9 @@ export default function Casilla({ children, tipo = "" }) { // revisar casos piyo
     ? children.join("\n")
     : children
 
-  const contenidoLargo = (esLista && children.length > 5)
-    ? "contenido-largo"
-    : ""
-
   return (
     <div className={`casilla${tipo}`}>
-      <div className={contenidoLargo}>
-        {contenido}
-      </div>
+      {contenido}
     </div>
   )
 }

@@ -17,10 +17,6 @@
   border-radius: 10px;
 }
 
-.contenido-largo {
-  margin-top: 25px;
-}
-
 .casilla.correcta {
   background-color: rgb(125, 201, 118);
 }
@@ -31,13 +27,6 @@
 
 .casilla.semi-correcta {
   background-color: rgb(230, 216, 90);
-}
-
-.casilla img {
-  height: 100px;
-  width: 100px;
-  object-fit: cover;
-  border-radius: 10px;
 }
 
 .casilla::-webkit-scrollbar {
