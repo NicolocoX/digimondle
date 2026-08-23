@@ -38,7 +38,7 @@ export default function App() {
     const imagen = digimon.images[0].href
     const nivel = digimon.levels.length ? getListaDatos(digimon.levels, "level") : ["Sin información"]
     const atributo = digimon.attributes.length ? getListaDatos(digimon.attributes, "attribute") : ["Sin información"]
-    const campo = digimon.fields.length ? getListaDatos(digimon.fields, "field") : ["Sin información"]
+    const campo = digimon.fields.length ? getListaDatos(digimon.fields, "id") : ["Sin información"]
     const tipo = digimon.types.length ? getListaDatos(digimon.types, "type") : ["Sin información"]
     const año = digimon.releaseDate
 
