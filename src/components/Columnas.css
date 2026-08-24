@@ -1,0 +1,17 @@
+.columnas {
+  display: flex;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.columnas span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100px;
+  height: 25px;
+
+  border: solid 1px black;
+  border-radius: 10px;
+}

@@ -1,6 +1,7 @@
 import ResultadoCascada from "./ResultadoCascada";
 import "./Cascada.css"
 
+// en Brave no hay cascada infinita
 export default function Cascada({ resultados, expandirResultados, agregarJugada, limpiarBuscador }) {
   const handleScroll = (event) => {
     const elemento = event.currentTarget

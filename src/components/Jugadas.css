@@ -1,6 +1,9 @@
 .jugadas {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 12px;
-  margin-top: 12px;
+}
+
+.jugadas.digimon {
+  flex-direction: column-reverse;
 }
