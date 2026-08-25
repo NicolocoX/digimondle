@@ -66,8 +66,7 @@ export default function Buscador({ agregarJugada, jugadas }) {
     setNextPage(datos.pageable.nextPage)
 
     const sigResultados = datos.content
-    const newResultados = [...resultados, ...sigResultados]
-    setResultados(newResultados)
+    setResultados(estadoAnt => [...estadoAnt, ...sigResultados])
   }
 
 
