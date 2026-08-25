@@ -104,12 +104,12 @@ export default function Buscador({ agregarJugada, jugadas }) {
   }
 
 
-  const limpiarBuscador = () => {
+  const limpiarBuscador = useCallback(() => {
     setMostrarCascada(false)
     setTexto("")
     setConsulta("")
     setResultados(null)
-  }
+  }, [])
 
 
   return (

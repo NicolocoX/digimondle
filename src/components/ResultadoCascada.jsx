@@ -1,10 +1,13 @@
+import { memo } from "react"
 import "./ResultadoCascada.css"
 
-export default function ResultadoCascada({ resultado, agregarJugada, limpiarBuscador }) {
+function ResultadoCascada({ resultado, agregarJugada, limpiarBuscador }) {
   const handleClick = (digimon) => {
     limpiarBuscador()
     agregarJugada(digimon)
   }
+
+  console.log("render resultado cascada", resultado.name)
 
   return (
     <div className="resultado-cascada" onClick={() => handleClick(resultado.href)}>
@@ -13,3 +16,5 @@ export default function ResultadoCascada({ resultado, agregarJugada, limpiarBusc
     </div>
   )
 }
+
+export default memo(ResultadoCascada)

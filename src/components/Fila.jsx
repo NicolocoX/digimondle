@@ -1,13 +1,14 @@
 import Casilla from "./Casilla"
 import "./Fila.css"
 import getDatosAPI from "../services/getDatosAPI"
-import { useEffect, useState } from "react"
+import { memo, useEffect, useState } from "react"
 import IconosCampo from "./IconosCampo.jsx"
 import Fecha from "./Fecha.jsx"
 
-export default function Fila({ digimon, objetivo }) { // cada fila se renderiza por cada selección
+function Fila({ digimon, objetivo }) {
   const nombre = digimon.nombre
   const [iconosCampo, setIconosCampo] = useState([])
+
 
   const compararListas = (lista1, lista2) => {
     let count = 0
@@ -24,6 +25,7 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
     }
   }
 
+
   const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
   const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
   const tipoCampo = compararListas(digimon.campo, objetivo.campo)
@@ -36,20 +38,18 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
       : "abajo"
 
 
-  const getIconos = async () => {
-    let newIconosCampo = []
-    if (digimon.campo[0] !== 0) {
-      for (const elemento of digimon.campo) {
-        const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
-        newIconosCampo.push({ nombre: data.name, url: data.href })
+  useEffect(() => {
+    const getIconos = async () => {
+      let newIconosCampo = []
+      if (digimon.campo[0] !== 0) {
+        for (const elemento of digimon.campo) {
+          const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
+          newIconosCampo.push({ nombre: data.name, url: data.href })
+        }
+        setIconosCampo(newIconosCampo) // Esto realiza una segunda renderización
       }
     }
 
-
-    setIconosCampo(newIconosCampo)
-  }
-
-  useEffect(() => {
     getIconos()
   }, [])
 
@@ -74,3 +74,5 @@ export default function Fila({ digimon, objetivo }) { // cada fila se renderiza 
     </div>
   )
 }
+
+export default memo(Fila)

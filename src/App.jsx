@@ -1,11 +1,47 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
 import getDatosAPI from "./services/getDatosAPI"
 
+
+const infoRelevante = (digimon) => {
+  if (!digimon) return null
+
+  const id = digimon.id
+  const nombre = digimon.name
+  const imagen = digimon.images[0].href
+  const nivel = digimon.levels.length ? getListaDatos(digimon.levels, "level") : ["Sin información"]
+  const atributo = digimon.attributes.length ? getListaDatos(digimon.attributes, "attribute") : ["Sin información"]
+  const campo = digimon.fields.length ? getListaDatos(digimon.fields, "id") : [0]
+  const tipo = digimon.types.length ? getListaDatos(digimon.types, "type") : ["Sin información"]
+  const año = digimon.releaseDate
+
+  return {
+    id: id,
+    nombre: nombre,
+    imagen: imagen,
+    nivel: nivel,
+    atributo: atributo,
+    campo: campo,
+    tipo: tipo,
+    año: año
+  }
+}
+
+
+const getListaDatos = (lista, campo) => {
+  let resultados = []
+  for (const elemento of lista) {
+    resultados = [...resultados, elemento[campo]]
+  }
+
+  return resultados
+}
+
+
 export default function App() {
-  const [jugadas, setJugadas] = useState([])
   const [objetivo, setObjetivo] = useState(null)
+  const [jugadas, setJugadas] = useState([])
 
 
   useEffect(() => { // obtiene al digimon objetivo
@@ -23,46 +59,11 @@ export default function App() {
   }, [])
 
 
-  const agregarJugada = async (jugada) => {
+  const agregarJugada = useCallback(async (jugada) => {
     const digimon = await getDatosAPI(jugada)
 
     setJugadas(estadoAnt => [...estadoAnt, infoRelevante(digimon)])
-  }
-
-
-  const infoRelevante = (digimon) => {
-    if (!digimon) return null
-
-    const id = digimon.id
-    const nombre = digimon.name
-    const imagen = digimon.images[0].href
-    const nivel = digimon.levels.length ? getListaDatos(digimon.levels, "level") : ["Sin información"]
-    const atributo = digimon.attributes.length ? getListaDatos(digimon.attributes, "attribute") : ["Sin información"]
-    const campo = digimon.fields.length ? getListaDatos(digimon.fields, "id") : [0]
-    const tipo = digimon.types.length ? getListaDatos(digimon.types, "type") : ["Sin información"]
-    const año = digimon.releaseDate
-
-    return {
-      id: id,
-      nombre: nombre,
-      imagen: imagen,
-      nivel: nivel,
-      atributo: atributo,
-      campo: campo,
-      tipo: tipo,
-      año: año
-    }
-  }
-
-
-  const getListaDatos = (lista, campo) => {
-    let resultados = []
-    for (const elemento of lista) {
-      resultados = [...resultados, elemento[campo]]
-    }
-
-    return resultados
-  }
+  }, [])
 
 
   return (
