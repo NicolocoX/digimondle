@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
 import getDatosAPI from "./services/getDatosAPI"
+import AnuncioGanador from "./components/AnuncioGanador"
+import confetti from "@hiseb/confetti"
 
 
 const infoRelevante = (digimon) => {
@@ -43,6 +45,7 @@ const getListaDatos = (lista, campo) => lista.map((elemento) => elemento[campo])
 export default function App() {
   const [objetivo, setObjetivo] = useState(null)
   const [jugadas, setJugadas] = useState([])
+  const [finPartida, setFinPartida] = useState(false)
 
 
   useEffect(() => { // obtiene al digimon objetivo
@@ -62,9 +65,15 @@ export default function App() {
 
   const agregarJugada = useCallback(async (jugada) => {
     const digimon = await getDatosAPI(jugada)
+    const newDigimon = infoRelevante(digimon)
 
-    setJugadas(estadoAnt => [...estadoAnt, infoRelevante(digimon)])
-  }, [])
+    setJugadas(estadoAnt => [...estadoAnt, newDigimon])
+
+    if (newDigimon.id === objetivo.id) {
+      setFinPartida(true)
+      confetti()
+    }
+  }, [objetivo])
 
 
   return (
@@ -72,6 +81,7 @@ export default function App() {
       <h1>Digimondle</h1>
       <Buscador agregarJugada={agregarJugada} jugadas={jugadas} />
       <Jugadas jugadas={jugadas} objetivo={objetivo} />
+      {finPartida && <AnuncioGanador nombre={objetivo.nombre} imagen={objetivo.imagen} />}
     </main>
   )
 }

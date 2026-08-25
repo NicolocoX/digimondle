@@ -1,6 +1,6 @@
 import "./Casilla.css"
 
-export default function Casilla({ children, tipo = "" }) { // revisar casos piyomon beelzebumon post inclusión imágenes
+export default function Casilla({ children, tipo = "" }) {
   const esLista = Array.isArray(children)
   const esTexto = (esLista && (typeof children[0] === "string"))
 

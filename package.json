@@ -13,6 +13,7 @@
     "vite": "^8.2.0"
   },
   "dependencies": {
+    "@hiseb/confetti": "^2.2.0",
     "@vitejs/plugin-react": "6.0.5",
     "debounce": "^3.0.0",
     "react": "19.2.8",

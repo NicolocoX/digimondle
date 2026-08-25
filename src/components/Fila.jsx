@@ -4,27 +4,12 @@ import getDatosAPI from "../services/getDatosAPI"
 import { memo, useEffect, useState } from "react"
 import IconosCampo from "./IconosCampo.jsx"
 import Fecha from "./Fecha.jsx"
+import compararListas from "../logic/CompararListas.js"
+
 
 function Fila({ digimon, objetivo }) {
   const nombre = digimon.nombre
   const [iconosCampo, setIconosCampo] = useState([])
-
-
-  const compararListas = (lista1, lista2) => {
-    let count = 0
-    for (const elemento of lista1) {
-      if (lista2.includes(elemento)) count++
-    }
-
-    if (lista1.length === lista2.length && count === lista2.length) {
-      return " correcta"
-    } else if (count > 0) {
-      return " semi-correcta"
-    } else {
-      return " incorrecta"
-    }
-  }
-
 
   const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
   const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
@@ -46,7 +31,7 @@ function Fila({ digimon, objetivo }) {
           const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
           newIconosCampo.push({ nombre: data.name, url: data.href })
         }
-        setIconosCampo(newIconosCampo) // Esto realiza una segunda renderización
+        setIconosCampo(newIconosCampo)
       }
     }
 
