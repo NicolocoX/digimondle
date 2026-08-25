@@ -7,7 +7,6 @@ function ResultadoCascada({ resultado, agregarJugada, limpiarBuscador }) {
     agregarJugada(digimon)
   }
 
-  console.log("render resultado cascada", resultado.name)
 
   return (
     <div className="resultado-cascada" onClick={() => handleClick(resultado.href)}>
