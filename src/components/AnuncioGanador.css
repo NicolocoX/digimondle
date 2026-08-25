@@ -1,0 +1,24 @@
+.anuncio-ganador {
+  display: grid;
+  place-items: center;
+
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  background-color: rgba(0, 0, 0, 0.288);
+}
+
+.anuncio-ganador-modal {
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+
+  background-color: white;
+
+  border-radius: 10px;
+}

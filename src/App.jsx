@@ -81,7 +81,10 @@ export default function App() {
       <h1>Digimondle</h1>
       <Buscador agregarJugada={agregarJugada} jugadas={jugadas} />
       <Jugadas jugadas={jugadas} objetivo={objetivo} />
-      {finPartida && <AnuncioGanador nombre={objetivo.nombre} imagen={objetivo.imagen} />}
+      {finPartida && <AnuncioGanador
+        nombre={objetivo.nombre}
+        imagen={objetivo.imagen}
+        setFinPartida={setFinPartida} />}
     </main>
   )
 }
