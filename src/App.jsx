@@ -48,17 +48,18 @@ export default function App() {
   const [finPartida, setFinPartida] = useState(false)
 
 
+  const getDataGeneral = async () => {
+    const data = await getDatosAPI("https://digi-api.com/api/v1/digimon?pageSize=1")
+    const total = data.pageable.totalElements
+
+    const idRandom = Math.floor(Math.random() * total) + 1
+    const digimon = await getDatosAPI(`https://digi-api.com/api/v1/digimon/${idRandom}`)
+    setObjetivo(infoRelevante(digimon))
+    console.log(infoRelevante(digimon))
+  }
+
+
   useEffect(() => { // obtiene al digimon objetivo
-    const getDataGeneral = async () => {
-      const data = await getDatosAPI("https://digi-api.com/api/v1/digimon?pageSize=1")
-      const total = data.pageable.totalElements
-
-      const idRandom = Math.floor(Math.random() * total) + 1
-      const digimon = await getDatosAPI(`https://digi-api.com/api/v1/digimon/${idRandom}`)
-      setObjetivo(infoRelevante(digimon))
-      console.log(infoRelevante(digimon))
-    }
-
     getDataGeneral()
   }, [])
 
@@ -76,10 +77,16 @@ export default function App() {
   }, [objetivo])
 
 
+  const reiniciar = async () => {
+    await getDataGeneral()
+    setJugadas([])
+  }
+
+
   return (
     <main>
       <h1>Digimondle</h1>
-      <Buscador agregarJugada={agregarJugada} jugadas={jugadas} />
+      <Buscador agregarJugada={agregarJugada} jugadas={jugadas} reiniciar={reiniciar} />
       <Jugadas jugadas={jugadas} objetivo={objetivo} />
       {finPartida && <AnuncioGanador
         nombre={objetivo.nombre}

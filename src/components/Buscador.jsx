@@ -7,7 +7,8 @@ import getDatosAPI from "../services/getDatosAPI"
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
-export default function Buscador({ agregarJugada, jugadas }) {
+// idea: al apretar enter y el nombre escrito existe, se selecciona el digimon
+export default function Buscador({ agregarJugada, jugadas, reiniciar }) {
   const [consulta, setConsulta] = useState("")
   const [texto, setTexto] = useState("")
   const [resultados, setResultados] = useState(null)
@@ -118,6 +119,7 @@ export default function Buscador({ agregarJugada, jugadas }) {
       <div className="entrada">
         <label>Buscar: </label>
         <input onChange={handleInputChange} value={texto} />
+        <button onClick={reiniciar}>Reiniciar</button>
       </div>
 
       {mostrarCascada &&
