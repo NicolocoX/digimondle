@@ -57,7 +57,6 @@ export default function App() {
     const idRandom = Math.floor(Math.random() * total) + 1
     const digimon = await getDatosAPI(`https://digi-api.com/api/v1/digimon/${idRandom}`)
     setObjetivo(infoRelevante(digimon))
-    console.log(infoRelevante(digimon))
   }
 
 
@@ -72,7 +71,6 @@ export default function App() {
 
     setJugadas(estadoAnt => [...estadoAnt, newDigimon])
 
-    console.log(finPartida)
     if (!finPartida && newDigimon.id === objetivo.id) {
       setPartidaGanada(true)
       setFinPartida(true)
@@ -86,16 +84,13 @@ export default function App() {
     await getDataGeneral()
     setJugadas([])
     setFinPartida(false)
-    console.log("finPartida false")
     setPartidaGanada(false)
-    setMostrarModal(false)
   }
 
 
   const rendirse = async () => {
     setMostrarModal(true)
     setFinPartida(true)
-    console.log("finPartida true")
   }
 
 
