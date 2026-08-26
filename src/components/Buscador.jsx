@@ -116,18 +116,21 @@ export default function Buscador({ agregarJugada, jugadas, reiniciar }) {
     <form className="buscador"
       onSubmit={(event) => event.preventDefault()}
       ref={buscadorRef}>
-      <div className="entrada">
-        <label>Buscar: </label>
+
+      <label>Buscar: </label>
+
+      <div className="buscador-input">
         <input onChange={handleInputChange} value={texto} />
-        <button onClick={reiniciar}>Reiniciar</button>
+        {mostrarCascada &&
+          <Cascada
+            resultados={resultados}
+            expandirResultados={expandirResultados}
+            agregarJugada={agregarJugada}
+            limpiarBuscador={limpiarBuscador} />}
       </div>
 
-      {mostrarCascada &&
-        <Cascada
-          resultados={resultados}
-          expandirResultados={expandirResultados}
-          agregarJugada={agregarJugada}
-          limpiarBuscador={limpiarBuscador} />}
+      <button onClick={reiniciar}>Reiniciar</button>
+
     </form>
   )
 }

@@ -1,16 +1,18 @@
 .buscador {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 10px;
+
   width: 400px;
-  position: relative;
   margin: 0 auto;
 }
 
-.buscador .entrada {
-  display: flex;
-  gap: 10px;
+.buscador-input {
+  position: relative;
+  flex: 1;
 }
 
 .buscador input {
   width: 100%;
+  box-sizing: border-box;
 }
