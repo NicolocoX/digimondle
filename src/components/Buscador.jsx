@@ -8,7 +8,13 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
 // idea: al apretar enter y el nombre escrito existe, se selecciona el digimon
-export default function Buscador({ agregarJugada, jugadas, reiniciar }) {
+export default function Buscador({
+  agregarJugada,
+  jugadas,
+  reiniciar,
+  finPartida,
+  rendirse,
+  partidaGanada }) {
   const [consulta, setConsulta] = useState("")
   const [texto, setTexto] = useState("")
   const [resultados, setResultados] = useState(null)
@@ -129,7 +135,9 @@ export default function Buscador({ agregarJugada, jugadas, reiniciar }) {
             limpiarBuscador={limpiarBuscador} />}
       </div>
 
-      <button onClick={reiniciar}>Reiniciar</button>
+      {finPartida || partidaGanada
+        ? <button onClick={reiniciar}>Reiniciar</button>
+        : <button onClick={rendirse}>Rendirse</button>}
 
     </form>
   )

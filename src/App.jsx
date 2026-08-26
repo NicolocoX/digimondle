@@ -45,7 +45,9 @@ const getListaDatos = (lista, campo) => lista.map((elemento) => elemento[campo])
 export default function App() {
   const [objetivo, setObjetivo] = useState(null)
   const [jugadas, setJugadas] = useState([])
+  const [partidaGanada, setPartidaGanada] = useState(false)
   const [finPartida, setFinPartida] = useState(false)
+  const [mostrarModal, setMostrarModal] = useState(false)
 
 
   const getDataGeneral = async () => {
@@ -70,28 +72,49 @@ export default function App() {
 
     setJugadas(estadoAnt => [...estadoAnt, newDigimon])
 
-    if (newDigimon.id === objetivo.id) {
+    console.log(finPartida)
+    if (!finPartida && newDigimon.id === objetivo.id) {
+      setPartidaGanada(true)
       setFinPartida(true)
+      setMostrarModal(true)
       confetti()
     }
-  }, [objetivo])
+  }, [objetivo, finPartida])
 
 
   const reiniciar = async () => {
     await getDataGeneral()
     setJugadas([])
+    setFinPartida(false)
+    console.log("finPartida false")
+    setPartidaGanada(false)
+    setMostrarModal(false)
+  }
+
+
+  const rendirse = async () => {
+    setMostrarModal(true)
+    setFinPartida(true)
+    console.log("finPartida true")
   }
 
 
   return (
     <main>
       <h1>Digimondle</h1>
-      <Buscador agregarJugada={agregarJugada} jugadas={jugadas} reiniciar={reiniciar} />
+      <Buscador
+        agregarJugada={agregarJugada}
+        jugadas={jugadas}
+        reiniciar={reiniciar}
+        rendirse={rendirse}
+        finPartida={finPartida}
+        partidaGanada={partidaGanada} />
       <Jugadas jugadas={jugadas} objetivo={objetivo} />
-      {finPartida && <AnuncioGanador
+      {mostrarModal && <AnuncioGanador
         nombre={objetivo.nombre}
         imagen={objetivo.imagen}
-        setFinPartida={setFinPartida} />}
+        setMostrarModal={setMostrarModal}
+        partidaGanada={partidaGanada} />}
     </main>
   )
 }
