@@ -11,6 +11,7 @@ function Fila({ digimon, objetivo }) {
   const nombre = digimon.nombre
   const [iconosCampo, setIconosCampo] = useState([])
 
+
   const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
   const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
   const tipoCampo = compararListas(digimon.campo, objetivo.campo)
@@ -45,7 +46,11 @@ function Fila({ digimon, objetivo }) {
         <img className={"imagen-digimon"} src={digimon.imagen} alt={nombre} title={nombre} />
       </Casilla>
       <Casilla tipo={tipoNivel}>{digimon.nivel}</Casilla>
-      <Casilla tipo={tipoAtributo}>{digimon.atributo}</Casilla>
+      <Casilla tipo={tipoAtributo}>
+        {digimon.atributo.length !== 0
+          ? <IconosCampo listaIconos={digimon.atributo} />
+          : "Sin informacion"}
+      </Casilla>
       <Casilla tipo={tipoCampo}>
         {iconosCampo.length !== 0
           ? <IconosCampo listaIconos={iconosCampo} />
