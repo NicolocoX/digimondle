@@ -17,10 +17,10 @@ const infoRelevante = (digimon) => {
     : ["Sin información"]
   const atributo = digimon.attributes.length
     ? getListaDatos(digimon.attributes, "attribute")
-    : ["Sin información"]
+    : []
   const campo = digimon.fields.length
     ? getListaDatos(digimon.fields, "id")
-    : [0]
+    : []
   const tipo = digimon.types.length
     ? getListaDatos(digimon.types, "type")
     : ["Sin información"]

@@ -2,7 +2,7 @@ import Casilla from "./Casilla"
 import "./Fila.css"
 import getDatosAPI from "../services/getDatosAPI"
 import { memo, useEffect, useState } from "react"
-import IconosCampo from "./IconosCampo.jsx"
+import IconosCasilla from "./IconosCasilla.jsx"
 import Fecha from "./Fecha.jsx"
 import compararListas from "../logic/CompararListas.js"
 
@@ -26,8 +26,8 @@ function Fila({ digimon, objetivo }) {
 
   useEffect(() => {
     const getIconos = async () => {
-      let newIconosCampo = []
-      if (digimon.campo[0] !== 0) {
+      if (digimon.campo.length !== 0) {
+        let newIconosCampo = []
         for (const elemento of digimon.campo) {
           const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
           newIconosCampo.push({ nombre: data.name, url: data.href })
@@ -48,12 +48,12 @@ function Fila({ digimon, objetivo }) {
       <Casilla tipo={tipoNivel}>{digimon.nivel}</Casilla>
       <Casilla tipo={tipoAtributo}>
         {digimon.atributo.length !== 0
-          ? <IconosCampo listaIconos={digimon.atributo} />
+          ? <IconosCasilla listaIconos={digimon.atributo} />
           : "Sin informacion"}
       </Casilla>
       <Casilla tipo={tipoCampo}>
         {iconosCampo.length !== 0
-          ? <IconosCampo listaIconos={iconosCampo} />
+          ? <IconosCasilla listaIconos={iconosCampo} />
           : "Sin informacion"}
       </Casilla>
       <Casilla tipo={tipoTipo}>{digimon.tipo}</Casilla>

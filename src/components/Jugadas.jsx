@@ -3,7 +3,7 @@ import Fila from "./Fila";
 import "./Jugadas.css"
 
 export default function Jugadas({ jugadas, objetivo }) {
-  const hayJugadas = jugadas.length > 0
+  const hayJugadas = jugadas.length > 0 // quizás esto podría estar en app
 
 
   return (

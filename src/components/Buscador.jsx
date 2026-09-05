@@ -117,7 +117,7 @@ export default function Buscador({
     setResultados(null)
   }, [])
 
-
+  // al presionar enter se activa el botón y se rinde automaticamente
   return (
     <form className="buscador"
       onSubmit={(event) => event.preventDefault()}
