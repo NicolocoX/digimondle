@@ -93,7 +93,7 @@ export default function App() {
     setFinPartida(true)
   }
 
-
+  // mostrar el resultado sin modal al finalizar partida
   return (
     <main>
       <h1>Digimondle</h1>

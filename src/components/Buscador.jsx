@@ -7,7 +7,6 @@ import getDatosAPI from "../services/getDatosAPI"
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
-// idea: al apretar enter y el nombre escrito existe, se selecciona el digimon
 export default function Buscador({
   agregarJugada,
   jugadas,
@@ -117,7 +116,8 @@ export default function Buscador({
     setResultados(null)
   }, [])
 
-  // al presionar enter se activa el botón y se rinde automaticamente
+
+  //hacerlo responsivo
   return (
     <form className="buscador"
       onSubmit={(event) => event.preventDefault()}
@@ -136,8 +136,8 @@ export default function Buscador({
       </div>
 
       {finPartida || partidaGanada
-        ? <button onClick={reiniciar}>Reiniciar</button>
-        : <button onClick={rendirse}>Rendirse</button>}
+        ? <button onClick={reiniciar} type="button">Reiniciar</button>
+        : <button onClick={rendirse} type="button">Rendirse</button>}
 
     </form>
   )
