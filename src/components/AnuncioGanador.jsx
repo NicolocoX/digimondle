@@ -1,4 +1,4 @@
-import "./AnuncioGanador.css"
+import "../styles/AnuncioGanador.css"
 
 export default function AnuncioGanador({ nombre, imagen, setMostrarModal, partidaGanada }) {
   const ganador = partidaGanada ? "" : " perdedor"

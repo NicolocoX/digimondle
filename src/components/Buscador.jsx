@@ -1,5 +1,5 @@
 import Cascada from "./Cascada"
-import "./Buscador.css"
+import "../styles/Buscador.css"
 import { useState, useEffect, useCallback, useRef } from "react"
 import debounce from "debounce"
 import getDatosAPI from "../services/getDatosAPI"

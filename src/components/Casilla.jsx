@@ -1,4 +1,4 @@
-import "./Casilla.css"
+import "../styles/Casilla.css"
 
 export default function Casilla({ children, tipo = "" }) {
   const esLista = Array.isArray(children)

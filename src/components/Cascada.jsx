@@ -1,5 +1,5 @@
 import ResultadoCascada from "./ResultadoCascada";
-import "./Cascada.css"
+import "../styles/Cascada.css"
 
 
 export default function Cascada({ resultados, expandirResultados, agregarJugada, limpiarBuscador }) {

@@ -1,4 +1,4 @@
-import "./Columnas.css"
+import "../styles/Columnas.css"
 
 export default function Columnas() {
   return (

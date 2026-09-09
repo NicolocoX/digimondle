@@ -1,5 +1,5 @@
-import Casilla from "./Casilla"
-import "./Fila.css"
+import Casilla from "./Casilla.jsx"
+import "../styles/Fila.css"
 import getDatosAPI from "../services/getDatosAPI"
 import { memo, useEffect, useState } from "react"
 import IconosCasilla from "./IconosCasilla.jsx"

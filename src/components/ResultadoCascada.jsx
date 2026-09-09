@@ -1,5 +1,5 @@
 import { memo } from "react"
-import "./ResultadoCascada.css"
+import "../styles/ResultadoCascada.css"
 
 function ResultadoCascada({ resultado, agregarJugada, limpiarBuscador }) {
   const handleClick = (digimon) => {
