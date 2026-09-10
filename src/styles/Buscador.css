@@ -7,6 +7,13 @@
   margin: 0 auto;
 }
 
+@media (max-width: 600px) {
+  .buscador {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
 .buscador-input {
   position: relative;
   flex: 1;
