@@ -117,7 +117,6 @@ export default function Buscador({
   }, [])
 
 
-  //hacerlo responsivo
   return (
     <form className="buscador"
       onSubmit={(event) => event.preventDefault()}

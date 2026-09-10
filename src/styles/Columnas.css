@@ -1,8 +1,17 @@
 .columnas {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   gap: 5px;
   margin-top: 12px;
 }
+
+
+@media (max-width: 600px) {
+  .columnas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 
 .columnas span {
   display: flex;

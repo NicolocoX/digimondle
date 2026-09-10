@@ -1,8 +1,14 @@
 .fila {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 
   gap: 5px;
+}
+
+@media (max-width: 600px) {
+  .fila {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .imagen-digimon {
