@@ -14,10 +14,11 @@ export default function Buscador({
   finPartida,
   rendirse,
   partidaGanada }) {
-  const [consulta, setConsulta] = useState("")
-  const [texto, setTexto] = useState("")
   const [resultados, setResultados] = useState(null)
   const buscadorRef = useRef(null)
+  const inputRef = useRef(null)
+  const [consulta, setConsulta] = useState("")
+  const [texto, setTexto] = useState("")
   const [mostrarCascada, setMostrarCascada] = useState(false)
   const [nextPage, setNextPage] = useState("")
   const parametros = new URLSearchParams({
@@ -25,6 +26,50 @@ export default function Buscador({
     pageSize: 7,
     page: 0
   })
+
+
+  const setConsultaDebounce = useCallback(
+    debounce(valor => setConsulta(valor), 300),
+    []
+  )
+
+
+  const handleInputChange = (event) => {
+    setTexto(event.target.value)
+    setConsultaDebounce(event.target.value)
+  }
+
+
+  useEffect(() => {// Enfoca en el input al presionar una tecla
+    const teclaPresionada = event => {
+      const elemento = document.activeElement
+      if (
+        elemento.tagName === "INPUT" ||
+        elemento.tagName === "TEXTAREA" ||
+        elemento.isContentEditable
+      ) {
+        return
+      }
+
+      if (event.key.length === 1) {
+        inputRef.current?.focus()
+      }
+    }
+
+    window.addEventListener("keydown", teclaPresionada)
+
+    return () => {
+      window.removeEventListener("keydown", teclaPresionada)
+    }
+  }, [])
+
+
+  const limpiarBuscador = useCallback(() => {
+    setMostrarCascada(false)
+    setTexto("")
+    setConsulta("")
+    setResultados(null)
+  }, [])
 
 
   const filtrarResultadosUsados = (lista) => {
@@ -97,26 +142,6 @@ export default function Buscador({
   )
 
 
-  const setConsultaDebounce = useCallback(
-    debounce(valor => setConsulta(valor), 300),
-    []
-  )
-
-
-  const handleInputChange = (event) => {
-    setTexto(event.target.value)
-    setConsultaDebounce(event.target.value)
-  }
-
-
-  const limpiarBuscador = useCallback(() => {
-    setMostrarCascada(false)
-    setTexto("")
-    setConsulta("")
-    setResultados(null)
-  }, [])
-
-
   return (
     <form className="buscador"
       onSubmit={(event) => event.preventDefault()}
@@ -125,7 +150,7 @@ export default function Buscador({
       <label>Buscar: </label>
 
       <div className="buscador-input">
-        <input onChange={handleInputChange} value={texto} />
+        <input ref={inputRef} onChange={handleInputChange} value={texto} />
         {mostrarCascada &&
           <Cascada
             resultados={resultados}
