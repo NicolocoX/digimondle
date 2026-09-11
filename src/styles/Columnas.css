@@ -7,7 +7,7 @@
 
   position: sticky;
   top: 31px;
-  z-index: 100;
+  z-index: 99;
 
   background-color: white;
 }

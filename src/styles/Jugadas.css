@@ -1,11 +1,17 @@
 .jugadas {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   padding-bottom: 50px;
   width: fit-content;
 }
 
 .jugadas.digimon {
   flex-direction: column-reverse;
+}
+
+@media (max-width: 600px) {
+  .jugadas.digimon {
+    gap: 20px;
+  }
 }
