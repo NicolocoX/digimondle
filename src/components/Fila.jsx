@@ -7,16 +7,16 @@ import Fecha from "./Fecha.jsx"
 import compararListas from "../logic/CompararListas.js"
 
 
-function Fila({ digimon, objetivo }) {
+function Fila({ digimon, objetivo, ultimaJugadaRef }) {
   const nombre = digimon.nombre
   const [iconosCampo, setIconosCampo] = useState([])
-
 
   const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
   const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
   const tipoCampo = compararListas(digimon.campo, objetivo.campo)
   const tipoTipo = compararListas(digimon.tipo, objetivo.tipo)
   const tipoAño = digimon.año === objetivo.año ? " correcta" : " incorrecta"
+
   const orientacionAño = digimon.año === objetivo.año
     ? ""
     : digimon.año < objetivo.año
@@ -41,7 +41,7 @@ function Fila({ digimon, objetivo }) {
 
 
   return (
-    <div className="fila">
+    <div className="fila" ref={ultimaJugadaRef}>
       <Casilla>
         <img className={"imagen-digimon"} src={digimon.imagen} alt={nombre} title={nombre} />
       </Casilla>

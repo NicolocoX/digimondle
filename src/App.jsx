@@ -60,7 +60,7 @@ export default function App() {
   }
 
 
-  useEffect(() => { // obtiene al digimon objetivo
+  useEffect(() => { //Obtiene al digimon objetivo
     getDataGeneral()
   }, [])
 
@@ -97,6 +97,7 @@ export default function App() {
   return (
     <main>
       <h1>Digimondle</h1>
+
       <Buscador
         agregarJugada={agregarJugada}
         jugadas={jugadas}
@@ -104,7 +105,9 @@ export default function App() {
         rendirse={rendirse}
         finPartida={finPartida}
         partidaGanada={partidaGanada} />
+
       <Jugadas jugadas={jugadas} objetivo={objetivo} />
+
       {mostrarModal && <AnuncioGanador
         nombre={objetivo.nombre}
         imagen={objetivo.imagen}
