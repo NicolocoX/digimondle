@@ -1,8 +1,15 @@
 .columnas {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  padding: 5px 0 5px 0;
   gap: 5px;
   margin-top: 12px;
+
+  position: sticky;
+  top: 31px;
+  z-index: 100;
+
+  background-color: white;
 }
 
 
