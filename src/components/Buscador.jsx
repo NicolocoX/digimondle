@@ -150,10 +150,8 @@ export default function Buscador({
       onSubmit={(event) => event.preventDefault()}
       ref={buscadorRef}>
 
-      <label>Buscar: </label>
-
       <div className="buscador-input">
-        <input ref={inputRef} onChange={handleInputChange} value={texto} />
+        <input ref={inputRef} onChange={handleInputChange} value={texto} placeholder="Agumon, Growmon, Beelzebumon..." />
         {mostrarCascada &&
           <Cascada
             resultados={resultados}
