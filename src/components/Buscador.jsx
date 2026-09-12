@@ -46,7 +46,10 @@ export default function Buscador({
       if (
         elemento.tagName === "INPUT" ||
         elemento.tagName === "TEXTAREA" ||
-        elemento.isContentEditable
+        elemento.isContentEditable ||
+        event.ctrlKey ||
+        event.altKey ||
+        event.metaKey
       ) {
         return
       }
