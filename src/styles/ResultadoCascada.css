@@ -19,6 +19,10 @@
   border-radius: 8px 0 0 8px;
 }
 
+.resultado-cascada span {
+  overflow-wrap: anywhere;
+}
+
 .resultado-cascada:hover {
   background-color: rgb(73, 118, 155);
   border: solid 2px rgb(140, 183, 218);
