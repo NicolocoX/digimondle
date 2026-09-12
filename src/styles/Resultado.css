@@ -1,0 +1,18 @@
+.resultado {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultado img {
+  max-width: 600px;
+  max-height: 250px;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+}
+
+.resultado h1 {
+  margin: 10px 0 10px 0;
+}

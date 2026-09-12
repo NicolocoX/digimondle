@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
 import getDatosAPI from "./services/getDatosAPI"
-import AnuncioGanador from "./components/AnuncioGanador"
 import confetti from "@hiseb/confetti"
+import Resultado from "./components/Resultado"
 
 
 const infoRelevante = (digimon) => {
@@ -47,7 +47,6 @@ export default function App() {
   const [jugadas, setJugadas] = useState([])
   const [partidaGanada, setPartidaGanada] = useState(false)
   const [finPartida, setFinPartida] = useState(false)
-  const [mostrarModal, setMostrarModal] = useState(false)
 
 
   const getDataGeneral = async () => {
@@ -57,7 +56,8 @@ export default function App() {
     const idRandom = Math.floor(Math.random() * total) + 1
     const digimon = await getDatosAPI(`https://digi-api.com/api/v1/digimon/${idRandom}`)
     setObjetivo(infoRelevante(digimon))
-    //console.log(infoRelevante(digimon).nombre)
+    // console.log(infoRelevante(digimon).nombre)
+    // console.log(infoRelevante(digimon).id)
   }
 
 
@@ -73,10 +73,9 @@ export default function App() {
     setJugadas(estadoAnt => [...estadoAnt, newDigimon])
 
     if (!finPartida && newDigimon.id === objetivo.id) {
+      confetti()
       setPartidaGanada(true)
       setFinPartida(true)
-      setMostrarModal(true)
-      confetti()
     }
   }, [objetivo, finPartida])
 
@@ -90,7 +89,6 @@ export default function App() {
 
 
   const rendirse = async () => {
-    setMostrarModal(true)
     setFinPartida(true)
   }
 
@@ -107,13 +105,12 @@ export default function App() {
         finPartida={finPartida}
         partidaGanada={partidaGanada} />
 
+      {finPartida && <Resultado partidaGanada={partidaGanada} imagen={objetivo.imagen} nombre={objetivo.nombre} />}
+
       <Jugadas jugadas={jugadas} objetivo={objetivo} />
 
-      {mostrarModal && <AnuncioGanador
-        nombre={objetivo.nombre}
-        imagen={objetivo.imagen}
-        setMostrarModal={setMostrarModal}
-        partidaGanada={partidaGanada} />}
+      {/* {objetivo && <span>{objetivo.nombre}</span>}
+      <button onClick={confetti}>prueba</button> */}
     </main>
   )
 }
