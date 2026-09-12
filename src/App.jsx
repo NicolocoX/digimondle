@@ -57,6 +57,7 @@ export default function App() {
     const idRandom = Math.floor(Math.random() * total) + 1
     const digimon = await getDatosAPI(`https://digi-api.com/api/v1/digimon/${idRandom}`)
     setObjetivo(infoRelevante(digimon))
+    //console.log(infoRelevante(digimon).nombre)
   }
 
 
@@ -93,7 +94,7 @@ export default function App() {
     setFinPartida(true)
   }
 
-  // mostrar el resultado sin modal al finalizar partida
+
   return (
     <main>
       <h1>Digimondle</h1>

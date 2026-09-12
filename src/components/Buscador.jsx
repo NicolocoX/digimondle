@@ -162,10 +162,8 @@ export default function Buscador({
             limpiarBuscador={limpiarBuscador} />}
       </div>
 
-      {finPartida || partidaGanada
-        ? <button onClick={reiniciar} type="button">Reiniciar</button>
-        : <button onClick={rendirse} type="button">Rendirse</button>}
-
+      <button onClick={rendirse} type="button" disabled={finPartida || partidaGanada}>Rendirse</button>
+      <button onClick={reiniciar} type="button">Reiniciar</button>
     </form>
   )
 }
