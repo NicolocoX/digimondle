@@ -19,7 +19,7 @@ export default function Jugadas({ jugadas, objetivo }) {
     if (!esVisible) {
       window.scrollTo({
         behavior: "smooth",
-        top: 130
+        top: 125
       })
     }
   }, [jugadas])
