@@ -19,3 +19,12 @@
 
   scrollbar-width: none;
 }
+
+@media (max-width: 675px) {
+  .cascada {
+    top: auto;
+    bottom: 100%;
+
+    border-radius: 10px 10px 0 0;
+  }
+}

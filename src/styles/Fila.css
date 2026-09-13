@@ -5,7 +5,7 @@
   gap: 5px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 675px) {
   .fila {
     grid-template-columns: repeat(3, 1fr);
   }
