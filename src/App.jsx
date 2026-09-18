@@ -42,6 +42,7 @@ const infoRelevante = (digimon) => {
 const getListaDatos = (lista, campo) => lista.map((elemento) => elemento[campo])
 
 
+
 export default function App() {
   const [objetivo, setObjetivo] = useState(null)
   const [jugadas, setJugadas] = useState([])

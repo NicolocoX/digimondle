@@ -14,19 +14,19 @@
   white-space: pre-line;
 
   border: solid 1px black;
-  border-radius: 10px;
+  border-radius: var(--borde-grande);
 }
 
 .casilla.correcta {
-  background-color: rgb(125, 201, 118);
+  background-color: var(--color-correcto);
 }
 
 .casilla.incorrecta {
-  background-color: rgb(231, 71, 71);
+  background-color: var(--color-incorrecto)
 }
 
 .casilla.semi-correcta {
-  background-color: rgb(230, 216, 90);
+  background-color: var(--color-semicorrecto);
 }
 
 .casilla::-webkit-scrollbar {

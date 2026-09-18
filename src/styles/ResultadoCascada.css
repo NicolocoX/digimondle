@@ -24,7 +24,7 @@
 }
 
 .resultado-cascada:hover {
-  background-color: rgb(73, 118, 155);
+  background-color: var(--color-componente);
   border: solid 2px rgb(140, 183, 218);
   color: white;
 }

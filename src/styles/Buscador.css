@@ -9,7 +9,7 @@
   z-index: 100;
   box-sizing: border-box;
 
-  background-color: white;
+  background-color: var(--color-fondo);
 
   position: sticky;
   top: 0;
@@ -17,6 +17,7 @@
 
 .buscador-input {
   display: flex;
+  flex-direction: column;
   position: relative;
   width: 300px;
 }
@@ -26,7 +27,7 @@
   height: 30px;
 
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: var(--borde-pequeño);
   border-width: 1px;
   font-family: inherit;
 }
@@ -50,10 +51,16 @@
   .buscador input {
     height: 35px;
   }
+
+  .buscador button {
+    height: 35px;
+  }
 }
 
 .buscador button {
-  border-radius: 4px;
+  height: 30px;
+
+  border-radius: var(--borde-pequeño);
   border-width: 1px;
   font-family: inherit;
 }
