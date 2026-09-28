@@ -1,46 +1,10 @@
 import { useCallback, useEffect, useState } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
+import Resultado from "./components/Resultado"
 import getDatosAPI from "./services/getDatosAPI"
 import confetti from "@hiseb/confetti"
-import Resultado from "./components/Resultado"
-
-
-const infoRelevante = (digimon) => {
-  if (!digimon) return null
-
-  const id = digimon.id
-  const nombre = digimon.name
-  const imagen = digimon.images[0].href
-  const nivel = digimon.levels.length
-    ? getListaDatos(digimon.levels, "level")
-    : ["Sin información"]
-  const atributo = digimon.attributes.length
-    ? getListaDatos(digimon.attributes, "attribute")
-    : []
-  const campo = digimon.fields.length
-    ? getListaDatos(digimon.fields, "id")
-    : []
-  const tipo = digimon.types.length
-    ? getListaDatos(digimon.types, "type")
-    : ["Sin información"]
-  const año = digimon.releaseDate
-
-  return {
-    id,
-    nombre,
-    imagen,
-    nivel,
-    atributo,
-    campo,
-    tipo,
-    año
-  }
-}
-
-
-const getListaDatos = (lista, campo) => lista.map((elemento) => elemento[campo])
-
+import infoRelevante from "./logic/infoRelevante"
 
 
 export default function App() {

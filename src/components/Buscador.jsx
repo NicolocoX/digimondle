@@ -156,8 +156,8 @@ export default function Buscador({
           <Cascada
             resultados={resultados}
             expandirResultados={expandirResultados}
-            agregarJugada={agregarJugada}
-            limpiarBuscador={limpiarBuscador} />}
+            limpiarBuscador={limpiarBuscador}
+            agregarJugada={agregarJugada} />}
       </div>
 
       <button onClick={rendirse} type="button" disabled={finPartida || partidaGanada}>Rendirse</button>
