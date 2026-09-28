@@ -15,5 +15,9 @@ export default function useJugadas() {
     return newDigimon
   }, [])
 
-  return { jugadas, setJugadas, agregarJugada }
+
+  const limpiarJugadas = () => setJugadas([])
+
+
+  return { jugadas, agregarJugada, limpiarJugadas }
 }

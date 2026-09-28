@@ -6,16 +6,26 @@ import getDatosAPI from "./services/getDatosAPI"
 import confetti from "@hiseb/confetti"
 import infoRelevante from "./logic/infoRelevante"
 import useJugadas from "./hooks/useJugadas"
+import usePartida from "./hooks/usePartida"
 
 
 export default function App() {
   const [objetivo, setObjetivo] = useState(null)
-  const [partidaGanada, setPartidaGanada] = useState(false)
-  const [finPartida, setFinPartida] = useState(false)
-  const { jugadas, setJugadas, agregarJugada } = useJugadas()
+
+  const {
+    jugadas,
+    agregarJugada,
+    limpiarJugadas } = useJugadas()
+
+  const {
+    partidaGanada,
+    finPartida,
+    manejarJugada,
+    rendirse,
+    reiniciarPartida } = usePartida({ objetivo, agregarJugada })
 
 
-  const getDataGeneral = async () => {
+  const getObjetivo = async () => {
     const data = await getDatosAPI("https://digi-api.com/api/v1/digimon?pageSize=1")
     const total = data.pageable.totalElements
 
@@ -28,26 +38,14 @@ export default function App() {
 
 
   useEffect(() => { //Obtiene al digimon objetivo
-    getDataGeneral()
+    getObjetivo()
   }, [])
 
 
   const reiniciar = async () => {
-    await getDataGeneral()
-    setJugadas([])
-    setFinPartida(false)
-    setPartidaGanada(false)
-  }
-
-
-  const manejarJugada = async (jugada) => {
-    const newDigimon = await agregarJugada(jugada)
-
-    if (!finPartida && newDigimon.id === objetivo.id) {
-      confetti()
-      setPartidaGanada(true)
-      setFinPartida(true)
-    }
+    await getObjetivo()
+    limpiarJugadas()
+    reiniciarPartida()
   }
 
 
@@ -59,7 +57,7 @@ export default function App() {
         manejarJugada={manejarJugada}
         jugadas={jugadas}
         reiniciar={reiniciar}
-        setFinPartida={setFinPartida}
+        rendirse={rendirse}
         finPartida={finPartida}
         partidaGanada={partidaGanada} />
 
