@@ -1,10 +1,10 @@
 import { memo } from "react"
 import "../styles/ResultadoCascada.css"
 
-function ResultadoCascada({ resultado, agregarJugada, limpiarBuscador }) {
+function ResultadoCascada({ resultado, manejarJugada, limpiarBuscador }) {
   const handleClick = (digimon) => {
     limpiarBuscador()
-    agregarJugada(digimon)
+    manejarJugada(digimon)
   }
 
 

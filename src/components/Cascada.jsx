@@ -2,7 +2,7 @@ import ResultadoCascada from "./ResultadoCascada";
 import "../styles/Cascada.css"
 
 
-export default function Cascada({ resultados, expandirResultados, agregarJugada, limpiarBuscador }) {
+export default function Cascada({ resultados, expandirResultados, manejarJugada, limpiarBuscador }) {
   const handleScroll = (event) => {
     const elemento = event.currentTarget
     const enElFinal = elemento.clientHeight + elemento.scrollTop >= elemento.scrollHeight - 1
@@ -18,7 +18,7 @@ export default function Cascada({ resultados, expandirResultados, agregarJugada,
           <ResultadoCascada
             key={key}
             resultado={resultado}
-            agregarJugada={agregarJugada}
+            manejarJugada={manejarJugada}
             limpiarBuscador={limpiarBuscador} />
         )
       })}

@@ -12,7 +12,7 @@ export default function App() {
   const [objetivo, setObjetivo] = useState(null)
   const [partidaGanada, setPartidaGanada] = useState(false)
   const [finPartida, setFinPartida] = useState(false)
-  const { jugadas, setJugadas, agregarJugada } = useJugadas({ finPartida, objetivo, setPartidaGanada, setFinPartida })
+  const { jugadas, setJugadas, agregarJugada } = useJugadas()
 
 
   const getDataGeneral = async () => {
@@ -40,12 +40,23 @@ export default function App() {
   }
 
 
+  const manejarJugada = async (jugada) => {
+    const newDigimon = await agregarJugada(jugada)
+
+    if (!finPartida && newDigimon.id === objetivo.id) {
+      confetti()
+      setPartidaGanada(true)
+      setFinPartida(true)
+    }
+  }
+
+
   return (
     <main>
       <h1>Digimondle</h1>
 
       <Buscador
-        agregarJugada={agregarJugada}
+        manejarJugada={manejarJugada}
         jugadas={jugadas}
         reiniciar={reiniciar}
         setFinPartida={setFinPartida}

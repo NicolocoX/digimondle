@@ -8,7 +8,7 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
 export default function Buscador({
-  agregarJugada,
+  manejarJugada,
   jugadas,
   reiniciar,
   finPartida,
@@ -157,7 +157,7 @@ export default function Buscador({
             resultados={resultados}
             expandirResultados={expandirResultados}
             limpiarBuscador={limpiarBuscador}
-            agregarJugada={agregarJugada} />}
+            manejarJugada={manejarJugada} />}
       </div>
 
       <button onClick={() => setFinPartida(true)} type="button" disabled={finPartida || partidaGanada}>Rendirse</button>
