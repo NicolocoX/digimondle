@@ -1,17 +1,18 @@
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
 import Resultado from "./components/Resultado"
 import getDatosAPI from "./services/getDatosAPI"
 import confetti from "@hiseb/confetti"
 import infoRelevante from "./logic/infoRelevante"
+import useJugadas from "./hooks/useJugadas"
 
 
 export default function App() {
   const [objetivo, setObjetivo] = useState(null)
-  const [jugadas, setJugadas] = useState([])
   const [partidaGanada, setPartidaGanada] = useState(false)
   const [finPartida, setFinPartida] = useState(false)
+  const { jugadas, setJugadas, agregarJugada } = useJugadas({ finPartida, objetivo, setPartidaGanada, setFinPartida })
 
 
   const getDataGeneral = async () => {
@@ -31,30 +32,11 @@ export default function App() {
   }, [])
 
 
-  const agregarJugada = useCallback(async (jugada) => {
-    const digimon = await getDatosAPI(jugada)
-    const newDigimon = infoRelevante(digimon)
-
-    setJugadas(estadoAnt => [...estadoAnt, newDigimon])
-
-    if (!finPartida && newDigimon.id === objetivo.id) {
-      confetti()
-      setPartidaGanada(true)
-      setFinPartida(true)
-    }
-  }, [objetivo, finPartida])
-
-
   const reiniciar = async () => {
     await getDataGeneral()
     setJugadas([])
     setFinPartida(false)
     setPartidaGanada(false)
-  }
-
-
-  const rendirse = async () => {
-    setFinPartida(true)
   }
 
 
@@ -66,7 +48,7 @@ export default function App() {
         agregarJugada={agregarJugada}
         jugadas={jugadas}
         reiniciar={reiniciar}
-        rendirse={rendirse}
+        setFinPartida={setFinPartida}
         finPartida={finPartida}
         partidaGanada={partidaGanada} />
 
@@ -74,8 +56,8 @@ export default function App() {
 
       <Jugadas jugadas={jugadas} objetivo={objetivo} />
 
-      {/* {objetivo && <span>{objetivo.nombre}</span>}
-      <button onClick={confetti}>prueba</button> */}
+      {objetivo && <span>{objetivo.nombre}</span>}
+      <button onClick={confetti}>prueba</button>
     </main>
   )
 }

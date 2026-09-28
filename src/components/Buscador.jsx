@@ -12,7 +12,7 @@ export default function Buscador({
   jugadas,
   reiniciar,
   finPartida,
-  rendirse,
+  setFinPartida,
   partidaGanada }) {
   const [resultados, setResultados] = useState(null)
   const buscadorRef = useRef(null)
@@ -160,7 +160,7 @@ export default function Buscador({
             agregarJugada={agregarJugada} />}
       </div>
 
-      <button onClick={rendirse} type="button" disabled={finPartida || partidaGanada}>Rendirse</button>
+      <button onClick={() => setFinPartida(true)} type="button" disabled={finPartida || partidaGanada}>Rendirse</button>
       <button onClick={reiniciar} type="button">Reiniciar</button>
     </form>
   )
