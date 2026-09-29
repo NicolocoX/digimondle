@@ -26,7 +26,7 @@ export default function Buscador() {
   } = useInput()
 
   const buscadorRef = useRef(null)
-  const [sugerencias, setSugerencias] = useState(null)
+  const [sugerencias, setSugerencias] = useState([])
   const [mostrarCascada, setMostrarCascada] = useState(false)
   const [nextPage, setNextPage] = useState("")
   const parametros = new URLSearchParams({
@@ -38,7 +38,7 @@ export default function Buscador() {
 
   const limpiarBuscador = useCallback(() => {
     setMostrarCascada(false)
-    setSugerencias(null)
+    setSugerencias([])
     limpiarInput()
   }, [])
 
@@ -63,13 +63,14 @@ export default function Buscador() {
         [newSugerencias, newNextPage] = await getBatchSugerencias(newNextPage, newSugerencias)
       }
 
-      setSugerencias(newSugerencias)
+      setSugerencias(prevState => [...prevState, ...newSugerencias])
       setNextPage(newNextPage)
       setMostrarCascada(true)
+
       return [newSugerencias, newNextPage]
     }
 
-    return ["", []]
+    return [[], ""]
   }
 
 
@@ -79,6 +80,7 @@ export default function Buscador() {
       return
     }
 
+    setSugerencias([])
     getBatchSugerencias(API_URL + parametros, [])
   }, [consulta])
 
@@ -94,15 +96,13 @@ export default function Buscador() {
   }
 
 
-  useEffect(() => { // desactiva cascada al clickear afuera
-    if (consulta == "") return
-
+  useEffect(() => { // EventListener que desactiva cascada al clickear afuera
     const clickAfuera = (event) => {
       if (buscadorRef.current &&
         !buscadorRef.current.contains(event.target)) {
         setMostrarCascada(false)
-
-      } else if (sugerencias) setMostrarCascada(true)
+        setSugerencias([])
+      }
     }
 
     document.addEventListener("mousedown", clickAfuera)
@@ -110,9 +110,7 @@ export default function Buscador() {
     return () => {
       document.removeEventListener("mousedown", clickAfuera)
     }
-  }
-    , [sugerencias, consulta]
-  )
+  }, [])
 
 
   return (
