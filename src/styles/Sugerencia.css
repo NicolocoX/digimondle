@@ -1,4 +1,4 @@
-.resultado-cascada {
+.sugerencia {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -11,7 +11,7 @@
   text-align: left;
 }
 
-.resultado-cascada img {
+.sugerencia img {
   height: 60px;
   width: 60px;
   object-fit: cover;
@@ -19,11 +19,11 @@
   border-radius: 8px 0 0 8px;
 }
 
-.resultado-cascada span {
+.sugerencia span {
   overflow-wrap: anywhere;
 }
 
-.resultado-cascada:hover {
+.sugerencia:hover {
   background-color: var(--color-componente);
   border: solid 2px rgb(140, 183, 218);
   color: white;

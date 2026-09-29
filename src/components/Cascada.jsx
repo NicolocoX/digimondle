@@ -1,23 +1,23 @@
-import ResultadoCascada from "./ResultadoCascada";
+import Sugerencia from "./Sugerencia";
 import "../styles/Cascada.css"
 
 
-export default function Cascada({ resultados, expandirResultados, limpiarBuscador }) {
+export default function Cascada({ sugerencias, expandirSugerencias, limpiarBuscador }) {
   const handleScroll = (event) => {
     const elemento = event.currentTarget
     const enElFinal = elemento.clientHeight + elemento.scrollTop >= elemento.scrollHeight - 1
 
-    if (enElFinal) expandirResultados()
+    if (enElFinal) expandirSugerencias()
   }
 
 
   return (
     <ul className="cascada" onScroll={handleScroll}>
-      {resultados.map((resultado, key) => {
+      {sugerencias.map((sugerencia, key) => {
         return (
-          <ResultadoCascada
+          <Sugerencia
             key={key}
-            resultado={resultado}
+            sugerencia={sugerencia}
             limpiarBuscador={limpiarBuscador} />
         )
       })}

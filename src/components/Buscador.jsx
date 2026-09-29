@@ -9,11 +9,6 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
 export default function Buscador() {
-  const [resultados, setResultados] = useState(null)
-  const buscadorRef = useRef(null)
-  const [mostrarCascada, setMostrarCascada] = useState(false)
-  const [nextPage, setNextPage] = useState("")
-
   const {
     jugadas,
     partidaGanada,
@@ -30,6 +25,10 @@ export default function Buscador() {
     limpiarInput
   } = useInput()
 
+  const buscadorRef = useRef(null)
+  const [sugerencias, setSugerencias] = useState(null)
+  const [mostrarCascada, setMostrarCascada] = useState(false)
+  const [nextPage, setNextPage] = useState("")
   const parametros = new URLSearchParams({
     name: consulta,
     pageSize: 7,
@@ -39,16 +38,38 @@ export default function Buscador() {
 
   const limpiarBuscador = useCallback(() => {
     setMostrarCascada(false)
-    setResultados(null)
+    setSugerencias(null)
     limpiarInput()
   }, [])
 
 
-  const filtrarResultadosUsados = (lista) => {
+  const filtrarSugerenciasUsadas = (lista) => {
     return lista.filter(
       elemento => !jugadas.some(
         jugada => jugada.id === elemento.id
       ))
+  }
+
+
+  const getBatchSugerencias = async (url, sugerenciasIni) => {
+    const data = await getDatosAPI(url)
+
+    if (data?.content) {
+      const sugerenciasFiltradas = filtrarSugerenciasUsadas(data.content)
+      let newSugerencias = [...sugerenciasIni, ...sugerenciasFiltradas]
+      let newNextPage = data.pageable.nextPage
+
+      if (newSugerencias.length < 7 && newNextPage) {
+        [newSugerencias, newNextPage] = await getBatchSugerencias(newNextPage, newSugerencias)
+      }
+
+      setSugerencias(newSugerencias)
+      setNextPage(newNextPage)
+      setMostrarCascada(true)
+      return [newSugerencias, newNextPage]
+    }
+
+    return ["", []]
   }
 
 
@@ -58,40 +79,18 @@ export default function Buscador() {
       return
     }
 
-
-    const obtenerRespuesta = async (url, lista) => {
-      const data = await getDatosAPI(url)
-      if (data?.content) {
-        const resultadosFiltrados = filtrarResultadosUsados(data.content)
-        let newResultado = [...lista, ...resultadosFiltrados]
-        let newNextPage = data.pageable.nextPage
-
-        if (newResultado.length < 7 && newNextPage) {
-          [newResultado, newNextPage] = await obtenerRespuesta(newNextPage, newResultado)
-        }
-
-        setResultados(newResultado)
-        setNextPage(newNextPage)
-        setMostrarCascada(true)
-        return [newResultado, newNextPage]
-      }
-
-      return ["", []]
-    }
-
-
-    obtenerRespuesta(API_URL + parametros, [])
+    getBatchSugerencias(API_URL + parametros, [])
   }, [consulta])
 
 
-  const expandirResultados = async () => {
+  const expandirSugerencias = async () => {
     if (nextPage === "") return
 
     const datos = await getDatosAPI(nextPage)
     setNextPage(datos.pageable.nextPage)
 
-    const sigResultados = datos.content
-    setResultados(estadoAnt => [...estadoAnt, ...sigResultados])
+    const sigSugerencias = filtrarSugerenciasUsadas(datos.content)
+    setSugerencias(estadoAnt => [...estadoAnt, ...sigSugerencias])
   }
 
 
@@ -103,7 +102,7 @@ export default function Buscador() {
         !buscadorRef.current.contains(event.target)) {
         setMostrarCascada(false)
 
-      } else if (resultados) setMostrarCascada(true)
+      } else if (sugerencias) setMostrarCascada(true)
     }
 
     document.addEventListener("mousedown", clickAfuera)
@@ -112,7 +111,7 @@ export default function Buscador() {
       document.removeEventListener("mousedown", clickAfuera)
     }
   }
-    , [resultados, consulta]
+    , [sugerencias, consulta]
   )
 
 
@@ -125,8 +124,8 @@ export default function Buscador() {
         <input ref={inputRef} onChange={handleInputChange} value={texto} placeholder="Agumon, Growmon, Beelzebumon..." />
         {mostrarCascada &&
           <Cascada
-            resultados={resultados}
-            expandirResultados={expandirResultados}
+            sugerencias={sugerencias}
+            expandirSugerencias={expandirSugerencias}
             limpiarBuscador={limpiarBuscador} />}
       </div>
 
