@@ -6,8 +6,8 @@ import { JuegoContext } from "../contexts/juego";
 
 export default function Jugadas() {
   const ultimaJugadaRef = useRef(null)
-  const hayJugadas = jugadas.length > 0
   const { jugadas } = useContext(JuegoContext)
+  const hayJugadas = jugadas.length > 0
 
 
   useEffect(() => {
