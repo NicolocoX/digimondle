@@ -1,11 +1,13 @@
 import Columnas from "./Columnas";
 import Fila from "./Fila";
 import "../styles/Jugadas.css"
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { JuegoContext } from "../contexts/juego";
 
-export default function Jugadas({ jugadas }) {
+export default function Jugadas() {
   const ultimaJugadaRef = useRef(null)
   const hayJugadas = jugadas.length > 0
+  const { jugadas } = useContext(JuegoContext)
 
 
   useEffect(() => {

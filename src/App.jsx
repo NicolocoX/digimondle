@@ -9,7 +9,6 @@ import { JuegoContext } from "./contexts/juego"
 export default function App() {
   const {
     objetivo,
-    jugadas,
     finPartida,
   } = useContext(JuegoContext)
 
@@ -22,7 +21,7 @@ export default function App() {
 
       {finPartida && <Resultado />}
 
-      <Jugadas jugadas={jugadas} />
+      <Jugadas />
 
       {objetivo && <span>{objetivo.nombre}</span>}
       <button onClick={confetti}>prueba</button>

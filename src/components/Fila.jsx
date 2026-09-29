@@ -11,10 +11,7 @@ import { JuegoContext } from "../contexts/juego.jsx"
 function Fila({ digimon, ultimaJugadaRef }) {
   const nombre = digimon.nombre
   const [iconosCampo, setIconosCampo] = useState([])
-
-  const {
-    objetivo
-  } = useContext(JuegoContext)
+  const { objetivo } = useContext(JuegoContext)
 
   const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
   const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
