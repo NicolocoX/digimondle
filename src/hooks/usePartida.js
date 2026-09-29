@@ -1,19 +1,15 @@
 import { useState } from "react"
 import confetti from "@hiseb/confetti"
 
-export default function usePartida({ objetivo, agregarJugada }) {
+export default function usePartida() {
   const [partidaGanada, setPartidaGanada] = useState(false)
   const [finPartida, setFinPartida] = useState(false)
 
 
-  const manejarJugada = async (jugada) => {
-    const newDigimon = await agregarJugada(jugada)
-
-    if (objetivo && !finPartida && newDigimon.id === objetivo.id) {
-      confetti()
-      setPartidaGanada(true)
-      setFinPartida(true)
-    }
+  const ganar = () => {
+    confetti()
+    setPartidaGanada(true)
+    setFinPartida(true)
   }
 
 
@@ -26,5 +22,5 @@ export default function usePartida({ objetivo, agregarJugada }) {
   }
 
 
-  return { partidaGanada, finPartida, manejarJugada, rendirse, reiniciarPartida }
+  return { partidaGanada, finPartida, rendirse, reiniciarPartida, ganar }
 }

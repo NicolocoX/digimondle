@@ -10,19 +10,31 @@ import useObjetivo from "./hooks/useObjetivo"
 export default function App() {
   const {
     objetivo,
-    getObjetivo } = useObjetivo()
+    getObjetivo
+  } = useObjetivo()
 
   const {
     jugadas,
     agregarJugada,
-    limpiarJugadas } = useJugadas()
+    limpiarJugadas
+  } = useJugadas()
 
   const {
     partidaGanada,
     finPartida,
-    manejarJugada,
     rendirse,
-    reiniciarPartida } = usePartida({ objetivo, agregarJugada })
+    reiniciarPartida,
+    ganar
+  } = usePartida()
+
+
+  const jugar = async (jugada) => {
+    const newDigimon = await agregarJugada(jugada)
+
+    if (objetivo && !finPartida && newDigimon.id === objetivo.id) {
+      ganar()
+    }
+  }
 
 
   const reiniciar = async () => {
@@ -37,7 +49,7 @@ export default function App() {
       <h1>Digimondle</h1>
 
       <Buscador
-        manejarJugada={manejarJugada}
+        manejarJugada={jugar}
         jugadas={jugadas}
         reiniciar={reiniciar}
         rendirse={rendirse}
