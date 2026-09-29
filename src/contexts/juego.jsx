@@ -43,6 +43,7 @@ export function JuegoProvider({ children }) {
     reiniciarPartida()
   }
 
+
   return (
     <JuegoContext.Provider value={{
       objetivo,

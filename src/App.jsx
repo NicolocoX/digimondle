@@ -10,7 +10,6 @@ export default function App() {
   const {
     objetivo,
     jugadas,
-    partidaGanada,
     finPartida,
   } = useContext(JuegoContext)
 
@@ -21,7 +20,7 @@ export default function App() {
 
       <Buscador />
 
-      {finPartida && <Resultado partidaGanada={partidaGanada} imagen={objetivo.imagen} nombre={objetivo.nombre} />}
+      {finPartida && <Resultado />}
 
       <Jugadas jugadas={jugadas} objetivo={objetivo} />
 
