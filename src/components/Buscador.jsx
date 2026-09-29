@@ -1,9 +1,9 @@
 import Cascada from "./Cascada"
 import "../styles/Buscador.css"
 import { useState, useEffect, useCallback, useRef, useContext } from "react"
-import debounce from "debounce"
 import getDatosAPI from "../services/getDatosAPI"
 import { JuegoContext } from "../contexts/juego"
+import useInput from "../hooks/useInput"
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
@@ -11,16 +11,8 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 export default function Buscador() {
   const [resultados, setResultados] = useState(null)
   const buscadorRef = useRef(null)
-  const inputRef = useRef(null)
-  const [consulta, setConsulta] = useState("")
-  const [texto, setTexto] = useState("")
   const [mostrarCascada, setMostrarCascada] = useState(false)
   const [nextPage, setNextPage] = useState("")
-  const parametros = new URLSearchParams({
-    name: consulta,
-    pageSize: 7,
-    page: 0
-  })
 
   const {
     jugadas,
@@ -30,51 +22,25 @@ export default function Buscador() {
     reiniciar
   } = useContext(JuegoContext)
 
+  const {
+    consulta,
+    texto,
+    inputRef,
+    handleInputChange,
+    limpiarInput
+  } = useInput()
 
-  const setConsultaDebounce = useCallback(
-    debounce(valor => setConsulta(valor), 300),
-    []
-  )
-
-
-  const handleInputChange = (event) => {
-    setTexto(event.target.value)
-    setConsultaDebounce(event.target.value)
-  }
-
-
-  useEffect(() => {// Enfoca en el input al presionar una tecla
-    const teclaPresionada = event => {
-      const elemento = document.activeElement
-      if (
-        elemento.tagName === "INPUT" ||
-        elemento.tagName === "TEXTAREA" ||
-        elemento.isContentEditable ||
-        event.ctrlKey ||
-        event.altKey ||
-        event.metaKey
-      ) {
-        return
-      }
-
-      if (event.key.length === 1) {
-        inputRef.current?.focus()
-      }
-    }
-
-    window.addEventListener("keydown", teclaPresionada)
-
-    return () => {
-      window.removeEventListener("keydown", teclaPresionada)
-    }
-  }, [])
+  const parametros = new URLSearchParams({
+    name: consulta,
+    pageSize: 7,
+    page: 0
+  })
 
 
   const limpiarBuscador = useCallback(() => {
     setMostrarCascada(false)
-    setTexto("")
-    setConsulta("")
     setResultados(null)
+    limpiarInput()
   }, [])
 
 
@@ -91,6 +57,7 @@ export default function Buscador() {
       setMostrarCascada(false)
       return
     }
+
 
     const obtenerRespuesta = async (url, lista) => {
       const data = await getDatosAPI(url)
@@ -111,6 +78,7 @@ export default function Buscador() {
 
       return ["", []]
     }
+
 
     obtenerRespuesta(API_URL + parametros, [])
   }, [consulta])
