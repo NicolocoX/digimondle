@@ -6,10 +6,14 @@ import confetti from "@hiseb/confetti"
 export default function Debugueador() {
   const { objetivo } = useContext(JuegoContext)
 
+  const onClickBoton = () => {
+    confetti()
+  }
+
   return (
     <div>
       {objetivo && <span>{objetivo.nombre}</span>}
-      <button onClick={confetti}>prueba</button>
+      <button onClick={onClickBoton}>prueba</button>
     </div>
   )
 }
