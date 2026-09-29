@@ -1,18 +1,14 @@
 import Cascada from "./Cascada"
 import "../styles/Buscador.css"
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback, useRef, useContext } from "react"
 import debounce from "debounce"
 import getDatosAPI from "../services/getDatosAPI"
+import { JuegoContext } from "../contexts/juego"
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
-export default function Buscador({
-  jugadas,
-  reiniciar,
-  finPartida,
-  rendirse,
-  partidaGanada }) {
+export default function Buscador() {
   const [resultados, setResultados] = useState(null)
   const buscadorRef = useRef(null)
   const inputRef = useRef(null)
@@ -25,6 +21,14 @@ export default function Buscador({
     pageSize: 7,
     page: 0
   })
+
+  const {
+    jugadas,
+    partidaGanada,
+    finPartida,
+    rendirse,
+    reiniciar
+  } = useContext(JuegoContext)
 
 
   const setConsultaDebounce = useCallback(

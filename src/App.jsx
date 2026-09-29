@@ -12,8 +12,6 @@ export default function App() {
     jugadas,
     partidaGanada,
     finPartida,
-    rendirse,
-    reiniciar
   } = useContext(JuegoContext)
 
 
@@ -21,12 +19,7 @@ export default function App() {
     <main>
       <h1>Digimondle</h1>
 
-      <Buscador
-        jugadas={jugadas}
-        reiniciar={reiniciar}
-        rendirse={rendirse}
-        finPartida={finPartida}
-        partidaGanada={partidaGanada} />
+      <Buscador />
 
       {finPartida && <Resultado partidaGanada={partidaGanada} imagen={objetivo.imagen} nombre={objetivo.nombre} />}
 
