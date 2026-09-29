@@ -1,47 +1,20 @@
+import { useContext } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
 import Resultado from "./components/Resultado"
 import confetti from "@hiseb/confetti"
-import useJugadas from "./hooks/useJugadas"
-import usePartida from "./hooks/usePartida"
-import useObjetivo from "./hooks/useObjetivo"
+import { JuegoContext } from "./contexts/juego"
 
 
 export default function App() {
   const {
     objetivo,
-    getObjetivo
-  } = useObjetivo()
-
-  const {
     jugadas,
-    agregarJugada,
-    limpiarJugadas
-  } = useJugadas()
-
-  const {
     partidaGanada,
     finPartida,
     rendirse,
-    reiniciarPartida,
-    ganar
-  } = usePartida()
-
-
-  const jugar = async (jugada) => {
-    const newDigimon = await agregarJugada(jugada)
-
-    if (objetivo && !finPartida && newDigimon.id === objetivo.id) {
-      ganar()
-    }
-  }
-
-
-  const reiniciar = async () => {
-    await getObjetivo()
-    limpiarJugadas()
-    reiniciarPartida()
-  }
+    reiniciar
+  } = useContext(JuegoContext)
 
 
   return (
@@ -49,7 +22,6 @@ export default function App() {
       <h1>Digimondle</h1>
 
       <Buscador
-        manejarJugada={jugar}
         jugadas={jugadas}
         reiniciar={reiniciar}
         rendirse={rendirse}

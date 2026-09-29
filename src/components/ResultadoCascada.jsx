@@ -1,10 +1,14 @@
-import { memo } from "react"
+import { memo, useContext } from "react"
 import "../styles/ResultadoCascada.css"
+import { JuegoContext } from "../contexts/juego"
 
-function ResultadoCascada({ resultado, manejarJugada, limpiarBuscador }) {
+function ResultadoCascada({ resultado, limpiarBuscador }) {
+  const { jugar } = useContext(JuegoContext)
+
+
   const handleClick = (digimon) => {
     limpiarBuscador()
-    manejarJugada(digimon)
+    jugar(digimon)
   }
 
 
