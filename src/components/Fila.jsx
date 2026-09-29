@@ -1,15 +1,20 @@
 import Casilla from "./Casilla.jsx"
 import "../styles/Fila.css"
 import getDatosAPI from "../services/getDatosAPI"
-import { memo, useEffect, useState } from "react"
+import { memo, useContext, useEffect, useState } from "react"
 import IconosCasilla from "./IconosCasilla.jsx"
 import Fecha from "./Fecha.jsx"
 import compararListas from "../logic/CompararListas.js"
+import { JuegoContext } from "../contexts/juego.jsx"
 
 
-function Fila({ digimon, objetivo, ultimaJugadaRef }) {
+function Fila({ digimon, ultimaJugadaRef }) {
   const nombre = digimon.nombre
   const [iconosCampo, setIconosCampo] = useState([])
+
+  const {
+    objetivo
+  } = useContext(JuegoContext)
 
   const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
   const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
@@ -45,17 +50,21 @@ function Fila({ digimon, objetivo, ultimaJugadaRef }) {
       <Casilla>
         <img className={"imagen-digimon"} src={digimon.imagen} alt={nombre} title={nombre} />
       </Casilla>
+
       <Casilla tipo={tipoNivel}>{digimon.nivel}</Casilla>
+
       <Casilla tipo={tipoAtributo}>
         {digimon.atributo.length !== 0
           ? <IconosCasilla listaIconos={digimon.atributo} />
           : "Sin informacion"}
       </Casilla>
+
       <Casilla tipo={tipoCampo}>
         {iconosCampo.length !== 0
           ? <IconosCasilla listaIconos={iconosCampo} />
           : "Sin informacion"}
       </Casilla>
+
       <Casilla tipo={tipoTipo}>{digimon.tipo}</Casilla>
 
       <Casilla tipo={tipoAño}>

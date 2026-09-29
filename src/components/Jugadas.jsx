@@ -3,7 +3,7 @@ import Fila from "./Fila";
 import "../styles/Jugadas.css"
 import { useEffect, useRef } from "react";
 
-export default function Jugadas({ jugadas, objetivo }) {
+export default function Jugadas({ jugadas }) {
   const ultimaJugadaRef = useRef(null)
   const hayJugadas = jugadas.length > 0
 
@@ -36,7 +36,6 @@ export default function Jugadas({ jugadas, objetivo }) {
           return (
             <Fila key={index}
               digimon={digimon}
-              objetivo={objetivo}
               ultimaJugadaRef={esUltima ? ultimaJugadaRef : null} />
           )
         })}

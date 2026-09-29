@@ -22,7 +22,7 @@ export default function App() {
 
       {finPartida && <Resultado />}
 
-      <Jugadas jugadas={jugadas} objetivo={objetivo} />
+      <Jugadas jugadas={jugadas} />
 
       {objetivo && <span>{objetivo.nombre}</span>}
       <button onClick={confetti}>prueba</button>
