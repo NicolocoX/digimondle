@@ -26,12 +26,14 @@ export default function Buscador() {
   } = useInput()
 
   const buscadorRef = useRef(null)
+
   const [sugerencias, setSugerencias] = useState([])
   const [mostrarCascada, setMostrarCascada] = useState(false)
   const [nextPage, setNextPage] = useState("")
+  const tamanoBatch = 7
   const parametros = new URLSearchParams({
     name: consulta,
-    pageSize: 7,
+    pageSize: tamanoBatch,
     page: 0
   })
 
@@ -59,18 +61,23 @@ export default function Buscador() {
       let newSugerencias = [...sugerenciasIni, ...sugerenciasFiltradas]
       let newNextPage = data.pageable.nextPage
 
-      if (newSugerencias.length < 7 && newNextPage) {
-        [newSugerencias, newNextPage] = await getBatchSugerencias(newNextPage, newSugerencias)
+      if (newSugerencias.length < tamanoBatch && newNextPage) {
+        [newNextPage, newSugerencias] = await getBatchSugerencias(newNextPage, newSugerencias)
       }
 
-      setSugerencias(prevState => [...prevState, ...newSugerencias])
-      setNextPage(newNextPage)
-      setMostrarCascada(true)
-
-      return [newSugerencias, newNextPage]
+      return [newNextPage, newSugerencias]
     }
 
-    return [[], ""]
+    return ["", []]
+  }
+
+
+  const getDatosSugerencias = async (url, sugerenciasIni) => {
+    const [newNextPage, newSugerencias] = await getBatchSugerencias(url, sugerenciasIni)
+
+    setSugerencias(prevState => [...prevState, ...newSugerencias])
+    setNextPage(newNextPage)
+    setMostrarCascada(true)
   }
 
 
@@ -81,11 +88,11 @@ export default function Buscador() {
     }
 
     setSugerencias([])
-    getBatchSugerencias(API_URL + parametros, [])
+    getDatosSugerencias(API_URL + parametros, [])
   }, [consulta])
 
 
-  const expandirSugerencias = async () => {
+  const expandirSugerencias = async () => { // debería ejecutar getDatosSugerencias desde el segundo batch
     if (nextPage === "") return
 
     const datos = await getDatosAPI(nextPage)
