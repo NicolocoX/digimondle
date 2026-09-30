@@ -72,6 +72,13 @@ export default function Buscador() {
   }
 
 
+  const agregarSugerencias = (sugerencias, newNextPage) => {
+    setSugerencias(prevState => [...prevState, ...sugerencias])
+    setNextPage(newNextPage)
+    setMostrarCascada(true)
+  }
+
+
   useEffect(() => { // descarga los datos
     if (consulta === "") {
       setMostrarCascada(false)
@@ -85,9 +92,7 @@ export default function Buscador() {
 
       if (consultaCancelada) return
 
-      setSugerencias(prevState => [...prevState, ...newSugerencias])
-      setNextPage(newNextPage)
-      setMostrarCascada(true)
+      agregarSugerencias(newSugerencias, newNextPage)
     }
 
     setSugerencias([])
@@ -104,9 +109,7 @@ export default function Buscador() {
 
     const [newNextPage, newSugerencias] = await getDatosSugerencias(nextPage, [])
 
-    setSugerencias(prevState => [...prevState, ...newSugerencias])
-    setNextPage(newNextPage)
-    setMostrarCascada(true)
+    agregarSugerencias(newSugerencias, newNextPage)
   }
 
 
