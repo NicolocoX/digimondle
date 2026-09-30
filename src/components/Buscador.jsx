@@ -72,30 +72,41 @@ export default function Buscador() {
   }
 
 
-  const getBatchSugerencias = async (url) => {
-    const [newNextPage, newSugerencias] = await getDatosSugerencias(url, [])
-
-    setSugerencias(prevState => [...prevState, ...newSugerencias])
-    setNextPage(newNextPage)
-    setMostrarCascada(true)
-  }
-
-
   useEffect(() => { // descarga los datos
     if (consulta === "") {
       setMostrarCascada(false)
       return
     }
 
+    let consultaCancelada = false
+
+    const getConsultaSugerencias = async (url) => {
+      const [newNextPage, newSugerencias] = await getDatosSugerencias(url, [])
+
+      if (consultaCancelada) return
+
+      setSugerencias(prevState => [...prevState, ...newSugerencias])
+      setNextPage(newNextPage)
+      setMostrarCascada(true)
+    }
+
     setSugerencias([])
-    getBatchSugerencias(API_URL + parametros)
+    getConsultaSugerencias(API_URL + parametros)
+
+    return () => {
+      consultaCancelada = true
+    }
   }, [consulta])
 
 
   const expandirSugerencias = async () => {
     if (nextPage === "") return
 
-    await getBatchSugerencias(nextPage, sugerencias)
+    const [newNextPage, newSugerencias] = await getDatosSugerencias(nextPage, [])
+
+    setSugerencias(prevState => [...prevState, ...newSugerencias])
+    setNextPage(newNextPage)
+    setMostrarCascada(true)
   }
 
 
