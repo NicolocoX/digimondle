@@ -1,9 +1,10 @@
 import Cascada from "./Cascada"
 import "../styles/Buscador.css"
-import { useState, useEffect, useCallback, useRef, useContext } from "react"
-import getDatosAPI from "../services/getDatosAPI"
+import { useEffect, useCallback, useRef, useContext } from "react"
 import { JuegoContext } from "../contexts/juego"
 import useInput from "../hooks/useInput"
+import useSugerencias from "../hooks/useSugerencias"
+
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
@@ -25,12 +26,17 @@ export default function Buscador() {
     limpiarInput
   } = useInput()
 
-  const buscadorRef = useRef(null)
+  const {
+    sugerencias,
+    mostrarCascada,
+    tamanoBatch,
+    agregarSugerencias,
+    getDatosSugerencias,
+    expandirSugerencias,
+    limpiarSugerencias
+  } = useSugerencias({ jugadas })
 
-  const [sugerencias, setSugerencias] = useState([])
-  const [mostrarCascada, setMostrarCascada] = useState(false)
-  const [nextPage, setNextPage] = useState("")
-  const tamanoBatch = 7
+  const buscadorRef = useRef()
   const parametros = new URLSearchParams({
     name: consulta,
     pageSize: tamanoBatch,
@@ -38,52 +44,10 @@ export default function Buscador() {
   })
 
 
-  const limpiarBuscador = useCallback(() => {
-    setMostrarCascada(false)
-    setSugerencias([])
-    limpiarInput()
-  }, [])
-
-
-  const filtrarSugerenciasUsadas = (lista) => {
-    return lista.filter(
-      elemento => !jugadas.some(
-        jugada => jugada.id === elemento.id
-      ))
-  }
-
-
-  const getDatosSugerencias = async (url, sugerenciasIni) => {
-    const data = await getDatosAPI(url)
-
-    if (data?.content) {
-      const sugerenciasFiltradas = filtrarSugerenciasUsadas(data.content)
-      let newSugerencias = [...sugerenciasIni, ...sugerenciasFiltradas]
-      let newNextPage = data.pageable.nextPage
-
-      if (newSugerencias.length < tamanoBatch && newNextPage) {
-        [newNextPage, newSugerencias] = await getDatosSugerencias(newNextPage, newSugerencias)
-      }
-
-      return [newNextPage, newSugerencias]
-    }
-
-    return ["", []]
-  }
-
-
-  const agregarSugerencias = (sugerencias, newNextPage) => {
-    setSugerencias(prevState => [...prevState, ...sugerencias])
-    setNextPage(newNextPage)
-    setMostrarCascada(true)
-  }
-
-
   useEffect(() => { // descarga los datos
-    if (consulta === "") {
-      setMostrarCascada(false)
-      return
-    }
+    limpiarSugerencias()
+
+    if (consulta === "") return
 
     let consultaCancelada = false
 
@@ -95,7 +59,6 @@ export default function Buscador() {
       agregarSugerencias(newSugerencias, newNextPage)
     }
 
-    setSugerencias([])
     getConsultaSugerencias(API_URL + parametros)
 
     return () => {
@@ -104,21 +67,11 @@ export default function Buscador() {
   }, [consulta])
 
 
-  const expandirSugerencias = async () => {
-    if (nextPage === "") return
-
-    const [newNextPage, newSugerencias] = await getDatosSugerencias(nextPage, [])
-
-    agregarSugerencias(newSugerencias, newNextPage)
-  }
-
-
   useEffect(() => { // EventListener que desactiva cascada al clickear afuera
     const clickAfuera = (event) => {
       if (buscadorRef.current &&
         !buscadorRef.current.contains(event.target)) {
-        setMostrarCascada(false)
-        setSugerencias([])
+        limpiarSugerencias()
       }
     }
 
@@ -127,7 +80,13 @@ export default function Buscador() {
     return () => {
       document.removeEventListener("mousedown", clickAfuera)
     }
-  }, [])
+  }, [limpiarSugerencias])
+
+
+  const limpiarBuscador = useCallback(() => {
+    limpiarSugerencias()
+    limpiarInput()
+  }, [limpiarSugerencias, limpiarInput])
 
 
   return (

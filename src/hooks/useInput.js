@@ -47,10 +47,10 @@ export default function useInput() {
   }
 
 
-  const limpiarInput = () => {
+  const limpiarInput = useCallback(() => {
     setTexto("")
     setConsulta("")
-  }
+  }, [])
 
 
   return {

@@ -16,7 +16,7 @@ export default function App() {
       <Buscador />
       {finPartida && <Resultado />}
       <Jugadas />
-      <Debugueador />
+      {/* <Debugueador /> */}
     </main>
   )
 }
