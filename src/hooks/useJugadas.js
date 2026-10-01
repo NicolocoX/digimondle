@@ -7,8 +7,8 @@ export default function useJugadas() {
   const [jugadas, setJugadas] = useState([])
 
 
-  const agregarJugada = useCallback(async (jugada) => {
-    const digimon = await getDatosAPI(jugada)
+  const agregarJugada = useCallback(async (url) => {
+    const digimon = await getDatosAPI(url)
     const newDigimon = infoRelevante(digimon)
 
     setJugadas(estadoAnt => [...estadoAnt, newDigimon])
@@ -19,5 +19,9 @@ export default function useJugadas() {
   const limpiarJugadas = () => setJugadas([])
 
 
-  return { jugadas, agregarJugada, limpiarJugadas }
+  return { 
+    jugadas, 
+    agregarJugada, 
+    limpiarJugadas
+  }
 }

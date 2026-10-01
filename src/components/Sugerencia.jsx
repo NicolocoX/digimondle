@@ -4,11 +4,12 @@ import { JuegoContext } from "../contexts/juego"
 
 function Sugerencia({ sugerencia, limpiarBuscador }) {
   const { jugar } = useContext(JuegoContext)
+  console.log(sugerencia.name)
 
 
-  const handleClick = (digimon) => {
+  const handleClick = (url) => {
     limpiarBuscador()
-    jugar(digimon)
+    jugar(url)
   }
 
 

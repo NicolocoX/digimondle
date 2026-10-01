@@ -28,8 +28,8 @@ export function JuegoProvider({ children }) {
   } = usePartida()
 
 
-  const jugar = async (jugada) => {
-    const newDigimon = await agregarJugada(jugada)
+  const jugar = async (url) => {
+    const newDigimon = await agregarJugada(url)
 
     if (objetivo && !finPartida && newDigimon.id === objetivo.id) {
       ganar()
