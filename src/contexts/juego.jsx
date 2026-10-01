@@ -10,7 +10,7 @@ export const JuegoContext = createContext()
 export function JuegoProvider({ children }) {
   const {
     objetivo,
-    getObjetivo
+    cambiarObjetivo
   } = useObjetivo()
 
   const {
@@ -38,7 +38,7 @@ export function JuegoProvider({ children }) {
 
 
   const reiniciar = async () => {
-    await getObjetivo()
+    await cambiarObjetivo()
     limpiarJugadas()
     reiniciarPartida()
   }
@@ -47,7 +47,7 @@ export function JuegoProvider({ children }) {
   return (
     <JuegoContext.Provider value={{
       objetivo,
-      getObjetivo,
+      cambiarObjetivo,
       jugadas,
       agregarJugada,
       limpiarJugadas,

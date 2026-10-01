@@ -7,21 +7,19 @@ export default function useObjetivo() {
 
 
   useEffect(() => { //Obtiene al digimon objetivo
-    getObjetivo()
+    cambiarObjetivo()
   }, [])
 
 
-  const getObjetivo = async () => {
+  const cambiarObjetivo = async () => {
     const data = await getDatosAPI("https://digi-api.com/api/v1/digimon?pageSize=1")
     const total = data.pageable.totalElements
 
     const idRandom = Math.floor(Math.random() * total) + 1
     const digimon = await getDatosAPI(`https://digi-api.com/api/v1/digimon/${idRandom}`)
     setObjetivo(infoRelevante(digimon))
-    // console.log(infoRelevante(digimon).nombre)
-    // console.log(infoRelevante(digimon).id)
   }
 
 
-  return { objetivo, getObjetivo }
+  return { objetivo, cambiarObjetivo }
 }
