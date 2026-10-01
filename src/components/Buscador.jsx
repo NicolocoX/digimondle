@@ -10,13 +10,7 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
 export default function Buscador() {
-  const {
-    jugadas,
-    partidaGanada,
-    finPartida,
-    rendirse,
-    reiniciar
-  } = useContext(JuegoContext)
+  const { jugadas } = useContext(JuegoContext)
 
   const {
     consulta,
@@ -90,21 +84,17 @@ export default function Buscador() {
 
 
   return (
-    <form className="buscador"
+    <form className="buscador-input"
       onSubmit={(event) => event.preventDefault()}
       ref={buscadorRef}>
 
-      <div className="buscador-input">
-        <input ref={inputRef} onChange={handleInputChange} value={texto} placeholder="Agumon, Growmon, Beelzebumon..." />
-        {mostrarCascada &&
-          <Cascada
-            sugerencias={sugerencias}
-            expandirSugerencias={expandirSugerencias}
-            limpiarBuscador={limpiarBuscador} />}
-      </div>
+      <input ref={inputRef} onChange={handleInputChange} value={texto} placeholder="Agumon, Growmon, Beelzebumon..." />
 
-      <button onClick={rendirse} type="button" disabled={finPartida || partidaGanada}>Rendirse</button>
-      <button onClick={reiniciar} type="button">Reiniciar</button>
+      {mostrarCascada &&
+        <Cascada
+          sugerencias={sugerencias}
+          expandirSugerencias={expandirSugerencias}
+          limpiarBuscador={limpiarBuscador} />}
     </form>
   )
 }
