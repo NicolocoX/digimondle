@@ -1,45 +1,31 @@
 import Casilla from "./Casilla.jsx"
 import "../styles/Fila.css"
-import getDatosAPI from "../services/getDatosAPI"
-import { memo, useContext, useEffect, useState } from "react"
+import { memo, useContext } from "react"
 import IconosCasilla from "./IconosCasilla.jsx"
 import Fecha from "./Fecha.jsx"
 import compararListas from "../logic/CompararListas.js"
 import { JuegoContext } from "../contexts/juego.jsx"
+import useIconosCampo from "../hooks/useIconosCampo.js"
 
 
 function Fila({ digimon, ultimaJugadaRef }) {
-  const nombre = digimon.nombre
-  const [iconosCampo, setIconosCampo] = useState([])
   const { objetivo } = useContext(JuegoContext)
+  const { iconosCampo } = useIconosCampo({ campo: digimon.campo })
+
+
+  const nombre = digimon.nombre
 
   const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
   const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
   const tipoCampo = compararListas(digimon.campo, objetivo.campo)
   const tipoTipo = compararListas(digimon.tipo, objetivo.tipo)
-  const tipoAño = digimon.año === objetivo.año ? " correcta" : " incorrecta"
 
+  const tipoAño = digimon.año === objetivo.año ? " correcta" : " incorrecta"
   const orientacionAño = digimon.año === objetivo.año
     ? ""
     : digimon.año < objetivo.año
       ? "arriba"
       : "abajo"
-
-
-  useEffect(() => {
-    const getIconos = async () => {
-      if (digimon.campo.length !== 0) {
-        let newIconosCampo = []
-        for (const elemento of digimon.campo) {
-          const data = await getDatosAPI(`https://digi-api.com/api/v1/field/${elemento}`)
-          newIconosCampo.push({ nombre: data.name, url: data.href })
-        }
-        setIconosCampo(newIconosCampo)
-      }
-    }
-
-    getIconos()
-  }, [])
 
 
   return (
@@ -48,7 +34,9 @@ function Fila({ digimon, ultimaJugadaRef }) {
         <img className={"imagen-digimon"} src={digimon.imagen} alt={nombre} title={nombre} />
       </Casilla>
 
-      <Casilla tipo={tipoNivel}>{digimon.nivel}</Casilla>
+      <Casilla tipo={tipoNivel}>
+        {digimon.nivel}
+      </Casilla>
 
       <Casilla tipo={tipoAtributo}>
         {digimon.atributo.length !== 0
@@ -62,7 +50,9 @@ function Fila({ digimon, ultimaJugadaRef }) {
           : "Sin informacion"}
       </Casilla>
 
-      <Casilla tipo={tipoTipo}>{digimon.tipo}</Casilla>
+      <Casilla tipo={tipoTipo}>
+        {digimon.tipo}
+      </Casilla>
 
       <Casilla tipo={tipoAño}>
         <Fecha año={digimon.año} dirección={orientacionAño} />
@@ -71,4 +61,4 @@ function Fila({ digimon, ultimaJugadaRef }) {
   )
 }
 
-export default memo(Fila)
+export default memo(Fila)// memo no está funcionando
