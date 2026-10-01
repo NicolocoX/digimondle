@@ -1,17 +1,14 @@
 import Casilla from "./Casilla.jsx"
 import "../styles/Fila.css"
-import { memo, useContext } from "react"
+import { memo } from "react"
 import IconosCasilla from "./IconosCasilla.jsx"
 import Fecha from "./Fecha.jsx"
 import compararListas from "../logic/CompararListas.js"
-import { JuegoContext } from "../contexts/juego.jsx"
 import useIconosCampo from "../hooks/useIconosCampo.js"
 
 
-function Fila({ digimon, ultimaJugadaRef }) {
-  const { objetivo } = useContext(JuegoContext)
+function Fila({ digimon, ultimaJugadaRef, objetivo }) {
   const { iconosCampo } = useIconosCampo({ campo: digimon.campo })
-
 
   const nombre = digimon.nombre
 
@@ -61,4 +58,4 @@ function Fila({ digimon, ultimaJugadaRef }) {
   )
 }
 
-export default memo(Fila)// memo no está funcionando
+export default memo(Fila)

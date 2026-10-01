@@ -4,7 +4,6 @@ import { JuegoContext } from "../contexts/juego"
 
 function Sugerencia({ sugerencia, limpiarBuscador }) {
   const { jugar } = useContext(JuegoContext)
-  console.log(sugerencia.name)
 
 
   const handleClick = (url) => {

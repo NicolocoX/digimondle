@@ -6,7 +6,7 @@ import { JuegoContext } from "../contexts/juego";
 
 export default function Jugadas() {
   const ultimaJugadaRef = useRef(null)
-  const { jugadas } = useContext(JuegoContext)
+  const { jugadas, objetivo } = useContext(JuegoContext)
   const hayJugadas = jugadas.length > 0
 
 
@@ -38,7 +38,8 @@ export default function Jugadas() {
           return (
             <Fila key={index}
               digimon={digimon}
-              ultimaJugadaRef={esUltima ? ultimaJugadaRef : null} />
+              ultimaJugadaRef={esUltima ? ultimaJugadaRef : null}
+              objetivo={objetivo} />
           )
         })}
       </div>
