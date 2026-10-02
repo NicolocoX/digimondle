@@ -28,15 +28,6 @@ export function JuegoProvider({ children }) {
   } = usePartida()
 
 
-  const jugar = async (url) => {
-    const newDigimon = await agregarJugada(url)
-
-    if (objetivo && !finPartida && newDigimon.id === objetivo.id) {
-      ganar()
-    }
-  }
-
-
   return (
     <JuegoContext.Provider value={{
       objetivo,
@@ -48,8 +39,7 @@ export function JuegoProvider({ children }) {
       finPartida,
       rendirse,
       reiniciarPartida,
-      ganar,
-      jugar
+      ganar
     }}>
       {children}
     </JuegoContext.Provider>
