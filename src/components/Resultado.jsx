@@ -1,11 +1,11 @@
 import { useContext } from "react"
 import "../styles/Resultado.css"
-import { JuegoContext } from "../contexts/juego"
 import { ObjetivoContext } from "../contexts/objetivo"
+import { PartidaContext } from "../contexts/partida"
 
 
 export default function Resultado() {
-  const { partidaGanada } = useContext(JuegoContext)
+  const { partidaGanada } = useContext(PartidaContext)
   const { objetivo } = useContext(ObjetivoContext)
 
 

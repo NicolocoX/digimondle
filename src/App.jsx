@@ -6,18 +6,21 @@ import { JuegoContext } from "./contexts/juego"
 import Debugueador from "./components/Debugueador"
 import './styles/Buscador.css'
 import { ObjetivoContext } from "./contexts/objetivo"
+import { PartidaContext } from "./contexts/partida"
 
 
 export default function App() {
-  const {
-    finPartida,
-    partidaGanada,
-    rendirse,
-    limpiarJugadas,
-    reiniciarPartida
-  } = useContext(JuegoContext)
+  const { limpiarJugadas } = useContext(JuegoContext)
 
   const { cambiarObjetivo } = useContext(ObjetivoContext)
+
+  const {
+    partidaGanada,
+    finPartida,
+    rendirse,
+    reiniciarPartida
+  } = useContext(PartidaContext)
+
 
   const reiniciar = async () => {
     await cambiarObjetivo()

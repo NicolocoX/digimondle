@@ -13,7 +13,6 @@ function Fila({ digimon, ultimaJugadaRef }) {
   const { objetivo } = useContext(ObjetivoContext)
 
   const nombre = digimon.nombre
-  console.log(nombre)
 
   const tipoNivel = compararListas(digimon.nivel, objetivo.nivel)
   const tipoAtributo = compararListas(digimon.atributo, objetivo.atributo)
