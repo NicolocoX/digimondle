@@ -12,8 +12,17 @@ export default function App() {
     finPartida,
     partidaGanada,
     rendirse,
-    reiniciar
+    cambiarObjetivo,
+    limpiarJugadas,
+    reiniciarPartida
   } = useContext(JuegoContext)
+
+
+  const reiniciar = async () => {
+    await cambiarObjetivo()
+    limpiarJugadas()
+    reiniciarPartida()
+  }
 
 
   return (

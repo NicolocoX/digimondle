@@ -37,13 +37,6 @@ export function JuegoProvider({ children }) {
   }
 
 
-  const reiniciar = async () => {
-    await cambiarObjetivo()
-    limpiarJugadas()
-    reiniciarPartida()
-  }
-
-
   return (
     <JuegoContext.Provider value={{
       objetivo,
@@ -56,8 +49,7 @@ export function JuegoProvider({ children }) {
       rendirse,
       reiniciarPartida,
       ganar,
-      jugar,
-      reiniciar
+      jugar
     }}>
       {children}
     </JuegoContext.Provider>
