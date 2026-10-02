@@ -4,6 +4,7 @@ import { useEffect, useCallback, useRef, useContext } from "react"
 import { JugadasContext } from "../contexts/jugadas"
 import useInput from "../hooks/useInput"
 import useSugerencias from "../hooks/useSugerencias"
+import { ObjetivoContext } from "../contexts/objetivo"
 
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"
@@ -11,6 +12,7 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 export default function Buscador() {
   const { jugadas } = useContext(JugadasContext)
+  const { cargandoObjetivo } = useContext(ObjetivoContext)
 
   const {
     consulta,
@@ -88,7 +90,12 @@ export default function Buscador() {
       onSubmit={(event) => event.preventDefault()}
       ref={buscadorRef}>
 
-      <input ref={inputRef} onChange={handleInputChange} value={texto} placeholder="Agumon, Growmon, Beelzebumon..." />
+      <input
+        ref={inputRef}
+        onChange={handleInputChange}
+        value={texto}
+        placeholder="Agumon, Growmon, Beelzebumon..."
+        disabled={cargandoObjetivo} />
 
       {mostrarCascada &&
         <Cascada

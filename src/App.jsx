@@ -12,7 +12,7 @@ import { PartidaContext } from "./contexts/partida"
 export default function App() {
   const { limpiarJugadas } = useContext(JugadasContext)
 
-  const { cambiarObjetivo } = useContext(ObjetivoContext)
+  const { cambiarObjetivo, cargandoObjetivo } = useContext(ObjetivoContext)
 
   const {
     partidaGanada,
@@ -34,12 +34,17 @@ export default function App() {
       <h1>Digimondle</h1>
       <div className="buscador">
         <Buscador />
-        <button onClick={rendirse} type="button" disabled={finPartida || partidaGanada}>Rendirse</button>
-        <button onClick={reiniciar} type="button">Reiniciar</button>
+        <button
+          onClick={rendirse}
+          type="button"
+          disabled={finPartida || partidaGanada || cargandoObjetivo}>
+          Rendirse
+        </button>
+        <button onClick={reiniciar} type="button" disabled={cargandoObjetivo}>Reiniciar</button>
       </div>
       {finPartida && <Resultado />}
       <Jugadas />
-      <Debugueador />
+      {/* <Debugueador /> */}
     </main>
   )
 }

@@ -6,12 +6,14 @@ export const ObjetivoContext = createContext()
 export function ObjetivoProvider({ children }) {
   const {
     objetivo,
+    cargandoObjetivo,
     cambiarObjetivo
   } = useObjetivo()
 
   return (
     <ObjetivoContext.Provider value={{
       objetivo,
+      cargandoObjetivo,
       cambiarObjetivo
     }}>
       {children}
