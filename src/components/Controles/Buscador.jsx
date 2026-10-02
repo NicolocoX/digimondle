@@ -1,10 +1,10 @@
-import Cascada from "./Cascada"
+import Cascada from "../Cascada"
 import "../styles/Buscador.css"
 import { useEffect, useCallback, useRef, useContext } from "react"
-import { JugadasContext } from "../contexts/jugadas"
-import useInput from "../hooks/useInput"
-import useSugerencias from "../hooks/useSugerencias"
-import { ObjetivoContext } from "../contexts/objetivo"
+import { JugadasContext } from "../../contexts/jugadas"
+import useInput from "../../hooks/useInput"
+import useSugerencias from "../../hooks/useSugerencias"
+import { ObjetivoContext } from "../../contexts/objetivo"
 
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"

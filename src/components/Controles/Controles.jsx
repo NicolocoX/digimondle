@@ -1,9 +1,9 @@
 import Buscador from "./Buscador";
 import '../styles/Controles.css'
 import { useContext } from "react";
-import { PartidaContext } from "../contexts/partida";
-import { ObjetivoContext } from "../contexts/objetivo";
-import { JugadasContext } from "../contexts/jugadas";
+import { PartidaContext } from "../../contexts/partida";
+import { ObjetivoContext } from "../../contexts/objetivo";
+import { JugadasContext } from "../../contexts/jugadas";
 
 export default function Controles() {
   const {
