@@ -1,11 +1,11 @@
 import Casilla from "./Casilla.jsx"
-import "../styles/Fila.css"
+import "../../styles/Fila.css"
 import { memo, useContext } from "react"
 import IconosCasilla from "./IconosCasilla.jsx"
 import Fecha from "./Fecha.jsx"
-import compararListas from "../logic/CompararListas.js"
-import useIconosCampo from "../hooks/useIconosCampo.js"
-import { ObjetivoContext } from "../contexts/objetivo.jsx"
+import compararListas from "../../logic/CompararListas.js"
+import useIconosCampo from "../../hooks/useIconosCampo.js"
+import { ObjetivoContext } from "../../contexts/objetivo.jsx"
 
 
 function Fila({ digimon, ultimaJugadaRef }) {

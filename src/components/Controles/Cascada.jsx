@@ -1,5 +1,5 @@
 import Sugerencia from "./Sugerencia";
-import "../styles/Cascada.css"
+import "../../styles/Cascada.css"
 
 
 export default function Cascada({ sugerencias, expandirSugerencias, limpiarBuscador }) {

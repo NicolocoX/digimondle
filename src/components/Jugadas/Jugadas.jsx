@@ -1,8 +1,8 @@
 import Columnas from "./Columnas";
 import Fila from "./Fila";
-import "../styles/Jugadas.css"
+import "../../styles/Jugadas.css"
 import { useContext, useEffect, useRef } from "react";
-import { JugadasContext } from "../contexts/jugadas";
+import { JugadasContext } from "../../contexts/jugadas";
 
 
 export default function Jugadas() {

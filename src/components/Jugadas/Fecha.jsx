@@ -1,4 +1,4 @@
-import "../styles/Fecha.css"
+import "../../styles/Fecha.css"
 
 export default function Fecha({ año, dirección }) {
   return (

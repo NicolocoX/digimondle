@@ -1,11 +1,11 @@
-import "../styles/IconosCasilla.css"
-import dataSVG from "../assets/Data.svg"
-import vaccineSVG from "../assets/Vaccine.svg"
-import virusSVG from "../assets/Virus.svg"
-import noDataSVG from "../assets/NoData.svg"
-import unknownSVG from "../assets/Unknown.svg"
-import variableSVG from "../assets/Variable.svg"
-import freeSVG from "../assets/Free.svg"
+import "../../styles/IconosCasilla.css"
+import dataSVG from "../../assets/Data.svg"
+import vaccineSVG from "../../assets/Vaccine.svg"
+import virusSVG from "../../assets/Virus.svg"
+import noDataSVG from "../../assets/NoData.svg"
+import unknownSVG from "../../assets/Unknown.svg"
+import variableSVG from "../../assets/Variable.svg"
+import freeSVG from "../../assets/Free.svg"
 
 const iconosAtributo = {
   Data: dataSVG,
