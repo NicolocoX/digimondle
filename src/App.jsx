@@ -5,6 +5,7 @@ import Resultado from "./components/Resultado"
 import { JuegoContext } from "./contexts/juego"
 import Debugueador from "./components/Debugueador"
 import './styles/Buscador.css'
+import { ObjetivoContext } from "./contexts/objetivo"
 
 
 export default function App() {
@@ -12,11 +13,11 @@ export default function App() {
     finPartida,
     partidaGanada,
     rendirse,
-    cambiarObjetivo,
     limpiarJugadas,
     reiniciarPartida
   } = useContext(JuegoContext)
 
+  const { cambiarObjetivo } = useContext(ObjetivoContext)
 
   const reiniciar = async () => {
     await cambiarObjetivo()

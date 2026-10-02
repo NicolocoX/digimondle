@@ -1,14 +1,16 @@
 import { memo, useContext } from "react"
 import "../styles/Sugerencia.css"
 import { JuegoContext } from "../contexts/juego"
+import { ObjetivoContext } from "../contexts/objetivo"
 
 function Sugerencia({ sugerencia, limpiarBuscador }) {
   const {
     agregarJugada,
-    objetivo,
     finPartida,
     ganar
   } = useContext(JuegoContext)
+
+  const { objetivo } = useContext(ObjetivoContext)
 
 
   const jugar = async (url) => {

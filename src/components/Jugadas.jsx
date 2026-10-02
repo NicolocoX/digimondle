@@ -3,10 +3,13 @@ import Fila from "./Fila";
 import "../styles/Jugadas.css"
 import { useContext, useEffect, useRef } from "react";
 import { JuegoContext } from "../contexts/juego";
+import { ObjetivoContext } from "../contexts/objetivo";
+
 
 export default function Jugadas() {
   const ultimaJugadaRef = useRef(null)
-  const { jugadas, objetivo } = useContext(JuegoContext)
+  const { jugadas } = useContext(JuegoContext)
+  const { objetivo } = useContext(ObjetivoContext)
   const hayJugadas = jugadas.length > 0
 
 
