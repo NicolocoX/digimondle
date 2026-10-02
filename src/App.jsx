@@ -2,7 +2,7 @@ import { useContext } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
 import Resultado from "./components/Resultado"
-import { JuegoContext } from "./contexts/juego"
+import { JugadasContext } from "./contexts/juego"
 import Debugueador from "./components/Debugueador"
 import './styles/Buscador.css'
 import { ObjetivoContext } from "./contexts/objetivo"
@@ -10,7 +10,7 @@ import { PartidaContext } from "./contexts/partida"
 
 
 export default function App() {
-  const { limpiarJugadas } = useContext(JuegoContext)
+  const { limpiarJugadas } = useContext(JugadasContext)
 
   const { cambiarObjetivo } = useContext(ObjetivoContext)
 

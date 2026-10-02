@@ -2,10 +2,10 @@ import { createContext } from "react";
 import useJugadas from "../hooks/useJugadas";
 
 
-export const JuegoContext = createContext()
+export const JugadasContext = createContext()
 
 
-export function JuegoProvider({ children }) {
+export function JugadasProvider({ children }) {
   const {
     jugadas,
     agregarJugada,
@@ -14,12 +14,12 @@ export function JuegoProvider({ children }) {
 
 
   return (
-    <JuegoContext.Provider value={{
+    <JugadasContext.Provider value={{
       jugadas,
       agregarJugada,
       limpiarJugadas,
     }}>
       {children}
-    </JuegoContext.Provider>
+    </JugadasContext.Provider>
   )
 }

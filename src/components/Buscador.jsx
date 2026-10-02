@@ -1,7 +1,7 @@
 import Cascada from "./Cascada"
 import "../styles/Buscador.css"
 import { useEffect, useCallback, useRef, useContext } from "react"
-import { JuegoContext } from "../contexts/juego"
+import { JugadasContext } from "../contexts/juego"
 import useInput from "../hooks/useInput"
 import useSugerencias from "../hooks/useSugerencias"
 
@@ -10,7 +10,7 @@ const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
 export default function Buscador() {
-  const { jugadas } = useContext(JuegoContext)
+  const { jugadas } = useContext(JugadasContext)
 
   const {
     consulta,

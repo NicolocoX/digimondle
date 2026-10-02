@@ -1,11 +1,11 @@
 import { memo, useContext } from "react"
 import "../styles/Sugerencia.css"
-import { JuegoContext } from "../contexts/juego"
+import { JugadasContext } from "../contexts/jugadas"
 import { ObjetivoContext } from "../contexts/objetivo"
 import { PartidaContext } from "../contexts/partida"
 
 function Sugerencia({ sugerencia, limpiarBuscador }) {
-  const { agregarJugada } = useContext(JuegoContext)
+  const { agregarJugada } = useContext(JugadasContext)
 
   const { objetivo } = useContext(ObjetivoContext)
 

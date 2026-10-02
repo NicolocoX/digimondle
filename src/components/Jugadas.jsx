@@ -2,12 +2,12 @@ import Columnas from "./Columnas";
 import Fila from "./Fila";
 import "../styles/Jugadas.css"
 import { useContext, useEffect, useRef } from "react";
-import { JuegoContext } from "../contexts/juego";
+import { JugadasContext } from "../contexts/jugadas";
 
 
 export default function Jugadas() {
   const ultimaJugadaRef = useRef(null)
-  const { jugadas } = useContext(JuegoContext)
+  const { jugadas } = useContext(JugadasContext)
   const hayJugadas = jugadas.length > 0
 
 
