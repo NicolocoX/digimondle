@@ -1,5 +1,5 @@
 import { memo, useContext } from "react"
-import "../../styles/Sugerencia.css"
+import "../../styles/controles/Sugerencia.css"
 import { JugadasContext } from "../../contexts/jugadas"
 import { ObjetivoContext } from "../../contexts/objetivo"
 import { PartidaContext } from "../../contexts/partida"
