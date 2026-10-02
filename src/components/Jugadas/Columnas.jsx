@@ -1,4 +1,4 @@
-import "../../styles/Columnas.css"
+import "../../styles/jugadas/Columnas.css"
 
 export default function Columnas() {
   return (

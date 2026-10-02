@@ -1,4 +1,4 @@
-import "../../styles/Fecha.css"
+import "../../styles/jugadas/Fecha.css"
 
 export default function Fecha({ año, dirección }) {
   return (

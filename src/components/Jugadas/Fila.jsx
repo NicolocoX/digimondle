@@ -1,5 +1,5 @@
 import Casilla from "./Casilla.jsx"
-import "../../styles/Fila.css"
+import "../../styles/jugadas/Fila.css"
 import { memo, useContext } from "react"
 import IconosCasilla from "./IconosCasilla.jsx"
 import Fecha from "./Fecha.jsx"

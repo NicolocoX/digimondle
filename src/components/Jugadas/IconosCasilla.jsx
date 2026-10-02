@@ -1,4 +1,4 @@
-import "../../styles/IconosCasilla.css"
+import "../../styles/jugadas/IconosCasilla.css"
 import dataSVG from "../../assets/Data.svg"
 import vaccineSVG from "../../assets/Vaccine.svg"
 import virusSVG from "../../assets/Virus.svg"

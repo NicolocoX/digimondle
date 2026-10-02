@@ -1,6 +1,6 @@
 import Columnas from "./Columnas";
 import Fila from "./Fila";
-import "../../styles/Jugadas.css"
+import "../../styles/jugadas/Jugadas.css"
 import { useContext, useEffect, useRef } from "react";
 import { JugadasContext } from "../../contexts/jugadas";
 
