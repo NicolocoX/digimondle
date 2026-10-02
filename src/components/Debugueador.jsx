@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import { JuegoContext } from "../contexts/juego"
 import confetti from "@hiseb/confetti"
+import { ObjetivoContext } from "../contexts/objetivo"
 
 
 export default function Debugueador() {
-  const { objetivo } = useContext(JuegoContext)
+  const { objetivo } = useContext(ObjetivoContext)
 
   const onClickBoton = () => {
     confetti()

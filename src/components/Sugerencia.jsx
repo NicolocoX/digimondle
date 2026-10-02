@@ -1,9 +1,27 @@
 import { memo, useContext } from "react"
 import "../styles/Sugerencia.css"
-import { JuegoContext } from "../contexts/juego"
+import { JugadasContext } from "../contexts/jugadas"
+import { ObjetivoContext } from "../contexts/objetivo"
+import { PartidaContext } from "../contexts/partida"
 
 function Sugerencia({ sugerencia, limpiarBuscador }) {
-  const { jugar } = useContext(JuegoContext)
+  const { agregarJugada } = useContext(JugadasContext)
+
+  const { objetivo } = useContext(ObjetivoContext)
+
+  const {
+    finPartida,
+    ganar
+  } = useContext(PartidaContext)
+
+
+  const jugar = async (url) => {
+    const newDigimon = await agregarJugada(url)
+
+    if (objetivo && !finPartida && newDigimon.id === objetivo.id) {
+      ganar()
+    }
+  }
 
 
   const handleClick = (url) => {

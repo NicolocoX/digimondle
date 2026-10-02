@@ -1,14 +1,16 @@
 import Casilla from "./Casilla.jsx"
 import "../styles/Fila.css"
-import { memo } from "react"
+import { memo, useContext } from "react"
 import IconosCasilla from "./IconosCasilla.jsx"
 import Fecha from "./Fecha.jsx"
 import compararListas from "../logic/CompararListas.js"
 import useIconosCampo from "../hooks/useIconosCampo.js"
+import { ObjetivoContext } from "../contexts/objetivo.jsx"
 
 
-function Fila({ digimon, ultimaJugadaRef, objetivo }) {
+function Fila({ digimon, ultimaJugadaRef }) {
   const { iconosCampo } = useIconosCampo({ campo: digimon.campo })
+  const { objetivo } = useContext(ObjetivoContext)
 
   const nombre = digimon.nombre
 

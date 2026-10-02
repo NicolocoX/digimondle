@@ -21,5 +21,8 @@ export default function useObjetivo() {
   }
 
 
-  return { objetivo, cambiarObjetivo }
+  return { 
+    objetivo, 
+    cambiarObjetivo 
+  }
 }
