@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./main.css"
-import { JugadasProvider } from "./contexts/juego";
+import { JugadasProvider } from "./contexts/jugadas";
 import { ObjetivoProvider } from "./contexts/objetivo";
 import { PartidaProvider } from "./contexts/partida";
 

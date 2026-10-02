@@ -1,7 +1,7 @@
 import Cascada from "./Cascada"
 import "../styles/Buscador.css"
 import { useEffect, useCallback, useRef, useContext } from "react"
-import { JugadasContext } from "../contexts/juego"
+import { JugadasContext } from "../contexts/jugadas"
 import useInput from "../hooks/useInput"
 import useSugerencias from "../hooks/useSugerencias"
 

@@ -2,7 +2,7 @@ import { useContext } from "react"
 import Buscador from "./components/Buscador"
 import Jugadas from "./components/Jugadas"
 import Resultado from "./components/Resultado"
-import { JugadasContext } from "./contexts/juego"
+import { JugadasContext } from "./contexts/jugadas"
 import Debugueador from "./components/Debugueador"
 import './styles/Buscador.css'
 import { ObjetivoContext } from "./contexts/objetivo"
