@@ -1,5 +1,5 @@
 import Buscador from "./Buscador";
-import '../styles/Buscador.css'
+import '../styles/Controles.css'
 import { useContext } from "react";
 import { PartidaContext } from "../contexts/partida";
 import { ObjetivoContext } from "../contexts/objetivo";
@@ -31,15 +31,22 @@ export default function Controles() {
 
 
   return (
-    <div className="buscador">
+    <div className="controles">
       <Buscador />
+
       <button
         onClick={rendirse}
         type="button"
         disabled={finPartida || partidaGanada || cargandoObjetivo}>
         Rendirse
       </button>
-      <button onClick={reiniciar} type="button" disabled={cargandoObjetivo}>Reiniciar</button>
+
+      <button
+        onClick={reiniciar}
+        type="button"
+        disabled={cargandoObjetivo}>
+        Reiniciar
+      </button>
     </div>
   )
 }

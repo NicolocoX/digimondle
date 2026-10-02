@@ -86,7 +86,7 @@ export default function Buscador() {
 
 
   return (
-    <form className="buscador-input"
+    <form className="buscador"
       onSubmit={(event) => event.preventDefault()}
       ref={buscadorRef}>
 
