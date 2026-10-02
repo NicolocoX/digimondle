@@ -3,13 +3,11 @@ import Fila from "./Fila";
 import "../styles/Jugadas.css"
 import { useContext, useEffect, useRef } from "react";
 import { JuegoContext } from "../contexts/juego";
-import { ObjetivoContext } from "../contexts/objetivo";
 
 
 export default function Jugadas() {
   const ultimaJugadaRef = useRef(null)
   const { jugadas } = useContext(JuegoContext)
-  const { objetivo } = useContext(ObjetivoContext)
   const hayJugadas = jugadas.length > 0
 
 
@@ -41,8 +39,7 @@ export default function Jugadas() {
           return (
             <Fila key={index}
               digimon={digimon}
-              ultimaJugadaRef={esUltima ? ultimaJugadaRef : null}
-              objetivo={objetivo} />
+              ultimaJugadaRef={esUltima ? ultimaJugadaRef : null} />
           )
         })}
       </div>
