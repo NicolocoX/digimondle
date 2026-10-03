@@ -5,14 +5,17 @@ import { JugadasContext } from "../../contexts/jugadas"
 import useInput from "../../hooks/useInput"
 import useSugerencias from "../../hooks/useSugerencias"
 import { ObjetivoContext } from "../../contexts/objetivo"
+import useJugar from "../../hooks/useJugar"
 
 
 const API_URL = "https://digi-api.com/api/v1/digimon?"
 
 
+
 export default function Buscador() {
   const { jugadas } = useContext(JugadasContext)
   const { cargandoObjetivo } = useContext(ObjetivoContext)
+  const { jugar } = useJugar()
 
   const {
     consulta,
@@ -40,7 +43,8 @@ export default function Buscador() {
   })
 
 
-  useEffect(() => { // descarga los datos
+
+  useEffect(() => { // Descarga los datos
     limpiarSugerencias()
 
     if (consulta === "") return
@@ -63,6 +67,7 @@ export default function Buscador() {
   }, [consulta])
 
 
+
   useEffect(() => { // EventListener que desactiva cascada al clickear afuera
     const clickAfuera = (event) => {
       if (buscadorRef.current &&
@@ -79,10 +84,36 @@ export default function Buscador() {
   }, [limpiarSugerencias])
 
 
+
+  useEffect(() => {
+    const enterPresionado = event => {
+      const elemento = document.activeElement
+
+      if (
+        elemento === inputRef.current &&
+        event.key === 'Enter' &&
+        sugerencias.length > 0 &&
+        consulta.toLowerCase() === sugerencias[0].name.toLowerCase()
+      ) {
+        jugar(sugerencias[0].href)
+        limpiarBuscador()
+      }
+    }
+
+    window.addEventListener("keydown", enterPresionado)
+
+    return () => {
+      window.removeEventListener("keydown", enterPresionado)
+    }
+  }, [inputRef, sugerencias, consulta])
+
+
+
   const limpiarBuscador = useCallback(() => {
     limpiarSugerencias()
     limpiarInput()
   }, [limpiarSugerencias, limpiarInput])
+
 
 
   return (

@@ -11,6 +11,7 @@ export default function useInput() {
   useEffect(() => {// Enfoca en el input al presionar una tecla
     const teclaPresionada = event => {
       const elemento = document.activeElement
+
       if (
         elemento.tagName === "INPUT" ||
         elemento.tagName === "TEXTAREA" ||
@@ -26,6 +27,7 @@ export default function useInput() {
         inputRef.current?.focus()
       }
     }
+
 
     window.addEventListener("keydown", teclaPresionada)
 
