@@ -21,6 +21,7 @@ export default function Buscador() {
     consulta,
     texto,
     inputRef,
+    indiceEnfocado,
     handleInputChange,
     limpiarInput
   } = useInput()
@@ -85,7 +86,7 @@ export default function Buscador() {
 
 
 
-  useEffect(() => {
+  useEffect(() => { // EvListener: elige sugerencia con Enter
     const enterPresionado = event => {
       const elemento = document.activeElement
 
@@ -132,7 +133,8 @@ export default function Buscador() {
         <Cascada
           sugerencias={sugerencias}
           expandirSugerencias={expandirSugerencias}
-          limpiarBuscador={limpiarBuscador} />}
+          limpiarBuscador={limpiarBuscador}
+          indiceEnfocado={indiceEnfocado} />}
     </form>
   )
 }

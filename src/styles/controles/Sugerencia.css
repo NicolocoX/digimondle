@@ -11,6 +11,10 @@
   text-align: left;
 }
 
+.sugerencia.foco {
+  border: solid 3px rgb(0, 0, 0);
+}
+
 .sugerencia img {
   height: 60px;
   width: 60px;
@@ -27,4 +31,8 @@
   background-color: var(--color-componente);
   border: solid 2px rgb(140, 183, 218);
   color: white;
+}
+
+.sugerencia.foco:hover {
+  border: solid 3px rgb(0, 0, 0);
 }

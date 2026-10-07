@@ -2,7 +2,7 @@ import Sugerencia from "./Sugerencia";
 import "../../styles/controles/Cascada.css"
 
 
-export default function Cascada({ sugerencias, expandirSugerencias, limpiarBuscador }) {
+export default function Cascada({ sugerencias, expandirSugerencias, limpiarBuscador, indiceEnfocado }) {
   const handleScroll = (event) => {
     const elemento = event.currentTarget
     const enElFinal = elemento.clientHeight + elemento.scrollTop >= elemento.scrollHeight - 1
@@ -18,7 +18,8 @@ export default function Cascada({ sugerencias, expandirSugerencias, limpiarBusca
           <Sugerencia
             key={key}
             sugerencia={sugerencia}
-            limpiarBuscador={limpiarBuscador} />
+            limpiarBuscador={limpiarBuscador}
+            enfocado={key === indiceEnfocado} />
         )
       })}
     </ul>

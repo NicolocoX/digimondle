@@ -6,6 +6,7 @@ export default function useInput() {
   const [consulta, setConsulta] = useState("")
   const [texto, setTexto] = useState("")
   const inputRef = useRef(null)
+  const [indiceEnfocado, setIndiceEnfocado] = useState(3)
 
 
   useEffect(() => {// Enfoca en el input al presionar una tecla
@@ -59,6 +60,7 @@ export default function useInput() {
     consulta,
     texto,
     inputRef,
+    indiceEnfocado,
     handleInputChange,
     limpiarInput
   }
