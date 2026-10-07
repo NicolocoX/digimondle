@@ -38,6 +38,7 @@ export default function useSugerencias({ jugadas }) {
   }
 
 
+
   const getDatosSugerencias = async (url, sugerenciasIni) => {
     const data = await getDatosAPI(url)
 
@@ -57,12 +58,14 @@ export default function useSugerencias({ jugadas }) {
   }
 
 
+
   const expandirSugerencias = async () => {
     if (nextPage === "") return
 
     const [newNextPage, newSugerencias] = await getDatosSugerencias(nextPage, [])
     agregarSugerencias(newSugerencias, newNextPage)
   }
+
 
 
   const limpiarSugerencias = useCallback(() => {
@@ -72,6 +75,7 @@ export default function useSugerencias({ jugadas }) {
   }, [])
 
 
+  
   return {
     sugerencias,
     mostrarCascada,

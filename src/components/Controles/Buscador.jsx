@@ -93,10 +93,9 @@ export default function Buscador() {
       if (
         elemento === inputRef.current &&
         event.key === 'Enter' &&
-        sugerencias.length > 0 &&
-        consulta.toLowerCase() === sugerencias[0].name.toLowerCase()
+        sugerencias.length > 0
       ) {
-        jugar(sugerencias[0].href)
+        jugar(sugerencias[indiceEnfocado].href)
         limpiarBuscador()
       }
     }
@@ -106,7 +105,7 @@ export default function Buscador() {
     return () => {
       window.removeEventListener("keydown", enterPresionado)
     }
-  }, [inputRef, sugerencias, consulta])
+  }, [inputRef, sugerencias, indiceEnfocado])
 
 
 
