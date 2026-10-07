@@ -9,6 +9,7 @@ export default function useSugerencias({ jugadas }) {
   const [mostrarCascada, setMostrarCascada] = useState(false)
   const tamanoBatch = 7
   const [indiceEnfocado, setIndiceEnfocado] = useState(3)
+  const [cargandoSugerencias, setCargandoSugerencias] = useState(false)
 
 
 
@@ -66,10 +67,12 @@ export default function useSugerencias({ jugadas }) {
 
 
   const expandirSugerencias = async () => {
-    if (nextPage === "") return
+    if (nextPage === "" || cargandoSugerencias) return
 
+    setCargandoSugerencias(true)
     const [newNextPage, newSugerencias] = await getDatosSugerencias(nextPage, [])
     agregarSugerencias(newSugerencias, newNextPage)
+    setCargandoSugerencias(false)
   }
 
 
@@ -90,6 +93,7 @@ export default function useSugerencias({ jugadas }) {
     agregarSugerencias,
     getDatosSugerencias,
     expandirSugerencias,
-    limpiarSugerencias
+    limpiarSugerencias,
+    cargandoSugerencias
   }
 }
