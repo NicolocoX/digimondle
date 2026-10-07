@@ -2,7 +2,8 @@ import { memo } from "react"
 import "../../styles/controles/Sugerencia.css"
 import useJugar from "../../hooks/useJugar"
 
-function Sugerencia({ sugerencia, limpiarBuscador, enfocado }) {
+function Sugerencia({ sugerencia, limpiarBuscador, sugerenciaRef }) {
+  const enfocado = sugerenciaRef !== null
   const { jugar } = useJugar()
 
 
@@ -13,7 +14,10 @@ function Sugerencia({ sugerencia, limpiarBuscador, enfocado }) {
 
 
   return (
-    <div className={`sugerencia ${enfocado ? 'foco' : ''}`} onClick={() => handleClick(sugerencia.href)}>
+    <div
+      className={`sugerencia ${enfocado ? 'foco' : ''}`}
+      onClick={() => handleClick(sugerencia.href)}
+      ref={sugerenciaRef}>
       <img src={sugerencia.image} />
       <span>{sugerencia.name}</span>
     </div>

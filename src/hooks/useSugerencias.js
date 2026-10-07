@@ -17,7 +17,7 @@ export default function useSugerencias({ jugadas }) {
       if ( event.key === "ArrowUp" && indiceEnfocado > 0) {
         setIndiceEnfocado(prevState => prevState - 1)
       }
-      if ( event.key === "ArrowDown" && indiceEnfocado < sugerencias.length) {
+      if ( event.key === "ArrowDown" && indiceEnfocado < sugerencias.length - 1) {
         setIndiceEnfocado(prevState => prevState + 1)
       }
     }
@@ -75,7 +75,7 @@ export default function useSugerencias({ jugadas }) {
   }, [])
 
 
-  
+
   return {
     sugerencias,
     mostrarCascada,
