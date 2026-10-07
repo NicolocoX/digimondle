@@ -21,7 +21,6 @@ export default function Buscador() {
     consulta,
     texto,
     inputRef,
-    indiceEnfocado,
     handleInputChange,
     limpiarInput
   } = useInput()
@@ -30,6 +29,7 @@ export default function Buscador() {
     sugerencias,
     mostrarCascada,
     tamanoBatch,
+    indiceEnfocado,
     agregarSugerencias,
     getDatosSugerencias,
     expandirSugerencias,
