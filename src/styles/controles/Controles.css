@@ -33,6 +33,8 @@
   border-radius: var(--borde-pequeño);
   border-width: 1px;
   font-family: inherit;
+
+  background-color: var(--color-componente);
 }
 
 @media (max-width: 675px) {

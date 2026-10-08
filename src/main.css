@@ -6,7 +6,8 @@
   --color-semicorrecto: rgb(230, 216, 90);
   --color-incorrecto: rgb(231, 71, 71);
 
-  --color-componente: rgb(73, 118, 155);
+  --color-componente: rgb(177, 210, 236);
+  --color-componente-fondo: rgb(149, 172, 190);
   --color-fondo: rgb(237, 246, 253);
 
   --borde-grande: 10px;

@@ -10,10 +10,13 @@ export default function Resultado() {
 
 
   return (
-    <div className="resultado">
+    <div className={`resultado${partidaGanada ? " victoria" : " derrota"}`}>
       <h1>{partidaGanada ? "¡HAS GANADO!" : "Perdiste"}</h1>
       <img src={objetivo.imagen} alt={objetivo.nombre} />
-      <span>{partidaGanada ? "Encontraste a " : "Tu objetivo era "}{objetivo.nombre}</span>
+      <span>
+        {partidaGanada ? "Encontraste a " : "Tu objetivo era "}
+        <strong>{objetivo.nombre}</strong>
+      </span>
     </div>
   )
 }
