@@ -1,7 +1,7 @@
 .columnas {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  padding: 5px 0 5px 0;
+  padding: 5px 10px 5px 10px;
   gap: 5px;
   margin-top: 12px;
 
@@ -29,7 +29,6 @@
   width: 100px;
   height: 25px;
 
-  border: solid 1px black;
-  border-radius: var(--borde-grande);
+  border-radius: var(--borde-pequeño);
   background-color: var(--color-componente);
 }

@@ -6,12 +6,15 @@
   --color-semicorrecto: rgb(230, 216, 90);
   --color-incorrecto: rgb(231, 71, 71);
 
-  --color-componente: rgb(177, 210, 236);
+  --color-componente: rgb(201, 219, 233);
   --color-componente-fondo: rgb(149, 172, 190);
   --color-fondo: rgb(237, 246, 253);
 
   --borde-grande: 10px;
   --borde-pequeño: 4px;
+
+  --sombra: 2px 2px 10px rgba(0, 0, 0, 0.25);
+  --sombra-pequeña: 2px 2px 3px rgba(0, 0, 0, 0.25);
 }
 
 
