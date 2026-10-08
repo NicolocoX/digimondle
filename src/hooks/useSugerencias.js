@@ -23,7 +23,11 @@ export default function useSugerencias({ jugadas }) {
         if (indiceEnfocado < sugerencias.length - 1) {
           setIndiceEnfocado(prevState => prevState + 1)
         }
-        if (indiceEnfocado === sugerencias.length - 1) {
+        if (
+          indiceEnfocado === sugerencias.length - 1 &&
+          nextPage !== "" &&
+          !cargandoSugerencias
+        ) {
           expandirSugerencias()
         }
       }
@@ -34,7 +38,7 @@ export default function useSugerencias({ jugadas }) {
     return () => {
       window.removeEventListener("keydown", navegacion)
     }
-  }, [sugerencias, indiceEnfocado]) 
+  }, [sugerencias, indiceEnfocado, nextPage, cargandoSugerencias]) 
 
 
 
