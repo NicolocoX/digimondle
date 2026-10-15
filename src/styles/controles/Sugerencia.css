@@ -3,10 +3,8 @@
   align-items: center;
   gap: 5px;
 
-  background-color: white;
-  border: solid 2px rgb(255, 255, 255);
-
-  border-radius: 8px;
+  background-color: var(--color-componente);
+  border: solid 2px var(--color-componente);
 
   text-align: left;
 }
@@ -19,8 +17,6 @@
   height: 60px;
   width: 60px;
   object-fit: cover;
-
-  border-radius: 8px 0 0 8px;
 }
 
 .sugerencia span {
@@ -28,9 +24,9 @@
 }
 
 .sugerencia:hover {
-  background-color: var(--color-componente);
-  border: solid 2px rgb(140, 183, 218);
-  color: white;
+  background-color: var(--color-destacado);
+  border: solid 2px black;
+  font-weight: bold;
 }
 
 .sugerencia.foco:hover {

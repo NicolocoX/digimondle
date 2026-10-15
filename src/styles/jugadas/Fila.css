@@ -2,18 +2,11 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 
-  gap: 5px;
+  gap: 7px;
 }
 
 @media (max-width: 675px) {
   .fila {
     grid-template-columns: repeat(3, 1fr);
   }
-}
-
-.imagen-digimon {
-  height: 100px;
-  width: 100px;
-  object-fit: cover;
-  border-radius: 10px;
 }

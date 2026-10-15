@@ -21,7 +21,6 @@
   height: 30px;
 
   box-sizing: border-box;
-  border-radius: var(--borde-pequeño);
   border-width: 1px;
   font-family: inherit;
 }
@@ -30,11 +29,15 @@
 .controles button {
   height: 30px;
 
-  border-radius: var(--borde-pequeño);
-  border-width: 1px;
-  font-family: inherit;
+  border: solid 1px;
+  font: inherit;
+  font-size: 14px;
 
   background-color: var(--color-componente);
+}
+
+.controles button:hover {
+  background-color: var(--color-destacado);
 }
 
 @media (max-width: 675px) {

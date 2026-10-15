@@ -13,8 +13,13 @@
   text-align: center;
   white-space: pre-line;
 
-  border-radius: var(--borde-grande);
   box-shadow: var(--sombra-pequeña);
+}
+
+.casilla img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
 }
 
 .casilla.correcta {

@@ -30,7 +30,7 @@ function Fila({ digimon, ultimaJugadaRef }) {
   return (
     <div className="fila" ref={ultimaJugadaRef}>
       <Casilla>
-        <img className={"imagen-digimon"} src={digimon.imagen} alt={nombre} title={nombre} />
+        <img src={digimon.imagen} alt={nombre} title={nombre} />
       </Casilla>
 
       <Casilla tipo={tipoNivel}>

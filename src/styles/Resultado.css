@@ -13,8 +13,6 @@
 
   object-fit: contain;
 
-  border-radius: var(--borde-grande);
-
   box-shadow: var(--sombra);
 }
 

@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   padding: 5px 10px 5px 10px;
-  gap: 5px;
+  gap: 7px;
   margin-top: 12px;
 
   position: sticky;
@@ -29,6 +29,5 @@
   width: 100px;
   height: 25px;
 
-  border-radius: var(--borde-pequeño);
   background-color: var(--color-componente);
 }

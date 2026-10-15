@@ -15,7 +15,6 @@
 
   background-color: var(--color-componente-fondo);
 
-  border-radius: 0px 0px 10px 10px;
   box-shadow: var(--sombra);
 
   scrollbar-width: none;
@@ -25,7 +24,5 @@
   .cascada {
     top: auto;
     bottom: 100%;
-
-    border-radius: 10px 10px 0 0;
   }
 }
