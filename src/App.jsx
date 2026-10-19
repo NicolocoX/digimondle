@@ -21,7 +21,14 @@ export default function App() {
   useEffect(() => {
     if (partidaGanada) return
 
-    scrollJugadasRef.current?.scrollIntoView({
+    const elemento = scrollJugadasRef.current
+    if (!elemento) return
+
+    const rect = elemento.getBoundingClientRect()
+    const esVisible = rect.top >= 0
+    if (esVisible) return
+
+    elemento.scrollIntoView({
       block: "start",
       behavior: "smooth"
     })
