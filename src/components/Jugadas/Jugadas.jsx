@@ -3,15 +3,19 @@ import Fila from "./Fila";
 import "../../styles/jugadas/Jugadas.css"
 import { useContext, useEffect, useRef } from "react";
 import { JugadasContext } from "../../contexts/jugadas";
+import { PartidaContext } from "../../contexts/partida";
 
 
 export default function Jugadas() {
   const ultimaJugadaRef = useRef(null)
   const { jugadas } = useContext(JugadasContext)
+  const { partidaGanada } = useContext(PartidaContext)
   const hayJugadas = jugadas.length > 0
 
 
   useEffect(() => {
+    if (partidaGanada) return
+
     const elemento = ultimaJugadaRef.current
     if (!elemento) return
 
@@ -25,7 +29,7 @@ export default function Jugadas() {
         top: 125
       })
     }
-  }, [jugadas])
+  }, [jugadas, partidaGanada])
 
 
   return (
