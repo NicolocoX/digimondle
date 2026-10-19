@@ -1,35 +1,13 @@
 import Columnas from "./Columnas";
 import Fila from "./Fila";
 import "../../styles/jugadas/Jugadas.css"
-import { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 import { JugadasContext } from "../../contexts/jugadas";
-import { PartidaContext } from "../../contexts/partida";
 
 
 export default function Jugadas() {
-  const ultimaJugadaRef = useRef(null)
   const { jugadas } = useContext(JugadasContext)
-  const { partidaGanada } = useContext(PartidaContext)
   const hayJugadas = jugadas.length > 0
-
-
-  useEffect(() => {
-    if (partidaGanada) return
-
-    const elemento = ultimaJugadaRef.current
-    if (!elemento) return
-
-    const rect = elemento.getBoundingClientRect()
-
-    const esVisible = rect.top >= 0
-
-    if (!esVisible) {
-      window.scrollTo({
-        behavior: "smooth",
-        top: 125
-      })
-    }
-  }, [jugadas, partidaGanada])
 
 
   return (
@@ -38,12 +16,9 @@ export default function Jugadas() {
 
       <div className="jugadas digimon">
         {jugadas.map((digimon, index) => {
-          const esUltima = index === jugadas.length - 1
-
           return (
             <Fila key={index}
-              digimon={digimon}
-              ultimaJugadaRef={esUltima ? ultimaJugadaRef : null} />
+              digimon={digimon} />
           )
         })}
       </div>

@@ -8,7 +8,7 @@ import useIconosCampo from "../../hooks/useIconosCampo.js"
 import { ObjetivoContext } from "../../contexts/objetivo.jsx"
 
 
-function Fila({ digimon, ultimaJugadaRef }) {
+function Fila({ digimon }) {
   const { iconosCampo } = useIconosCampo({ campo: digimon.campo })
   const { objetivo } = useContext(ObjetivoContext)
 
@@ -28,7 +28,7 @@ function Fila({ digimon, ultimaJugadaRef }) {
 
 
   return (
-    <div className="fila" ref={ultimaJugadaRef}>
+    <div className="fila">
       <Casilla>
         <img src={digimon.imagen} alt={nombre} title={nombre} />
       </Casilla>

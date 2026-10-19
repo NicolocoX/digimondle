@@ -1,15 +1,32 @@
-import { useContext } from "react"
+import { useContext, useEffect, useRef } from "react"
 import Jugadas from "./components/Jugadas/Jugadas"
 import Resultado from "./components/Resultado"
 import Debugueador from "./components/Debugueador"
 import { PartidaContext } from "./contexts/partida"
 import Controles from "./components/Controles/Controles"
+import { JugadasContext } from "./contexts/jugadas"
 
 
 export default function App() {
   const {
-    finPartida
+    finPartida,
+    partidaGanada
   } = useContext(PartidaContext)
+
+  const { jugadas } = useContext(JugadasContext)
+
+  const scrollJugadasRef = useRef(null)
+
+
+  useEffect(() => {
+    if (partidaGanada) return
+
+    scrollJugadasRef.current?.scrollIntoView({
+      block: "start",
+      behavior: "smooth"
+    })
+
+  }, [partidaGanada, jugadas])
 
 
   return (
@@ -30,6 +47,7 @@ export default function App() {
 
       <Controles />
       {finPartida && <Resultado />}
+      <div ref={scrollJugadasRef} />
       <Jugadas />
       <Debugueador />
     </main>
