@@ -7,6 +7,23 @@ import Controles from "./components/Controles/Controles"
 import { JugadasContext } from "./contexts/jugadas"
 
 
+
+function autoDesplazamiento(ref) {
+  const elemento = ref.current
+  if (!elemento) return
+
+  const rect = elemento.getBoundingClientRect()
+  const esVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
+  if (esVisible) return
+
+  elemento.scrollIntoView({
+    block: "nearest",
+    behavior: "smooth"
+  })
+}
+
+
+
 export default function App() {
   const {
     finPartida,
@@ -21,18 +38,7 @@ export default function App() {
   useEffect(() => {
     if (partidaGanada) return
 
-    const elemento = scrollJugadasRef.current
-    if (!elemento) return
-
-    const rect = elemento.getBoundingClientRect()
-    const esVisible = rect.top >= 0
-    if (esVisible) return
-
-    elemento.scrollIntoView({
-      block: "start",
-      behavior: "smooth"
-    })
-
+    autoDesplazamiento(scrollJugadasRef)
   }, [partidaGanada, jugadas])
 
 
@@ -54,7 +60,9 @@ export default function App() {
 
       <Controles />
       {finPartida && <Resultado />}
-      <div ref={scrollJugadasRef} />
+      <div
+        style={{ scrollMarginTop: "0px" }}
+        ref={scrollJugadasRef} />
       <Jugadas />
       <Debugueador />
     </main>
