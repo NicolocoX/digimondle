@@ -34,3 +34,10 @@
 .resultado.derrota h1 {
   color: var(--color-incorrecto);
 }
+
+@media (max-width: 675px) {
+  .resultado {
+    scroll-margin-top: 0px;
+    scroll-margin-bottom: 60px;
+  }
+}

@@ -10,5 +10,8 @@
 @media (max-width: 675px) {
   .fila {
     grid-template-columns: repeat(3, 1fr);
+
+    scroll-margin-top: 67px;
+    scroll-margin-bottom: 60px;
   }
 }
