@@ -1,45 +1,16 @@
-import { useContext, useEffect, useRef } from "react"
+import { useContext } from "react"
 import Jugadas from "./components/Jugadas/Jugadas"
 import Resultado from "./components/Resultado"
 import Debugueador from "./components/Debugueador"
 import { PartidaContext } from "./contexts/partida"
 import Controles from "./components/Controles/Controles"
-import { JugadasContext } from "./contexts/jugadas"
-
-
-
-function autoDesplazamiento(ref) {
-  const elemento = ref.current
-  if (!elemento) return
-
-  const rect = elemento.getBoundingClientRect()
-  const esVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
-  if (esVisible) return
-
-  elemento.scrollIntoView({
-    block: "nearest",
-    behavior: "smooth"
-  })
-}
 
 
 
 export default function App() {
   const {
-    finPartida,
-    partidaGanada
+    finPartida
   } = useContext(PartidaContext)
-
-  const { jugadas } = useContext(JugadasContext)
-
-  const scrollJugadasRef = useRef(null)
-
-
-  useEffect(() => {
-    if (partidaGanada) return
-
-    autoDesplazamiento(scrollJugadasRef)
-  }, [partidaGanada, jugadas])
 
 
   return (
@@ -60,9 +31,6 @@ export default function App() {
 
       <Controles />
       {finPartida && <Resultado />}
-      <div
-        style={{ scrollMarginTop: "0px" }}
-        ref={scrollJugadasRef} />
       <Jugadas />
       <Debugueador />
     </main>

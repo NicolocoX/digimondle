@@ -1,16 +1,20 @@
 import Casilla from "./Casilla.jsx"
 import "../../styles/jugadas/Fila.css"
-import { memo, useContext } from "react"
+import { memo, useContext, useEffect, useRef } from "react"
 import IconosCasilla from "./IconosCasilla.jsx"
 import Fecha from "./Fecha.jsx"
 import compararListas from "../../logic/CompararListas.js"
 import useIconosCampo from "../../hooks/useIconosCampo.js"
 import { ObjetivoContext } from "../../contexts/objetivo.jsx"
+import { PartidaContext } from "../../contexts/partida.jsx"
+import autoDesplazamiento from "../../logic/autoDesplazamiento.js"
 
 
 function Fila({ digimon }) {
   const { iconosCampo } = useIconosCampo({ campo: digimon.campo })
   const { objetivo } = useContext(ObjetivoContext)
+  const { partidaGanada } = useContext(PartidaContext)
+  const filaRef = useRef(null)
 
   const nombre = digimon.nombre
 
@@ -27,8 +31,17 @@ function Fila({ digimon }) {
       : "abajo"
 
 
+
+  useEffect(() => {
+    if (partidaGanada) return
+
+    autoDesplazamiento(filaRef)
+  }, [partidaGanada])
+
+
+
   return (
-    <div className="fila">
+    <div className="fila" ref={filaRef}>
       <Casilla>
         <img src={digimon.imagen} alt={nombre} title={nombre} />
       </Casilla>
