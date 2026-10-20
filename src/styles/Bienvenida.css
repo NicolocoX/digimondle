@@ -1,0 +1,5 @@
+.bienvenida {
+  text-align: justify;
+  background-color: var(--color-componente);
+  padding: 0 10px 0 10px;
+}

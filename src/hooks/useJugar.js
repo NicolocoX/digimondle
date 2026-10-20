@@ -9,7 +9,7 @@ export default function useJugar() {
   const {agregarJugada} = useContext(JugadasContext)
   const {finPartida, ganar} = useContext(PartidaContext)
 
-    const jugar = async (url) => {
+  const jugar = async (url) => {
     const newDigimon = await agregarJugada(url)
 
     if (objetivo && !finPartida && newDigimon.id === objetivo.id) {
