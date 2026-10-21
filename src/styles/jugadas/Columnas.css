@@ -3,7 +3,6 @@
   grid-template-columns: repeat(6, 1fr);
   padding: 5px 10px 5px 10px;
   gap: 7px;
-  margin-top: 12px;
 
   position: sticky;
   top: 37px;
