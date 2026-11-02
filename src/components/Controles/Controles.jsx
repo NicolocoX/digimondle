@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { PartidaContext } from "../../contexts/partida";
 import { ObjetivoContext } from "../../contexts/objetivo";
 import { JugadasContext } from "../../contexts/jugadas";
+import Tema from "./Tema";
 
 export default function Controles() {
   const {
@@ -47,6 +48,8 @@ export default function Controles() {
         disabled={cargandoObjetivo}>
         Reiniciar
       </button>
+
+      <Tema />
     </div>
   )
 }
