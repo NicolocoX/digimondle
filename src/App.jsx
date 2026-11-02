@@ -5,6 +5,7 @@ import Debugueador from "./components/Debugueador"
 import { PartidaContext } from "./contexts/partida"
 import Controles from "./components/Controles/Controles"
 import Bienvenida from "./components/Bienvenida"
+import solSVG from "./assets/tema/sol.svg"
 
 
 
@@ -22,6 +23,7 @@ export default function App() {
       {finPartida && <Resultado />}
       <Jugadas />
       <Debugueador />
+      <img src={solSVG} />
     </main>
   )
 }
