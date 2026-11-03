@@ -6,6 +6,8 @@ export default function Tema() {
   const [iconoSol, setIconoSol] = useState(true)
 
   return (
-    <img src={iconoSol ? solSVG : lunaSVG} onClick={() => setIconoSol(!iconoSol)} />
+    <button onClick={() => setIconoSol(!iconoSol)}>
+      <img src={iconoSol ? solSVG : lunaSVG} />
+    </button>
   )
 }
