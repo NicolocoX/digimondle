@@ -16,9 +16,22 @@
 
 .buscador input {
   background-color: var(--color-componente);
-  color: var(--color-letras)
+  color: var(--color-letras);
+
+  width: 100%;
+  height: 30px;
+
+  box-sizing: border-box;
+  border-width: 1px;
+  font-family: inherit;
 }
 
 [data-tema="oscuro"] .buscador input {
   border: 2px solid var(--color-destacado);
+}
+
+@media (max-width: 675px) {
+  .buscador input {
+    height: 35px;
+  }
 }
