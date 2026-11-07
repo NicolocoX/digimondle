@@ -10,6 +10,7 @@
   --color-componente-fondo: rgb(149, 172, 190);
   --color-fondo: rgb(247, 247, 247);
   --color-destacado: rgb(233, 245, 255);
+  --color-letras: rgb(0, 0, 0);
 
   --sombra: 2px 2px 10px rgba(0, 0, 0, 0.25);
   --sombra-pequeña: 2px 2px 3px rgba(0, 0, 0, 0.25);
@@ -17,13 +18,25 @@
 
 
 [data-tema="oscuro"] {
+  --color-correcto: rgb(14, 71, 9);
+  --color-semicorrecto: rgb(77, 70, 8);
+  --color-incorrecto: rgb(53, 7, 7);
+
+  --color-componente: rgb(11, 39, 61);
+  --color-componente-fondo: rgb(24, 63, 92);
   --color-fondo: rgb(0, 0, 0);
+  --color-destacado: rgb(12, 76, 129);
+  --color-letras: rgb(255, 255, 255);
+
+  --sombra: 0;
+  --sombra-pequeña: 0;
 }
 
 
 
 body {
   font-family: "Chakra Petch", sans-serif;
+  color: var(--color-letras);
   background-color: var(--color-fondo);
 
   display: flex;
