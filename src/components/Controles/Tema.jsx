@@ -17,7 +17,7 @@ export default function Tema() {
 
   return (
     <button onClick={() => setIconoSol(!iconoSol)}>
-      <img src={iconoSol ? solSVG : lunaSVG} />
+      <img style={{ "height": "100%" }} src={iconoSol ? solSVG : lunaSVG} />
     </button>
   )
 }
