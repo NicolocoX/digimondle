@@ -13,3 +13,12 @@
     max-width: 300px;
   }
 }
+
+.buscador input {
+  background-color: var(--color-componente);
+  color: var(--color-letras)
+}
+
+[data-tema="oscuro"] .buscador input {
+  border: 2px solid var(--color-destacado);
+}
