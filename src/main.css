@@ -58,3 +58,15 @@ main {
     width: 100%;
   }
 }
+
+button {
+  border: solid 1px;
+  font: inherit;
+  font-size: 14px;
+
+  background-color: var(--color-componente);
+}
+
+button:hover {
+  background-color: var(--color-destacado);
+}

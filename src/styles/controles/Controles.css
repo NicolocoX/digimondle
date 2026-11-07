@@ -16,20 +16,6 @@
   top: 0;
 }
 
-
-.controles button {
-  border: solid 1px;
-  font: inherit;
-  font-size: 14px;
-
-  background-color: var(--color-componente);
-}
-
-.controles button:hover {
-  background-color: var(--color-destacado);
-}
-
-
 @media (max-width: 675px) {
   .controles {
     height: 60px;
