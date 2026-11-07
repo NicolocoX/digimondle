@@ -7,8 +7,12 @@ export default function Tema() {
 
 
   useEffect(() => {
-    document.documentElement.dataset.tema = "oscuro"
-  }, [])
+    if (iconoSol) {
+      delete document.documentElement.dataset.tema
+    } else {
+      document.documentElement.dataset.tema = "oscuro"
+    }
+  }, [iconoSol])
 
 
   return (
