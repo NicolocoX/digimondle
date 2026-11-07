@@ -65,8 +65,19 @@ button {
   font-size: 14px;
 
   background-color: var(--color-componente);
+  color: var(--color-letras);
 }
 
 button:hover {
   background-color: var(--color-destacado);
+}
+
+button:disabled {
+  opacity: 0.4;
+}
+
+[data-tema="oscuro"] {
+  button {
+    border-color: var(--color-destacado);
+  }
 }
