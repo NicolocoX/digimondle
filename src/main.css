@@ -18,10 +18,6 @@
 
 
 [data-tema="oscuro"] {
-  --color-correcto: rgb(14, 71, 9);
-  --color-semicorrecto: rgb(77, 70, 8);
-  --color-incorrecto: rgb(53, 7, 7);
-
   --color-componente: rgb(11, 39, 61);
   --color-componente-fondo: rgb(24, 63, 92);
   --color-fondo: rgb(0, 0, 0);
