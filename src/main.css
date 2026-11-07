@@ -81,3 +81,25 @@ button:disabled {
     border-color: var(--color-destacado);
   }
 }
+
+input {
+  background-color: var(--color-componente);
+  color: var(--color-letras);
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+  border-width: 1px;
+  font-family: inherit;
+}
+
+input:disabled {
+  opacity: 0.4;
+}
+
+[data-tema="oscuro"] {
+  input {
+    border: 2px solid var(--color-destacado);
+  }
+}
