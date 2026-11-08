@@ -44,6 +44,7 @@
     box-sizing: border-box;
     box-shadow: 0 0 15px var(--color-neon),
       inset 0 0 5px var(--color-neon);
+    color: var(--color-neon);
     --color-neon: white;
   }
 
