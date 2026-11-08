@@ -10,7 +10,7 @@
 }
 
 .sugerencia.foco {
-  border: solid 3px rgb(0, 0, 0);
+  border: solid 3px var(--color-letras);
 }
 
 .sugerencia img {
@@ -25,10 +25,10 @@
 
 .sugerencia:hover {
   background-color: var(--color-destacado);
-  border: solid 2px black;
+  border: solid 2px var(--color-letras);
   font-weight: bold;
 }
 
 .sugerencia.foco:hover {
-  border: solid 3px rgb(0, 0, 0);
+  border: solid 3px var(--color-letras);
 }
