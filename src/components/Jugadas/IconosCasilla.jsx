@@ -7,6 +7,7 @@ import unknownSVG from "../../assets/Unknown.svg"
 import variableSVG from "../../assets/Variable.svg"
 import freeSVG from "../../assets/Free.svg"
 
+
 const iconosAtributo = {
   Data: dataSVG,
   Vaccine: vaccineSVG,
@@ -17,23 +18,26 @@ const iconosAtributo = {
   "No Data": noDataSVG
 }
 
+
+const getColumnas = (cantIconos) => {
+  if (cantIconos > 2) return "auto auto auto"
+  else if (cantIconos > 1) return "auto auto"
+  else return "auto"
+}
+
+
 export default function IconosCasilla({ listaIconos }) {
   const margen = (listaIconos.length > 9) ? "30" : "0"
-
-  const getColumnas = () => {
-    if (listaIconos.length > 2) return "auto auto auto"
-    else if (listaIconos.length > 1) return "auto auto"
-    else return "auto"
-  }
-  const cantColumnas = getColumnas()
+  const cantColumnas = getColumnas(listaIconos.length)
+  const esAtributo = typeof listaIconos[0] === "string"
 
   return (
-    <div className="iconos-campo"
+    <div className={esAtributo ? "iconos-casilla atributo" : "iconos-casilla"}
       style={{ marginTop: `${margen}px`, gridTemplateColumns: cantColumnas }}>
       {listaIconos.map((icono, index) => {
         return (
-          typeof icono === "string"
-            ? <img key={index} src={iconosAtributo[icono]} alt={icono} title={icono} /> // no hay imagen para "sin información"
+          esAtributo
+            ? <img key={index} src={iconosAtributo[icono]} alt={icono} title={icono} />
             : <img key={index} src={icono.url} alt={icono.nombre} title={icono.nombre} />
         )
       })}
