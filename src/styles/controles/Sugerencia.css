@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  margin: 0 10px 0 10px;
 
   background-color: var(--color-componente);
   border: solid 2px var(--color-componente);
@@ -10,7 +11,8 @@
 }
 
 .sugerencia.foco {
-  border: solid 3px var(--color-letras);
+  box-shadow: var(--sombra);
+  margin: 0 16px 0 4px;
 }
 
 .sugerencia img {
@@ -25,10 +27,24 @@
 
 .sugerencia:hover {
   background-color: var(--color-destacado);
-  border: solid 2px var(--color-letras);
   font-weight: bold;
 }
 
 .sugerencia.foco:hover {
-  border: solid 3px var(--color-letras);
+  box-shadow: var(--sombra);
+}
+
+[data-tema="oscuro"] {
+  .sugerencia.foco {
+    border: solid 3px var(--color-letras);
+    margin: 0 10px 0 10px;
+  }
+
+  .sugerencia:hover {
+    border: solid 2px var(--color-letras);
+  }
+
+  .sugerencia.foco:hover {
+    border: solid 3px var(--color-letras);
+  }
 }
