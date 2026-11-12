@@ -20,7 +20,7 @@ export default function IconosCasilla({ listaIconos }) {
       {listaIconos.map((icono, index) => {
         return (
           esAtributo
-            ? <IconoAtributo nombre={icono} />
+            ? <IconoAtributo key={index} nombre={icono} />
             : <img key={index} src={icono.url} alt={icono.nombre} title={icono.nombre} />
         )
       })}
