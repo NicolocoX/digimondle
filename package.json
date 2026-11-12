@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "standard": "^17.1.2",
-    "vite": "^8.2.0"
+    "vite": "^8.2.0",
+    "vite-plugin-svgr": "^5.2.0"
   },
   "dependencies": {
     "@hiseb/confetti": "^2.2.0",
