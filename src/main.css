@@ -55,6 +55,7 @@ main {
   }
 }
 
+
 button {
   font: inherit;
   font-size: 14px;
@@ -78,6 +79,7 @@ button:disabled {
     border: solid 1px var(--color-destacado);
   }
 }
+
 
 input {
   background-color: var(--color-componente);

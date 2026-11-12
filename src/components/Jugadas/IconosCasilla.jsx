@@ -1,22 +1,5 @@
 import "../../styles/jugadas/IconosCasilla.css"
-import dataSVG from "../../assets/Data.svg"
-import vaccineSVG from "../../assets/Vaccine.svg"
-import virusSVG from "../../assets/Virus.svg"
-import noDataSVG from "../../assets/NoData.svg"
-import unknownSVG from "../../assets/Unknown.svg"
-import variableSVG from "../../assets/Variable.svg"
-import freeSVG from "../../assets/Free.svg"
-
-
-const iconosAtributo = {
-  Data: dataSVG,
-  Vaccine: vaccineSVG,
-  Virus: virusSVG,
-  Free: freeSVG,
-  Variable: variableSVG,
-  Unknown: unknownSVG,
-  "No Data": noDataSVG
-}
+import IconoAtributo from "./IconoAtributo"
 
 
 const getColumnas = (cantIconos) => {
@@ -37,7 +20,7 @@ export default function IconosCasilla({ listaIconos }) {
       {listaIconos.map((icono, index) => {
         return (
           esAtributo
-            ? <img key={index} src={iconosAtributo[icono]} alt={icono} title={icono} />
+            ? <IconoAtributo nombre={icono} />
             : <img key={index} src={icono.url} alt={icono.nombre} title={icono.nombre} />
         )
       })}
