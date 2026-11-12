@@ -15,7 +15,7 @@ export default function IconosCasilla({ listaIconos }) {
   const esAtributo = typeof listaIconos[0] === "string"
 
   return (
-    <div className={esAtributo ? "iconos-casilla atributo" : "iconos-casilla"}
+    <div className="iconos-casilla"
       style={{ marginTop: `${margen}px`, gridTemplateColumns: cantColumnas }}>
       {listaIconos.map((icono, index) => {
         return (

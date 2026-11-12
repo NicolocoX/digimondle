@@ -1,10 +1,11 @@
-import dataSVG from "../../assets/Data.svg"
-import vaccineSVG from "../../assets/Vaccine.svg"
-import virusSVG from "../../assets/Virus.svg"
-import noDataSVG from "../../assets/NoData.svg"
-import unknownSVG from "../../assets/Unknown.svg"
-import variableSVG from "../../assets/Variable.svg"
-import freeSVG from "../../assets/Free.svg"
+import "../../styles/jugadas/IconoAtributo.css"
+import dataSVG from "../../assets/Data.svg?react"
+import vaccineSVG from "../../assets/Vaccine.svg?react"
+import virusSVG from "../../assets/Virus.svg?react"
+import noDataSVG from "../../assets/NoData.svg?react"
+import unknownSVG from "../../assets/Unknown.svg?react"
+import variableSVG from "../../assets/Variable.svg?react"
+import freeSVG from "../../assets/Free.svg?react"
 
 
 const iconosAtributo = {
@@ -19,7 +20,13 @@ const iconosAtributo = {
 
 
 export default function IconoAtributo({ nombre }) {
+  const Icono = iconosAtributo[nombre]
+
   return (
-    <img src={iconosAtributo[nombre]} alt={nombre} title={nombre} />
+    <div title={nombre}>
+      <Icono
+        className="icono-atributo"
+        title={nombre} />
+    </div>
   )
 }
