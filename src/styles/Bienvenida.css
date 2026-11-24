@@ -1,6 +1,9 @@
 .bienvenida {
   text-align: justify;
   background-color: var(--color-componente);
-  padding: 0 10px 0 10px;
-  margin: 0 5px 0 5px;
+  padding: 0 10px;
+  align-self: stretch;
+  box-sizing: border-box;
+  width: 0;
+  min-width: 100%;
 }

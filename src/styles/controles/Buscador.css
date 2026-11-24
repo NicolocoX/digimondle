@@ -1,8 +1,10 @@
 .buscador {
   display: flex;
   flex-direction: column;
+  flex: 1;
   position: relative;
-  width: 300px;
+  width: 100%;
+  min-width: 0;
 }
 
 @media (max-width: 675px) {

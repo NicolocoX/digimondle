@@ -1,7 +1,7 @@
 .columnas {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  padding: 5px 10px 5px 10px;
+  padding: 5px 0;
   gap: 7px;
 
   position: sticky;
